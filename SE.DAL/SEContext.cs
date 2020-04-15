@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SE.Common;
 using SE.DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,27 @@ namespace SE.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(
+                new User
+                {
+                    Name = "admin",
+                    Surname = "admin",
+                    Email = "admin@admin.com",
+                    Password = Crypto.Sha256("admin" + "admin@admin.com"),
+                    Role = Enums.Role.Admin,
+                    IsConfirmed = true
+                },
+                new User
+                {
+                    Name = "Max",
+                    Surname = "Grechuha",
+                    Email = "max.grechuha@mail.ru",
+                    Password = Crypto.Sha256("123123" + "max.grechuha@mail.ru"),
+                    Role = Enums.Role.User,
+                    IsConfirmed = true
+                }
+            );
+
             modelBuilder.Entity<User>()
                 .HasMany(a => a.Comments)
                 .WithOne(f => f.User)
