@@ -1,29 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {}
+    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {
+    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
+        "projectUniqueName": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
         "projectName": "SE.WebSite",
-        "projectPath": "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
-        "packagesPath": "C:\\Users\\maxgr\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\SecurityExperts\\SE.WebSite\\obj\\",
+        "projectPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
+        "packagesPath": "C:\\Users\\makhr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\maxgr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\makhr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
