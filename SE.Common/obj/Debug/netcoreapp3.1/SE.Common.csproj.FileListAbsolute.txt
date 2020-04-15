@@ -1,0 +1,8 @@
+D:\Projects\SecurityExperts\SE.Common\bin\Debug\netcoreapp3.1\SE.Common.deps.json
+D:\Projects\SecurityExperts\SE.Common\bin\Debug\netcoreapp3.1\SE.Common.dll
+D:\Projects\SecurityExperts\SE.Common\bin\Debug\netcoreapp3.1\SE.Common.pdb
+D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.csprojAssemblyReference.cache
+D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.AssemblyInfoInputs.cache
+D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.AssemblyInfo.cs
+D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.dll
+D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.pdb

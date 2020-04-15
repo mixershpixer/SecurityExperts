@@ -1,0 +1,11 @@
+D:\Projects\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.Common.dll
+D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.csprojAssemblyReference.cache
+D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.AssemblyInfoInputs.cache
+D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.AssemblyInfo.cs
+D:\Projects\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.deps.json
+D:\Projects\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.dll
+D:\Projects\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.pdb
+D:\Projects\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.Common.pdb
+D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.csproj.CopyComplete
+D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.dll
+D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.pdb
