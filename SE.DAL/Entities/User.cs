@@ -25,7 +25,7 @@ namespace SE.DAL.Entities
         public string Email { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(100)]
         public string Password { get; set; }
 
         [Required]

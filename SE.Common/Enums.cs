@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SE.Common
@@ -14,21 +15,33 @@ namespace SE.Common
 
         public enum Auditory
         {
+            [Display(Name = "Общее")]
             Common = 0,
+            [Display(Name = "Воспитатели")]
             Teachers,
+            [Display(Name = "Родители")]
             Parents
         }
 
         public enum Type
         {
+            [Display(Name = "Общее")]
             Common = 0,
+            [Display(Name = "Видео")]
             Video,
+            [Display(Name = "Презентации")]
             Presentation,
+            [Display(Name = "Викторины")]
             Quizzes,
+            [Display(Name = "Иллюстрации")]
             Illustrations,
+            [Display(Name = "Конспекты")]
             Summaries,
+            [Display(Name = "Статьи")]
             Articles,
+            [Display(Name = "Консультации")]
             Consultations,
+            [Display(Name = "Памятки")]
             Memos
         }
 

@@ -16,7 +16,6 @@ namespace SE.DAL.Entities
         public string Name { get; set; }
 
         [Required]
-        [StringLength(50)]
         public Guid UserId { get; set; }
         public User User { get; set; }
 
@@ -25,8 +24,7 @@ namespace SE.DAL.Entities
         public string Description { get; set; }
 
         [Required]
-        [StringLength(500)]
-        public string Status { get; set; }
+        public Enums.MaterialStatus Status { get; set; }
 
         [Required]
         public DateTime PublishingDate{ get; set; }
@@ -35,6 +33,7 @@ namespace SE.DAL.Entities
         public Enums.Auditory Auditory { get; set; }
 
         [Required]
+        [StringLength(100)]
         public string Theme { get; set; }
 
         [Required]
