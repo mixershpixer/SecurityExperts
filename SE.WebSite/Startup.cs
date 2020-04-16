@@ -12,7 +12,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SE.BLL.Interfaces;
+using SE.BLL.Services;
 using SE.DAL;
+using SE.DAL.Interfaces;
+using SE.DAL.Repositories;
+using SE.WebSite.Email;
 
 namespace SE.WebSite
 {
@@ -29,8 +34,21 @@ namespace SE.WebSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<SEContext>(options => options.UseSqlServer(connection));
 
-            services.AddDbContext<SEContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SEConnection")));
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IDownloadingService, DownloadingService>();
+            services.AddScoped<IMaterialService, MaterialService>();
+            services.AddScoped<IRatingService, RatingService>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IDownloadingRepository, DownloadingRepository>();
+            services.AddScoped<IMaterialRepository, MaterialRepository>();
+            services.AddScoped<IRatingRepository, RatingRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -41,6 +59,8 @@ namespace SE.WebSite
                     options.LoginPath = new PathString("/Account/Login");
                     options.AccessDeniedPath = new PathString("/Account/Login");
                 });
+
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +81,7 @@ namespace SE.WebSite
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

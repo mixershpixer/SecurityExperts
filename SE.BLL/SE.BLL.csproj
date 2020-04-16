@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\SE.DAL\SE.DAL.csproj" />
+    <ProjectReference Include="..\SE.Model\SE.Model.csproj" />
   </ItemGroup>
 
 </Project>

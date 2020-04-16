@@ -1,0 +1,80 @@
+﻿@model SE.Model.ViewModels.RegistrationViewModel
+
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content">
+    <section class="chart-page login gray-bg padding-top-100 padding-bottom-100">
+        <div class="container">
+            <div class="shopping-cart">
+                <div class="cart-ship-info">
+                    <div class="row">
+                        <div class="col-sm-7 center-block">
+                            <ul class="nav" id="myTab" role="tablist">
+                                <li> <a class="nav-link active" id="reg-tab" data-toggle="tab" href="#log" role="tab" aria-selected="true">Регистрация</a> </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                @if (Model.Message != null)
+                                {
+                                    <h5 style="text-align:center;">@Model.Message</h5>
+                                }
+                                <div class="tab-pane fade show active" id="log" role="tabpanel" aria-labelledby="reg-tab">
+                                    <form asp-action="Registration">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <ul class="row" style="padding-left:0 !important">
+                                            <li class="col-md-12">
+                                                <label>
+                                                    Имя *
+                                                    <input asp-for="Name" class="form-control" />
+                                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                                </label>
+                                            </li>
+                                            <li class="col-md-12">
+                                                <label>
+                                                    Фамилия *
+                                                    <input asp-for="Surname" class="form-control" />
+                                                    <span asp-validation-for="Surname" class="text-danger"></span>
+                                                </label>
+                                            </li>
+                                            <li class="col-md-12">
+                                                <label>
+                                                    Email адрес *
+                                                    <input asp-for="Email" class="form-control" />
+                                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                                </label>
+                                            </li>
+                                            <li class="col-md-12">
+                                                <label>
+                                                    Пароль *
+                                                    <input asp-for="Password" class="form-control" />
+                                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                                </label>
+                                            </li>
+                                            <li class="col-md-12">
+                                                <label>
+                                                    Подтвердить пароль *
+                                                    <input asp-for="ConfirmPassword" class="form-control" />
+                                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                                </label>
+                                            </li>
+                                            <li class="col-md-6">
+                                                <button type="submit" class="btn">ПРОДОЛЖИТЬ</button>
+                                            </li>
+                                            <li class="col-md-6">
+                                                <div class="margin-top-15 text-right">
+                                                    @Html.ActionLink("Войти в аккаунт", "Login")
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

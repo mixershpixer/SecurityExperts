@@ -6,3 +6,11 @@ D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.Assembly
 D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.AssemblyInfo.cs
 D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.dll
 D:\Projects\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\bin\Debug\netcoreapp3.1\SE.Common.deps.json
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\bin\Debug\netcoreapp3.1\SE.Common.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\bin\Debug\netcoreapp3.1\SE.Common.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.csprojAssemblyReference.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.AssemblyInfoInputs.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.AssemblyInfo.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.Common\obj\Debug\netcoreapp3.1\SE.Common.pdb

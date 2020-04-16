@@ -1,10 +1,71 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {}
+    "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {}
   },
   "projects": {
-<<<<<<< HEAD
+    "D:\\Projects\\SecurityExperts\\SE.BLL\\SE.BLL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\SecurityExperts\\SE.BLL\\SE.BLL.csproj",
+        "projectName": "SE.BLL",
+        "projectPath": "D:\\Projects\\SecurityExperts\\SE.BLL\\SE.BLL.csproj",
+        "packagesPath": "C:\\Users\\maxgr\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\SecurityExperts\\SE.BLL\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maxgr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Projects\\SecurityExperts\\SE.DAL\\SE.DAL.csproj": {
+                "projectPath": "D:\\Projects\\SecurityExperts\\SE.DAL\\SE.DAL.csproj"
+              },
+              "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj": {
+                "projectPath": "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -104,6 +165,105 @@
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj",
+        "projectName": "SE.Model",
+        "projectPath": "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj",
+        "packagesPath": "C:\\Users\\maxgr\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\SecurityExperts\\SE.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\maxgr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj": {
+                "projectPath": "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.3, )"
             }
           },
           "imports": [
@@ -126,36 +286,34 @@
       }
     },
     "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {
-=======
-    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj": {
->>>>>>> 59224f58189f3ee7baf777086acbf783cdb869d8
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
+        "projectUniqueName": "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
         "projectName": "SE.WebSite",
-        "projectPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
-        "packagesPath": "C:\\Users\\makhr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.WebSite\\obj\\",
+        "projectPath": "D:\\Projects\\SecurityExperts\\SE.WebSite\\SE.WebSite.csproj",
+        "packagesPath": "C:\\Users\\maxgr\\.nuget\\packages\\",
+        "outputPath": "D:\\Projects\\SecurityExperts\\SE.WebSite\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\makhr\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
+          "C:\\Users\\maxgr\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
+              "D:\\Projects\\SecurityExperts\\SE.BLL\\SE.BLL.csproj": {
+                "projectPath": "D:\\Projects\\SecurityExperts\\SE.BLL\\SE.BLL.csproj"
+              },
               "D:\\Projects\\SecurityExperts\\SE.DAL\\SE.DAL.csproj": {
                 "projectPath": "D:\\Projects\\SecurityExperts\\SE.DAL\\SE.DAL.csproj"
               }
@@ -171,13 +329,37 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.6.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.3, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[2.6.0, )"
             }
           },
           "imports": [
@@ -198,7 +380,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

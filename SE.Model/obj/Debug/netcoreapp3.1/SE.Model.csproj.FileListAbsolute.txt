@@ -3,3 +3,16 @@ D:\Projects\SecurityExperts\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.
 D:\Projects\SecurityExperts\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.AssemblyInfoInputs.cache
 D:\Projects\SecurityExperts\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.AssemblyInfo.cs
 D:\Projects\SecurityExperts\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.csprojAssemblyReference.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Model.deps.json
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Model.runtimeconfig.json
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Model.runtimeconfig.dev.json
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Model.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Model.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.csprojAssemblyReference.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.AssemblyInfoInputs.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.AssemblyInfo.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Common.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\bin\Debug\netcoreapp3.1\SE.Common.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.Model\obj\Debug\netcoreapp3.1\SE.Model.csproj.CopyComplete

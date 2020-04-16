@@ -9,3 +9,16 @@ D:\Projects\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.Common.pdb
 D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.csproj.CopyComplete
 D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.dll
 D:\Projects\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.deps.json
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.Common.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.Common.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.csprojAssemblyReference.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.AssemblyInfoInputs.cache
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.AssemblyInfo.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.csproj.CopyComplete
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.dll
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\obj\Debug\netcoreapp3.1\SE.DAL.pdb
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.runtimeconfig.json
+C:\Users\makhr\Desktop\SecurityExperts\SE.DAL\bin\Debug\netcoreapp3.1\SE.DAL.runtimeconfig.dev.json
