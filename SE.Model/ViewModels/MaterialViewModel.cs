@@ -17,6 +17,7 @@ namespace SE.Model.ViewModels
 
         [Required]
         public Guid UserId { get; set; }
+        public string AuthorEmail { get; set; }
 
         [Required(ErrorMessage = "Введите описание материала")]
         [StringLength(500, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]
@@ -27,6 +28,7 @@ namespace SE.Model.ViewModels
 
         [Required]
         public DateTime PublishingDate { get; set; }
+        public string PublishingDateString { get; set; }
 
         [Required(ErrorMessage = "Выберите целевую аудиторию")]
         public Enums.Auditory Auditory { get; set; }
@@ -37,6 +39,7 @@ namespace SE.Model.ViewModels
 
         [Required]
         public Enums.Type Type { get; set; }
+        public string TypeString { get; set; }
 
         [Required(ErrorMessage = "Укажите ссылку для скачивания")]
         [StringLength(500, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]
@@ -44,6 +47,8 @@ namespace SE.Model.ViewModels
 
         [Required(ErrorMessage = "Загрузите картинку")]
         public IFormFile Picture { get; set; }
+        public byte[] BytePicture { get; set; }
+        public string Base64Picture { get; set; }
 
         [Required(ErrorMessage = "Укажите источник информации")]
         [StringLength(500, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]

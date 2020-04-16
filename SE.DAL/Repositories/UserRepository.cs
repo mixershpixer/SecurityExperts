@@ -50,5 +50,17 @@ namespace SE.DAL.Repositories
 
             Context.SaveChanges();
         }
+
+        public User GetUserById(Guid id)
+        {
+            var user = DbSet
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
+
+            if (user == null)
+                throw new ApplicationException($"Can't find user with id = {id}");
+
+            return user;
+        }
     }
 }

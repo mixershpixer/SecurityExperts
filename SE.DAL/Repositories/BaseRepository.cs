@@ -34,8 +34,7 @@ namespace SE.DAL.Repositories
         }
 
         /// <inheritdoc />
-        public virtual async Task<IEnumerable<TEntity>> GetAll(
-            Expression<Func<TEntity, bool>> predicate = null)
+        public virtual async Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate = null)
         {
             IQueryable<TEntity> query = DbSet;
 

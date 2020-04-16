@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SE.BLL.Interfaces;
+using SE.Common;
 using SE.Model.ViewModels;
 
 namespace SE.WebSite.Controllers
@@ -23,6 +24,33 @@ namespace SE.WebSite.Controllers
                 RatingService,
                 UserService)
         {
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EducatorsHome()
+        {
+            var materials = await MaterialService.GetMaterials(null, Enums.Auditory.Teachers);
+
+            return View(new EducatorsMaterialsViewModel
+            {
+                Materials = materials
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EducatorsHomeSearch(EducatorsMaterialsViewModel model)
+        {
+            var materials = await MaterialService.GetMaterials(model.SearchText, Enums.Auditory.Teachers, model.Type, model.Page);
+
+            model.Materials = materials;
+
+            return Json(model);
+        }
+
+        [HttpGet]
+        public IActionResult ParentsHome()
+        {
+            return View();
         }
 
         [HttpGet]
