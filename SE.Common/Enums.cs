@@ -47,10 +47,30 @@ namespace SE.Common
 
         public enum MaterialStatus
         {
-            Deleted = 0,
+            [Display(Name = "Все")]
+            All = 0,
+            [Display(Name = "На модерации")]
             OnModeration,
+            [Display(Name = "Опубликованно")]
             Published,
-            Rejected
+            [Display(Name = "Удалено")]
+            Deleted
+        }
+
+        public enum Theme
+        {
+            [Display(Name = "Общее")]
+            Common = 0,
+            [Display(Name = "Пожарная безопасность")]
+            FireSafety,
+            [Display(Name = "Безопасность в быту")]
+            SafetyAtHome,
+            [Display(Name = "ПДД")]
+            TrafficRules,
+            [Display(Name = "Человек и природа")]
+            HumanAndNature,
+            [Display(Name = "Ребенок и общество")]
+            ChildAndSociety
         }
     }
 }

@@ -8,6 +8,7 @@ namespace SE.BLL.Interfaces
 {
     public interface IUserService
     {
+        Task<IEnumerable<UserViewModel>> GetAll();
         Task<UserViewModel> GetUserById(Guid id);
         Task<UserViewModel> GetUserByEmail(string email);
         Task<Guid> GetUserIdByEmail(string email);

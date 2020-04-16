@@ -5,6 +5,7 @@ using SE.DAL.Interfaces;
 using SE.Model.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,20 @@ namespace SE.BLL.Services
             IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+        }
+
+        public async Task<IEnumerable<UserViewModel>> GetAll()
+        {
+            var users = await _unitOfWork.Users.GetAll();
+            return users.ToList().Select(u => new UserViewModel
+            {
+                UserId = u.Id,
+                Name = u.Name,
+                Surname = u.Surname,
+                Email = u.Email,
+                Role = u.Role.ToString(),
+                IsConfirmed = u.IsConfirmed
+            });
         }
 
         public async Task<UserViewModel> GetUserByEmail(string email)

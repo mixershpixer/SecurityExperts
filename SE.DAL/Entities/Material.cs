@@ -34,7 +34,7 @@ namespace SE.DAL.Entities
 
         [Required]
         [StringLength(100)]
-        public string Theme { get; set; }
+        public Enums.Theme Theme { get; set; }
 
         [Required]
         public Enums.Type Type { get; set; }

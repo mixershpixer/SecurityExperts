@@ -1,0 +1,126 @@
+﻿@model SE.Model.ViewModels.EducatorsMaterialsViewModel
+@using SE.Common
+@{
+    ViewData["Title"] = "EducatorsMaterials";
+}
+
+<label id="Theme">@Model.Theme</label>
+
+<input name="SearchText" class="form-control" onchange="Search(1)" />
+<select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="form-control"></select>
+
+<hr />
+
+<h4 name="searchResult" hidden>Поиск не дал результатов</h4>
+
+<table class="table" name="materialsList">
+    <thead class="thead-light" name="materialsListHead">
+        <tr>
+            <th scope="col">Pctr</th>
+            <th scope="col">Name</th>
+            <th scope="col">AuthorEmail</th>
+            <th scope="col">Dscrptn</th>
+            <th scope="col">PblshngDate</th>
+            <th scope="col">Status</th>
+            <th scope="col">Theme</th>
+            <th scope="col">Type</th>
+            <th scope="col">Rating</th>
+            <th scope="col">DwnldsCount</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody name="materials" id="materials">
+        @foreach (var material in Model.Materials)
+        {
+            <tr>
+                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" /></td>
+                <td>@material.Name.ToString().Substring(0, 10)...</td>
+                <td>@material.AuthorEmail</td>
+                <td>@material.Description.ToString().Substring(0, 10)...</td>
+                <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
+                <td>@material.StatusString</td>
+                <td>@material.ThemeString</td>
+                <td>@material.TypeString</td>
+                <td>@material.Rating</td>
+                <td>@material.DownloadsCount</td>
+                <td><a onclick="DownloadMaterial('@material.Id')" href="@material.DownloadingLink" target="_blank">Download</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<label hidden id="totalCount">@Model.TotalCount</label>
+<input id="showMore" type="button" hidden class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="ShowMore" />
+
+<script>
+    var pageNum = 1;
+    window.onload = function () {
+        if (document.getElementById("materials").childElementCount >= $('#totalCount').text())
+            $("#showMore").attr("hidden", true);
+        else {
+            $('#showMore').removeAttr('hidden');
+        }
+    };
+
+    function DownloadMaterial(id) {
+        $.ajax({
+            type: "GET",
+            url: '/Material/DownloadMaterial?id=' + id,
+            success: function (data) {
+
+            }
+        });
+    };
+
+    function Search(pageNumber) {
+        var searchText = $("input[name=SearchText]").val();
+        var type = $('select[name="Type"]').val();
+        var theme = $('#Theme').text();
+
+        $.ajax({
+            type: "POST",
+            url: '/Material/EducatorsHomeSearch',
+            data: {
+                SearchText: searchText,
+                Type: type,
+                Theme: theme,
+                Materials: null,
+                Page: pageNumber
+            },
+            success: function (data) {
+                pageNum = data.page;
+                $('#totalCount').text(data.totalCount);
+                if (data.totalCount === 0) {
+                    $("#showMore").attr("hidden", true);
+                    $('table[name="materialsList"]').attr("hidden", true);
+                    $('h4[name="searchResult"]').removeAttr('hidden');
+                }
+                else {
+                    $('h4[name="searchResult"]').attr("hidden", true);
+                    $('table[name="materialsList"]').removeAttr('hidden');
+                    $('tbody[name="materials"]').empty();
+                    $.each(data.materials, function () {
+                        $('tbody[name="materials"]').append(
+                            `<tr>
+                                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,`+ this.base64Picture + `" /></td>
+                                <td>`+ this.name.substring(0, 10) + `...</td>
+                                <td>`+ this.authorEmail + `</td>
+                                <td>`+ this.description.substring(0, 20) + `...</td>
+                                <td>`+ this.publishingDateString + `</td>
+                                <td>`+ this.statusString + `</td>
+                                <td>`+ this.themeString + `</td>
+                                <td>`+ this.typeString + `</td>
+                                <td>`+ this.rating + `</td>
+                                <td>`+ this.downloadsCount + `</td>
+                                <td><a onclick="DownloadMaterial(`+ this.Id + `)" href="` + this.downloadingLink + `" target="_blank">Download</a></td>
+                            </tr>`
+                        );
+                    });
+                }
+                if (document.getElementById("materials").childElementCount >= $('#totalCount').text())
+                    $("#showMore").hide();
+                else
+                    $("#showMore").show();
+            }
+        });
+    }
+</script>

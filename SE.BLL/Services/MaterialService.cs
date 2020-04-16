@@ -22,28 +22,26 @@ namespace SE.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<MaterialViewModel>> GetMaterials(
-            string searchText = null, Enums.Auditory auditory = Enums.Auditory.Common, Enums.Type type = Enums.Type.Common, int page = 1)
+        public async Task ChangeStatus(Guid id, Enums.MaterialStatus status)
         {
-            var pageCapacity = 2;
+            var material = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
+            material.Status = status;
 
-            var materials = await _unitOfWork.Materials.GetAll(m => m.Status == Enums.MaterialStatus.Published);
-            materials = materials.ToList();
-            if (auditory != Enums.Auditory.Common)
-                materials = materials.Where(m => m.Auditory == auditory).ToList();
+            await _unitOfWork.SaveAsync();
+        }
 
-            if (type != Enums.Type.Common)
-                materials = materials.Where(m => m.Type == type).ToList();
-            
-            if (!String.IsNullOrEmpty(searchText))
-                materials = materials.Where(m => 
-                m.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                m.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                m.Theme.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
+        public async Task DownloadMaterial(Guid id)
+        {
+            var material = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
+            material.DownloadsCount += 1;
 
-            materials = materials.Skip(0).Take(pageCapacity * page);
+            await _unitOfWork.SaveAsync();
+        }
 
-            return materials.Select(m => new MaterialViewModel
+        public async Task<IEnumerable<MaterialViewModel>> GetAll()
+        {
+            var materials = await _unitOfWork.Materials.GetAll();
+            return materials.ToList().Select(m => new MaterialViewModel
             {
                 Id = m.Id,
                 Name = m.Name,
@@ -51,19 +49,90 @@ namespace SE.BLL.Services
                 AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
                 Description = m.Description,
                 Status = m.Status,
+                StatusString = m.Status.ToString(),
                 PublishingDate = m.PublishingDate,
                 PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy"),
                 Auditory = m.Auditory,
                 Theme = m.Theme,
+                ThemeString = m.Theme.ToString(),
                 Type = m.Type,
-                TypeString = m.Type.ToString("d"),
+                TypeString = m.Type.ToString(),
                 DownloadingLink = m.DownloadingLink,
                 BytePicture = m.Picture,
                 Base64Picture = Convert.ToBase64String(m.Picture),
                 SourceOfInformation = m.SourceOfInformation,
                 Rating = m.Rating,
                 DownloadsCount = m.DownloadsCount
-            }); 
+            });
+        }
+
+        public async Task<EducatorsMaterialsViewModel> GetMaterials(
+            string searchText = null, Enums.Auditory auditory = Enums.Auditory.Common, 
+            Enums.Theme theme = Enums.Theme.Common,
+            Enums.Type type = Enums.Type.Common,
+            Enums.MaterialStatus status = Enums.MaterialStatus.All, int page = 0)
+        {
+            var pageCapacity = 3;
+
+            var materials = await _unitOfWork.Materials.GetAll();
+            materials = materials.ToList();
+
+            if (status != Enums.MaterialStatus.All)
+                materials = materials.Where(m => m.Status == status).ToList();
+
+            if (auditory != Enums.Auditory.Common)
+                materials = materials.Where(m => m.Auditory == auditory).ToList();
+
+            if (type != Enums.Type.Common)
+                materials = materials.Where(m => m.Type == type).ToList();
+
+            if (theme != Enums.Theme.Common)
+                materials = materials.Where(m => m.Theme == theme).ToList();
+
+            if (!string.IsNullOrEmpty(searchText))
+                materials = materials.Where(m => 
+                m.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                m.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                m.Theme.ToString("d").IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
+
+            var count = materials.Count();
+
+            if(page != 0)
+                materials = materials.Skip(0).Take(pageCapacity * page);
+
+            var uiMaterials = materials.Select(m => new MaterialViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                UserId = m.UserId,
+                AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
+                Description = m.Description,
+                PublishingDate = m.PublishingDate,
+                PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy"),
+                Status = m.Status,
+                StatusString = m.Status.ToString(),
+                Auditory = m.Auditory,
+                Theme = m.Theme,
+                ThemeString = m.Theme.ToString(),
+                Type = m.Type,
+                TypeString = m.Type.ToString(),
+                DownloadingLink = m.DownloadingLink,
+                BytePicture = m.Picture,
+                Base64Picture = Convert.ToBase64String(m.Picture),
+                SourceOfInformation = m.SourceOfInformation,
+                Rating = m.Rating,
+                DownloadsCount = m.DownloadsCount
+            });
+
+            return new EducatorsMaterialsViewModel
+            {
+                SearchText = searchText,
+                Type = type,
+                Theme = theme,
+                Materials = uiMaterials,
+                Page = page,
+                TotalCount = count
+            };
         }
 
         public async Task<bool> NewMaterial(MaterialViewModel material)

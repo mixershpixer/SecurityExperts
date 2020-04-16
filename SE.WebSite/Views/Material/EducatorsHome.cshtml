@@ -2,87 +2,11 @@
 @using SE.Common
 @{
     ViewData["Title"] = "EducatorsHome";
-    var pageNum = 1;
 }
 
-<h1>EducatorsHome</h1>
-
-<input name="SearchText" class="form-control" onchange="Search(1)" />
-<select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="form-control"></select>
-
-<hr />
-<table class="table">
-    <thead class="thead-light">
-        <tr>
-            <th scope="col">Picture</th>
-            <th scope="col">Name</th>
-            <th scope="col">AuthorEmail</th>
-            <th scope="col">Description</th>
-            <th scope="col">PublishingDate</th>
-            <th scope="col">Theme</th>
-            <th scope="col">Type</th>
-            <th scope="col">DownloadingLink</th>
-            <th scope="col">Rating</th>
-            <th scope="col">DownloadsCount</th>
-        </tr>
-    </thead>
-    <tbody name="materials">
-        @foreach (var material in Model.Materials)
-        {
-            <tr>
-                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" /></td>
-                <td>@material.Name.ToString().Substring(0, 10)...</td>
-                <td>@material.AuthorEmail</td>
-                <td>@material.Description.ToString().Substring(0, 10)...</td>
-                <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
-                <td>@material.Theme</td>
-                <td>@material.TypeString</td>
-                <td>@material.DownloadingLink.ToString().Substring(0, 10)...</td>
-                <td>@material.Rating</td>
-                <td>@material.DownloadsCount</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<input type="button" class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="ShowMore" />
-
-<script>
-    var pageNum = 1;
-
-    function Search(pageNumber) {
-        var searchText = $("input[name=SearchText]").val();
-        var type = $('select[name="Type"]').val();
-
-        $.ajax({
-            type: "POST",
-            url: '/Material/EducatorsHomeSearch',
-            data: {
-                SearchText: searchText,
-                Type: type,
-                Materials: null,
-                Page: pageNumber
-            },
-            success: function (data) {
-                pageNum = data.page;
-                $('tbody[name="materials"]').empty();
-                $.each(data.materials, function () {
-                    $('tbody[name="materials"]').append(
-                        `<tr>
-                        <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,`+this.base64Picture+`" /></td>
-                        <td>`+this.name.substring(0, 10)+`...</td>
-                        <td>`+this.authorEmail+`</td>
-                        <td>`+this.description.substring(0, 20)+`...</td>
-                        <td>`+this.publishingDateString+`</td>
-                        <td>`+this.theme+`</td>
-                        <td>`+this.typeString+`</td>
-                        <td>`+this.downloadingLink.substring(0, 20)+`...</td>
-                        <td>`+this.rating+`</td>
-                        <td>`+this.downloadsCount+`</td>
-                    </tr>`
-                    );
-                });
-            }
-        });
+<ul>
+    @foreach (var theme in Enum.GetValues(typeof(Enums.Theme)))
+    {
+        <li><a href="~/Material/EducatorsMaterials?theme=@((int)theme)">@theme.ToString()</a></li>
     }
-</script>
+</ul>

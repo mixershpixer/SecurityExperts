@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-1">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a id="mainLink" class="nav-link active" data-toggle="tab" href="#materials">Materials</a>
+            </li>
+            <li class="nav-item">
+                <a id="mainLink" class="nav-link" data-toggle="tab" href="#users">Users</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-11">
+        <div class="tab-content animated animatedFadeInUp fadeInUp">
+            <div id="materials" class="container tab-pane active">
+                <div id="materials-container">
+                    @await Component.InvokeAsync("Materials")
+                </div>
+            </div>
+            <div id="users" class="container tab-pane">
+                <div id="users-container">
+                    @await Component.InvokeAsync("Users")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

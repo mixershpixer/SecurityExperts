@@ -27,24 +27,25 @@ namespace SE.WebSite.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> EducatorsHome()
+        public IActionResult EducatorsHome()
         {
-            var materials = await MaterialService.GetMaterials(null, Enums.Auditory.Teachers);
+            return View();
+        }
 
-            return View(new EducatorsMaterialsViewModel
-            {
-                Materials = materials
-            });
+        [HttpGet]
+        public async Task<IActionResult> EducatorsMaterials(int theme)
+        {
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(null, Enums.Auditory.Teachers, (Enums.Theme)theme);
+
+            return View(educatorsMaterialsViewModel);
         }
 
         [HttpPost]
         public async Task<IActionResult> EducatorsHomeSearch(EducatorsMaterialsViewModel model)
         {
-            var materials = await MaterialService.GetMaterials(model.SearchText, Enums.Auditory.Teachers, model.Type, model.Page);
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(model.SearchText, Enums.Auditory.Teachers, model.Theme, model.Type, Enums.MaterialStatus.Published, model.Page);
 
-            model.Materials = materials;
-
-            return Json(model);
+            return Json(educatorsMaterialsViewModel);
         }
 
         [HttpGet]
@@ -72,6 +73,12 @@ namespace SE.WebSite.Controllers
                 ModelState.AddModelError(string.Empty, "Что-то пошло не так, попробуйте снова");
 
             return View();
+        }
+
+        [HttpGet]
+        public async Task DownloadMaterial(Guid id)
+        {
+            await MaterialService.DownloadMaterial(id);
         }
     }
 }

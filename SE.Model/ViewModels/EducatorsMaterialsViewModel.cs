@@ -11,8 +11,12 @@ namespace SE.Model.ViewModels
 
         public Enums.Type Type { get; set; } = Enums.Type.Common;
 
+        public Enums.Theme Theme { get; set; }
+
         public IEnumerable<MaterialViewModel> Materials { get; set; }
 
-        public int Page { get; set; } = 1;
+        public int Page { get; set; }
+
+        public int TotalCount { get; set; }
     }
 }

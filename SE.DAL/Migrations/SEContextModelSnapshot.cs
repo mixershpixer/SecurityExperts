@@ -113,9 +113,8 @@ namespace SE.DAL.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<string>("Theme")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
+                    b.Property<int>("Theme")
+                        .HasColumnType("int")
                         .HasMaxLength(100);
 
                     b.Property<int>("Type")
@@ -194,7 +193,7 @@ namespace SE.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("81044850-fb16-4bdb-abd2-210f345b9426"),
+                            Id = new Guid("bf363809-78e2-4a06-97cb-e1292798e9ba"),
                             Email = "admin@admin.com",
                             IsConfirmed = true,
                             Name = "admin",
@@ -204,7 +203,7 @@ namespace SE.DAL.Migrations
                         },
                         new
                         {
-                            Id = new Guid("40dd0b65-003a-4cef-b6f6-92566cbb6a7a"),
+                            Id = new Guid("57bd4c9e-0d84-45e2-a1a4-b82d6c975112"),
                             Email = "max.grechuha@mail.ru",
                             IsConfirmed = true,
                             Name = "Max",

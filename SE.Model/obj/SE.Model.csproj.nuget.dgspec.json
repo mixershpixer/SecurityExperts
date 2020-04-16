@@ -1,29 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj": {}
+    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Model\\SE.Model.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj": {
+    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Common\\SE.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj",
+        "projectUniqueName": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Common\\SE.Common.csproj",
         "projectName": "SE.Common",
-        "projectPath": "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj",
-        "packagesPath": "C:\\Users\\maxgr\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\SecurityExperts\\SE.Common\\obj\\",
+        "projectPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Common\\SE.Common.csproj",
+        "packagesPath": "C:\\Users\\makhr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\maxgr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\makhr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
@@ -55,38 +57,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj": {
+    "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Model\\SE.Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj",
+        "projectUniqueName": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Model\\SE.Model.csproj",
         "projectName": "SE.Model",
-        "projectPath": "D:\\Projects\\SecurityExperts\\SE.Model\\SE.Model.csproj",
-        "packagesPath": "C:\\Users\\maxgr\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\SecurityExperts\\SE.Model\\obj\\",
+        "projectPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Model\\SE.Model.csproj",
+        "packagesPath": "C:\\Users\\makhr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Model\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\maxgr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\makhr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj": {
-                "projectPath": "D:\\Projects\\SecurityExperts\\SE.Common\\SE.Common.csproj"
+              "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Common\\SE.Common.csproj": {
+                "projectPath": "C:\\Users\\makhr\\Desktop\\SecurityExperts\\SE.Common\\SE.Common.csproj"
               }
             }
           }
@@ -134,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

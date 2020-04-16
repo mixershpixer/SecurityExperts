@@ -1,0 +1,128 @@
+﻿@using SE.Model.ViewModels
+@using SE.Common
+@model IEnumerable<MaterialViewModel>
+@{
+    int totalMaterialsCount = 0;
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <select id="MaterialStatus" asp-items="Html.GetEnumSelectList<Enums.MaterialStatus>()" class="form-control"></select>
+    </div>
+</div>
+
+<table id="Materials" class="table table-hover" style="margin-top:10px">
+    <thead class="thead-light">
+        <tr>
+            <th >Pctr</th>
+            <th scope="col">Name</th>
+            <th scope="col">AuthorEmail</th>
+            <th scope="col">Dscrptn</th>
+            <th scope="col">PblshngDate</th>
+            <th scope="col">Status</th>
+            <th scope="col">Theme</th>
+            <th scope="col">Type</th>
+            <th scope="col">DwnldLink</th>
+            <th scope="col">Rating</th>
+            <th scope="col">DC</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody name="materials">
+        @foreach (var material in Model)
+        {
+            totalMaterialsCount++;
+            <tr>
+                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" /></td>
+                <td>@material.Name.ToString().Substring(0, 10)...</td>
+                <td>@material.AuthorEmail</td>
+                <td>@material.Description.ToString().Substring(0, 10)...</td>
+                <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
+                <td>@material.StatusString</td>
+                <td>@material.ThemeString</td>
+                <td>@material.TypeString</td>
+                <td><a href="@material.DownloadingLink" class="btn btn-dark" target="_blank">Download</a></td>
+                <td>@material.Rating</td>
+                <td>@material.DownloadsCount</td>
+                @if (@material.StatusString.Equals("OnModeration"))
+                {
+                    <td>
+                        <a href="~/Admin/ApproveMaterial?id=@material.Id" class="btn btn-success">Approve</a>
+                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                }
+                else if (@material.StatusString.Equals("Deleted"))
+                {
+                    <td>
+                        <a href="~/Admin/RestoreMaterial?id=@material.Id" class="btn btn-success">Restore</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-danger">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Количество: </td>
+            <td><span id="totalCount">@totalMaterialsCount</span></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<script>
+    $(document).ready(function () {
+        $("#MaterialStatus").change(function () {
+            var selectedStatus = $(this).children("option:selected").val();
+            GetMaterialsWithOptions(selectedStatus);
+        });
+    });
+    function GetMaterialsWithOptions(selectedStatus) {
+        $.ajax({
+            type: "GET",
+            url: '/Admin/GetMaterialsWithOptions?status=' + selectedStatus,
+            success: function (data) {
+                $('tbody[name="materials"]').empty();
+                var totalCount = 0;
+                $.each(data, function () {
+                    $('tbody[name="materials"]').append(
+                        `<tr>
+                            <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,`+ this.base64Picture + `" /></td>
+                            <td>`+ this.name.substring(0, 10) + `...</td>
+                            <td>`+ this.authorEmail + `</td>
+                            <td>`+ this.description.substring(0, 10) + `...</td>
+                            <td>`+ this.publishingDateString + `</td>
+                            <td>`+ this.statusString + `</td>
+                            <td>`+ this.themeString + `</td>
+                            <td>`+ this.typeString + `</td>
+                            <td><a href="` + this.downloadingLink + `" class="btn btn-dark" target="_blank">Download</a></td>
+                            <td>`+ this.rating + `</td>
+                            <td>`+ this.downloadsCount + `</td>`
+                        + (this.statusString == "OnModeration" ?
+                            `<td>`
+                            + ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success">Approve</a>`
+                            + `<a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>`
+                            + `</td>` : "")
+                        + (this.statusString == "Deleted" ?
+                            `<td>`
+                            + ` <a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success">Restore</a>`
+                            + `</td>` : "")
+                        + (this.statusString == "Published" ?
+                            `<td>`
+                            + ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>`
+                            + `</td>` : "")
+                        + `</tr>`
+                    );
+                    totalCount++;
+                });
+                $("#totalCount").text(totalCount);
+            }
+        });
+    }
+</script>
