@@ -19,6 +19,8 @@ namespace SE.Model.ViewModels
         [Required]
         public Guid UserId { get; set; }
         public string AuthorEmail { get; set; }
+        public string AuthorName { get; set; }
+        public string AuthorSurname { get; set; }
 
 
         [Required(ErrorMessage = "Введите описание материала")]

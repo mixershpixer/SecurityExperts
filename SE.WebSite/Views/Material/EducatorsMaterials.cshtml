@@ -1,79 +1,102 @@
-﻿@model SE.Model.ViewModels.EducatorsMaterialsViewModel
+﻿@model SE.Model.ViewModels.MaterialsCollectionViewModel
 @using SE.Common
 @{
     ViewData["Title"] = "EducatorsMaterials";
 }
 
-<label id="Theme">@Model.Theme</label>
+<label id="Theme" hidden>@Model.Theme</label>
+<main class="cd-main-content">
+    <section class="banner">
+        <div class="position-center-center">
+            <div class="container">
+                <h4 >@Model.ThemeString</h4>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/Index">Главная</a></li>
+                    <li class="active">@Model.ThemeString</li>
+                </ol>
+            </div>
+        </div>
+    </section>
 
-<input name="SearchText" class="form-control" onchange="Search(1)" />
-<select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="form-control"></select>
+    <section class="container-fluid content">
+        <div class="row">
+            <div class="wrap_dop_info col-sm-12 col-md-3 col-lg-3">
+                <h5>Уточнить результаты:</h5>
+                <div class="dop_info">
+                    <select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="custom-select"></select>
+                </div>
+            </div>
+            <div class="wrap_main_info col-sm-12  col-md-9 col-lg-9">
 
-<hr />
-
-<h4 name="searchResult" hidden>Поиск не дал результатов</h4>
-
-<table class="table" name="materialsList">
-    <thead class="thead-light" name="materialsListHead">
-        <tr>
-            <th scope="col">Pctr</th>
-            <th scope="col">Name</th>
-            <th scope="col">AuthorEmail</th>
-            <th scope="col">Dscrptn</th>
-            <th scope="col">PblshngDate</th>
-            <th scope="col">Status</th>
-            <th scope="col">Theme</th>
-            <th scope="col">Type</th>
-            <th scope="col">Rating</th>
-            <th scope="col">DwnldsCount</th>
-            <th scope="col">Action</th>
-        </tr>
-    </thead>
-    <tbody name="materials" id="materials">
-        @foreach (var material in Model.Materials)
-        {
-            <tr>
-                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" /></td>
-                <td>@material.Name.ToString().Substring(0, 10)...</td>
-                <td>@material.AuthorEmail</td>
-                <td>@material.Description.ToString().Substring(0, 10)...</td>
-                <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
-                <td>@material.StatusString</td>
-                <td>@material.ThemeString</td>
-                <td>@material.TypeString</td>
-                <td>@material.Rating</td>
-                <td>@material.DownloadsCount</td>
-                <td><a onclick="DownloadMaterial('@material.Id')" href="@material.DownloadingLink" target="_blank">Download</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
-<label hidden id="totalCount">@Model.TotalCount</label>
-<input id="showMore" type="button" hidden class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="ShowMore" />
+                <div class="search col-lg-8 col-sm-12">
+                    <input name="SearchText" onchange="Search(1)" class="form-control" type="search" placeholder="Поиск">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </div>
+                <div class="wrap_sort">
+                    <p class="sort_text">Сортировать по:</p>
+                    <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="Search(1)" class="sort_type"></select>
+                </div>
+                <h4 name="searchResult" class="margin-bottom-450" hidden>Нет материалов</h4>
+                <div name="materials" class="row wrap_items">
+                    @foreach (var material in Model.Materials)
+                    {
+                        <div class="info_item">
+                            <div class="wrap_img_item">
+                                <a href="/Material/MaterialDetail?id=@material.Id">
+                                    @if (material.Base64Picture.Length < 10)
+                                    {
+                                        <img src="~/images/noimage.png" />
+                                    }
+                                    else
+                                    {
+                                        <img src="data:image/jpeg;base64,@material.Base64Picture" />
+                                    }
+                                </a>
+                            </div>
+                            <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
+                            <div class="dop_info_item">
+                                <p>Рейтинг: @material.Rating</p>
+                                <div class="dop_info_view"> Кол-во скачиваний: @material.DownloadsCount </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <input id="showMore" type="button" hidden class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="ShowMore" />
+            </div>
+        </div>
+    </section>
+    <label hidden id="totalCount">@Model.TotalCount</label>
+</main>
 
 <script>
     var pageNum = 1;
     window.onload = function () {
-        if (document.getElementById("materials").childElementCount >= $('#totalCount').text())
+        if ($("div.info_item").length >= $('#totalCount').text())
             $("#showMore").attr("hidden", true);
         else {
             $('#showMore').removeAttr('hidden');
+            $('div[name="materials"]').removeAttr('hidden');
+        }
+        if ($('#totalCount').text() == 0) {
+            $("#showMore").attr("hidden", true);
+            $('h4[name="searchResult"]').removeAttr('hidden');
+        }
+        else {
+            $('div[name="materials"]').removeAttr('hidden');
         }
     };
 
     function DownloadMaterial(id) {
         $.ajax({
             type: "GET",
-            url: '/Material/DownloadMaterial?id=' + id,
-            success: function (data) {
-
-            }
+            url: '/Material/DownloadMaterial?id=' + id
         });
     };
 
     function Search(pageNumber) {
         var searchText = $("input[name=SearchText]").val();
         var type = $('select[name="Type"]').val();
+        var sortType = $('select[name="SortType"]').val();
         var theme = $('#Theme').text();
 
         $.ajax({
@@ -83,6 +106,7 @@
                 SearchText: searchText,
                 Type: type,
                 Theme: theme,
+                SortType: sortType,
                 Materials: null,
                 Page: pageNumber
             },
@@ -91,32 +115,33 @@
                 $('#totalCount').text(data.totalCount);
                 if (data.totalCount === 0) {
                     $("#showMore").attr("hidden", true);
-                    $('table[name="materialsList"]').attr("hidden", true);
+                    $('div[name="materials"]').attr("hidden", true);
                     $('h4[name="searchResult"]').removeAttr('hidden');
                 }
                 else {
                     $('h4[name="searchResult"]').attr("hidden", true);
-                    $('table[name="materialsList"]').removeAttr('hidden');
-                    $('tbody[name="materials"]').empty();
+                    $('div[name="materials"]').removeAttr('hidden');
+                    $('div[name="materials"]').empty();
                     $.each(data.materials, function () {
-                        $('tbody[name="materials"]').append(
-                            `<tr>
-                                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,`+ this.base64Picture + `" /></td>
-                                <td>`+ this.name.substring(0, 10) + `...</td>
-                                <td>`+ this.authorEmail + `</td>
-                                <td>`+ this.description.substring(0, 20) + `...</td>
-                                <td>`+ this.publishingDateString + `</td>
-                                <td>`+ this.statusString + `</td>
-                                <td>`+ this.themeString + `</td>
-                                <td>`+ this.typeString + `</td>
-                                <td>`+ this.rating + `</td>
-                                <td>`+ this.downloadsCount + `</td>
-                                <td><a onclick="DownloadMaterial(`+ this.Id + `)" href="` + this.downloadingLink + `" target="_blank">Download</a></td>
-                            </tr>`
+                        $('div[name="materials"]').append(
+                            `<div class="info_item">
+                                <div class="wrap_img_item">
+                                    <a href="/Material/MaterialDetail?id=`+ this.id + `">`
+                                        + (this.base64Picture.length <= 10 ?
+                                        `<img src="/images/noimage.png" />` :
+                                        `<img src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
+                                    </a>
+                                </div>
+                                <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a>
+                                <div class="dop_info_item">
+                                    <p>Рейтинг: `+ this.rating + `</p>
+                                    <div class="dop_info_view"> Кол-во скачиваний: `+ this.downloadsCount + `</div>
+                                </div>
+                            </div>`
                         );
                     });
                 }
-                if (document.getElementById("materials").childElementCount >= $('#totalCount').text())
+                if ($("div.info_item").length >= $('#totalCount').text())
                     $("#showMore").hide();
                 else
                     $("#showMore").show();

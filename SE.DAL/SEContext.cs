@@ -2,6 +2,7 @@
 using SE.Common;
 using SE.DAL.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace SE.DAL
 {
@@ -45,128 +46,32 @@ namespace SE.DAL
                     Role = Enums.Role.User,
                     IsConfirmed = true
                 }
-            ); 
-            modelBuilder.Entity<Material>().HasData(
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "NameNameNameNameName1",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.ChildAndSociety,
-                     Type = Enums.Type.Articles,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 },
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "Name2Name2Name2Name2Name2",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.FireSafety,
-                     Type = Enums.Type.Illustrations,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 },
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "Name3Name3Name3Name3Name3",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.HumanAndNature,
-                     Type = Enums.Type.Presentation,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 },
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "Name4Name4Name4Name4Name4",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.SafetyAtHome,
-                     Type = Enums.Type.Video,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 },
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "Name5Name5Name5Name5Name5Name5",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.TrafficRules,
-                     Type = Enums.Type.Summaries,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 },
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "Name6Name6Name6Name6Name6Name6",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.Common,
-                     Type = Enums.Type.Articles,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 },
-                 new Material
-                 {
-                     Id = Guid.NewGuid(),
-                     Name = "Name7Name7Name7Name7Name7",
-                     UserId = guid1,
-                     Description = "DescriptionDescriptionDescriptionDescription",
-                     Status = Enums.MaterialStatus.Published,
-                     PublishingDate = DateTime.Now,
-                     Auditory = Enums.Auditory.Teachers,
-                     Theme = Enums.Theme.ChildAndSociety,
-                     Type = Enums.Type.Presentation,
-                     DownloadingLink = "DownloadingLinkDownloadingLinkDownloadingLinkDownloadingLink",
-                     Picture = new byte[] { 1, 2 },
-                     SourceOfInformation = "SourceOfInformationSourceOfInformationSourceOfInformationSourceOfInformation",
-                     Rating = 0,
-                     DownloadsCount = 0
-                 }
-             );
+            );
+            var r = new Random();
+            var materials = new List<Material>();
+
+            for(int i = 1; i <= 100; i++)
+            {
+                materials.Add(new Material
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "NameNameName" + i,
+                    UserId = i % 2 == 1 ? guid1 : guid2,
+                    Description = "DescriptionDescriptionDescriptionDescription" + i,
+                    Status = i % 2 == 1 ? Enums.MaterialStatus.Published : Enums.MaterialStatus.OnModeration,
+                    PublishingDate = DateTime.Now,
+                    Auditory = Enums.Auditory.Teachers,
+                    Theme = (Enums.Theme)r.Next(1, 6),
+                    Type = (Enums.Type)r.Next(1, 5),
+                    DownloadingLink = i % 2 == 1 ? "https://www.freepng.ru/png-miditu/download.html" : "https://ru.wikipedia.org/wiki/Международная_организация_гражданской_авиации",
+                    Picture = new byte[] {1,2,3},
+                    SourceOfInformation = "SourceOfInformationSourceOfInformation"+i,
+                    Rating = r.Next(1, 5),
+                    DownloadsCount = r.Next(1, 100)
+                });
+            }
+
+            modelBuilder.Entity<Material>().HasData(materials);
 
             modelBuilder.Entity<User>()
                 .HasMany(a => a.Comments)

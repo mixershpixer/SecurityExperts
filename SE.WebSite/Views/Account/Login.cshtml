@@ -6,64 +6,49 @@
 }
 
 <div id="content">
-    <section class="chart-page login gray-bg padding-top-100 padding-bottom-100">
-        <div class="container">
-            <div class="shopping-cart">
-                <div class="cart-ship-info">
-                    <div class="row">
-                        <div class="col-sm-7 center-block">
-                            <ul class="nav" id="myTab" role="tablist">
-                                <li> <a class="nav-link active" id="login-tab" data-toggle="tab" href="#log" role="tab" aria-selected="true">Войти</a> </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                @if (Model.Message != null)
-                                {
-                                    <h5 style="text-align:center;">@Model.Message</h5>
-                                }
-                                <div class="tab-pane fade show active" id="log" role="tabpanel" aria-labelledby="login-tab">
-                                    <form asp-action="Login">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <ul class="row" style="padding-left:0 !important">
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Email адрес
-                                                    <input asp-for="Email" class="form-control">
-                                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Пароль
-                                                    <input asp-for="Password" class="form-control">
-                                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-6 col-sm-6">
-                                                <button type="submit" class="btn">ВОЙТИ</button>
-                                            </li>
-                                            <li class="col-md-6 col-sm-3">
-                                                <div class="margin-top-15 text-right">
-                                                    @Html.ActionLink("Создать аккаунт", "Registration")
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </form>
-                                    <!-- SOCIAL MEDIA -->
-                                    <div class="heading text-center margin-bottom-50 margin-top-50">
-                                        <h4>Вход с помощю социальных сетей</h4>
-                                        <hr>
-                                    </div>
-                                    <ul class="login-with" style="padding-left:0 !important">
-                                        <li> <a href="#."><i class="fa fa-facebook"></i>FACEBOOK</a> </li>
-                                        <li> <a href="#."><i class="fa fa-google"></i>GOOGLE+</a> </li>
-                                        <li> <a href="#."><i class="fa fa-twitter"></i>TWITTER</a> </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+    <div class="container">
+        <div class="row" style="text-align:center">
+            <div style="width: 50%; margin: 0 auto;">
+                <h1>ВХОД</h1>
             </div>
         </div>
-    </section>
+        <div class="row" style="text-align:center">
+            <div style="width: 50%; margin: 0 auto;">
+                @if (Model.Message != null)
+                {
+                    <h5 style="text-align:center;">@Model.Message</h5>
+                }
+                <form class="form-text" asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row  ">
+                        <div class="col-md-12 ">
+                            <label>
+                                Электронная почта
+                                <input type="text" value="" placeholder="adress@mail.ru" asp-for="Email" class="form-control">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Пароль
+                                <input type="password" placeholder="Пароль" asp-for="Password" class="form-control">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-6 " style="margin: 30px auto;">
+                            <button type="submit" class="btn">Войти</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" style="text-align:center">
+            <div style="margin: 0px auto; width: 50%;">
+                <p>Еще не зарегистрированы? <a href="~/Registration"> Создать аккаунт.</a></p>
+            </div>
+        </div>
+    </div>
+
+
 </div>

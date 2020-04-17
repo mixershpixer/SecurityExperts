@@ -318,3 +318,6 @@ C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Components\Users\AdminUsers.cshtml.g.cs
 C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Components\Materials\AdminMaterials.cshtml.g.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\View.cshtml.g.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Home\PersonalAccount.cshtml.g.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Material\MaterialDetail.cshtml.g.cs

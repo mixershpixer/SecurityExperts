@@ -1,16 +1,25 @@
 ﻿@using SE.BLL.Interfaces
 
 @inject IUserService userService
-
 <!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SE.WebSite</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <title>@ViewData["Title"] - Знатоки безопасности</title>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/p_style.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/modernizr.js"></script>
+
 </head>
 <body>
     @{
@@ -23,54 +32,109 @@
             isAdmin = userService.GetRole(User.Identity.Name).Equals("Admin");
         }
     }
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SE.WebSite</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        @if (!isAuthenticated)
-                        {
-                            <li> <a href="~/Account/Login"> Войти</a> </li>
-                        }
-                        else
-                        {
-                            if (isAdmin)
-                            {
-                                <li> <a href="~/Admin/Index"> ADMIN</a> </li>
-                            }
-                            <li> <a href="~/Material/NewMaterial"> Новый материал </a> </li>
-                            <li> <a href="~/Account/Logout"> Выйти</a> </li>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- Прелоадер -->
+    <div class="preloader">
+        <div class="preloader__image"></div>
     </div>
+    <div class="wrap">
+        <header class="sticky">
+            <div class="container-full">
+                <!-- лого -->
+                <div class="logo"><a href="~/Home/Index"><img class="img-responsive" src="~/images/logo.png" alt=""></a></div>
+                <nav class="navbar ownmenu navbar-expand-lg">
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span></span>
+                    </button>
+                    <div class="collapse navbar-collapse " id="navbarNav">
+                        <ul class="nav">
+                            <li > <a href="~/Home/Index">Главная </a> </li>
+                            <li>
+                                <a href="~/Material/EducatorsHome">Воспитателям </a>
+                                <ul class="dropdown-menu">
+                                    <li> <a href="~/Material/EducatorsMaterials?theme=1">Пожарная безопасность</a> </li>
+                                    <li> <a href="~/Material/EducatorsMaterials?theme=2">Безопасность в быту</a> </li>
+                                    <li> <a href="~/Material/EducatorsMaterials?theme=3">ПДД</a></li>
+                                    <li> <a href="~/Material/EducatorsMaterials?theme=4">Человек и природа</a></li>
+                                    <li> <a href="~/Material/EducatorsMaterials?theme=5">Ребенок и общество </a></li>
+                                    <li> <a href="~/Material/EducatorsMaterials?theme=6">Моя родина</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="~/Material/ParentsHome">Родителям </a>
+                            </li>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - SE.WebSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            @if (isAdmin)
+                            {
+                                <li> <a href="~/Admin/Index">ADMIN</a> </li>
+                            }
+                        </ul>
+                    </div>
+                    <!-- Вход и поиск-->
+                    <div class="nav-right">
+                        <ul class="navbar-right">
+                            @if (!isAuthenticated)
+                            {
+                                <li> <a href="~/Account/Login"><i class="lnr lnr-enter"></i></a> </li>
+                            }
+                            else
+                            {
+                                <li> <a href="~/Home/PersonalAccount"><i class="lnr lnr-user"></i></a></li>
+                                <li> <a href="~/Account/Logout"> <i class="lnr lnr-exit"></i></a> </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <!-- нужен ли он  тут  <div class="clearfix"></div> -->
+        </header>
+
+        @RenderBody()
+        <div class="navbar-fixed-bottom">
+            <footer>
+                <div class="clearfix"></div>
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-9">
+                            <div class="about-footer">
+                                <img class="margin-bottom-30" src="~/images/footer-logo.png" alt="">
+                                <p> Создатель: <br> Гришаева Евгения</p>
+                            </div>
+                        </div>
+                        <!-- повтор меню -->
+                        <div class="col-md-3">
+                            <h6>Меню</h6>
+                            <ul class="link">
+                                <li><a href="~/Home/Index"> Главная</a></li>
+                                <li><a href="~/Material/EducatorsHome"> Воспитателям</a></li>
+                                <li><a href="~/Material/ParentsHome"> Родителям</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div class="rights">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>©  2020 "Знатоки безопасности" Все права защищены :) </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    </div>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/own-menu.js"></script>
+    <script src="~/js/jquery.lighter.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/lazysizes.min.js"></script>
+    <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
-</html>

@@ -29,20 +29,14 @@ namespace SE.Common
             Common = 0,
             [Display(Name = "Видео")]
             Video,
-            [Display(Name = "Презентации")]
+            [Display(Name = "Презентации, викторины")]
             Presentation,
-            [Display(Name = "Викторины")]
-            Quizzes,
             [Display(Name = "Иллюстрации")]
             Illustrations,
             [Display(Name = "Конспекты")]
             Summaries,
-            [Display(Name = "Статьи")]
-            Articles,
-            [Display(Name = "Консультации")]
-            Consultations,
-            [Display(Name = "Памятки")]
-            Memos
+            [Display(Name = "Информация для родителей")]
+            ParentsInfo
         }
 
         public enum MaterialStatus
@@ -70,7 +64,21 @@ namespace SE.Common
             [Display(Name = "Человек и природа")]
             HumanAndNature,
             [Display(Name = "Ребенок и общество")]
-            ChildAndSociety
+            ChildAndSociety,
+            [Display(Name = "Моя родина")]
+            MyCountry
+        }
+
+        public enum SortType
+        {
+            [Display(Name = "по алфавиту (от А до Я)")]
+            AlphabetAsc = 0,
+            [Display(Name = "по алфавиту (от Я до А)")]
+            AlphabetDesc,
+            [Display(Name = "по дате (сначала новые)")]
+            DateAsc,
+            [Display(Name = "по дате (сначала старые)")]
+            DateDesc
         }
     }
 }

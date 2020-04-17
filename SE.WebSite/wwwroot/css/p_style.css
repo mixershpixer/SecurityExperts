@@ -1,0 +1,129 @@
+.wrap_dop_info {
+  padding: 20px 30px;
+}
+
+
+.wrap_main_info {
+  padding: 20px 40px 20px 30px;
+}
+
+
+.wrap_main_info .wrap_sort {
+  display: flex;
+  flex-direction: row; /* обозначает что элемент будет сторокй */
+  align-items: baseline; /*выравнивание по базовой линии*/
+  font-size: 16px;
+}
+
+.wrap_main_info .wrap_sort span {
+  margin-left: 5px;
+}
+
+.wrap_items {
+  margin-top: 20px;
+  justify-content: space-between; /* тип отображения карточек, то есть если сменить на space-around у каждой карточки будет оступ с двух сторон, сейчас отступ с двух сторон только у центральной */
+}
+
+.wrap_item .info_items p, span {
+  margin: 0;
+  padding: 0;
+}
+
+
+.wrap_items .info_item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin-bottom: 25px;
+  padding: 15px 15px;
+  min-height: 420px;
+  background: #e7e5e5;
+  transition: 0.5s all;
+}
+
+.wrap_items .info_item:hover { /* чтобы при наведении на карточку она поднималась на 10px вверх и менялсся курсор */
+  cursor: pointer;
+  transform: translateY(-10px);
+}
+
+.info_item .wrap_img_item {
+  overflow: hidden;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 12px;
+}
+
+.info_item .wrap_img_item img {
+  width: 100%;
+  /*height: 100%;*/
+
+}
+
+.info_item .item_text {
+  color: #313030;
+  transition: 0.25s all;
+}
+
+.info_item .item_text:hover {
+  color: #000;
+}
+
+.info_item .dop_info_item {
+  position: absolute;
+  display: flex;
+  width: 85%;
+  flex-direction: row;
+  justify-content: space-between;
+  bottom: 0;
+}
+
+.wrap_btn {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .wrap_items .info_item{
+    width: 40%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .wrap_items .info_item{
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrap_items .info_item{
+    width: 49%;
+  }
+}
+
+@media (max-width: 550px) {
+  .wrap_items {
+    justify-content: center;
+  }
+  .wrap_items .info_item{
+    width: 70%;
+  }
+}
+
+@media (max-width: 450px) {
+  .wrap_items .info_item{
+    width: 85%;
+  }
+}
+
+@media (max-width: 350px) {
+  .wrap_items .info_item{
+    width: 95%;
+  }
+}
+.sort_text{
+  margin-right: 15px;
+}
+
+

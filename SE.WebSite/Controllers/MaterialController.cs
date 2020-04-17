@@ -41,9 +41,11 @@ namespace SE.WebSite.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EducatorsHomeSearch(EducatorsMaterialsViewModel model)
+        public async Task<IActionResult> EducatorsHomeSearch(MaterialsCollectionViewModel model)
         {
-            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(model.SearchText, Enums.Auditory.Teachers, model.Theme, model.Type, Enums.MaterialStatus.Published, model.Page);
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
+                model.SearchText, Enums.Auditory.Teachers, model.Theme,
+                model.Type, Enums.MaterialStatus.Published, model.Page, sortType: model.SortType);
 
             return Json(educatorsMaterialsViewModel);
         }
@@ -76,9 +78,41 @@ namespace SE.WebSite.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> MaterialDetail(Guid id)
+        {
+            var material = await MaterialService.GetById(id);
+
+            return View(material);
+        }
+
+
+        [HttpGet]
         public async Task DownloadMaterial(Guid id)
         {
             await MaterialService.DownloadMaterial(id);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> DeleteMaterial(Guid id)
+        {
+            var material = await MaterialService.GetById(id);
+
+            if(material.UserId == await UserService.GetUserIdByEmail(User.Identity.Name))
+                await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Deleted);
+
+            return RedirectToAction("PersonalAccount", "Home");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> RestoreMaterial(Guid id)
+        {
+            var material = await MaterialService.GetById(id);
+
+            if (material.UserId == await UserService.GetUserIdByEmail(User.Identity.Name))
+                await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Published);
+
+            return RedirectToAction("PersonalAccount", "Home");
+        }
+
     }
 }

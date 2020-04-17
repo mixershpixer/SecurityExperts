@@ -1,0 +1,129 @@
+﻿@model SE.Model.ViewModels.MaterialViewModel
+
+@{
+    ViewData["Title"] = "MaterialDetail";
+}
+
+<main class="cd-main-content">
+    <div id="content">
+        <section class="padding-top-100 padding-bottom-100">
+            <div class="container">
+                <div class="material-detail">
+                    <div class="row">
+                        <div class="col-md-7">
+                            @if (Model.Base64Picture.Length < 10)
+                            {
+                                <img class="img-responsive" src="~/images/noimage.png" />
+                            }
+                            else
+                            {
+                                <img class="img-responsive" src="data:image/jpeg;base64,@Model.Base64Picture" />
+                            }
+                        </div>
+                        <div class="col-md-5">
+                            <h4>@Model.Name</h4>
+                            <div class="rating-strs"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>
+                            <h4>@Model.AuthorName @Model.AuthorSurname</h4>
+                            <ul class="item-owner">
+                                <li>Тема:<span> <a href="~/Material/EducatorsMaterials?theme=@((int)Model.Theme)"> @Model.ThemeString </a></span></li>
+                                <li>Тип: <span> @Model.TypeString </span></li>
+                            </ul>
+                            <div class="some-info">
+                                <ul class="row ">
+                                    <li class="col-sm-6 "> <a onclick="DownloadMaterial('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-decribe">
+
+                    <div class="tab-info">
+                        <button class="tablinks" onclick="openCity(event, 'Описание')" id="defaultOpen">Описание</button>
+                        <button class="tablinks" onclick="openCity(event, 'Информация')">Информация</button>
+                    </div>
+
+                    <div id="Описание" class="tabcontent">
+                        <h3>Описание</h3>
+                        <p>
+                            @Model.Description
+                        </p>
+                    </div>
+
+                    <div id="Информация" class="tabcontent">
+                        <h3>Использованные источники</h3>
+                        <p>
+                            @Model.SourceOfInformation
+                        </p>
+                    </div>
+
+                </div>
+                <!--======= конец описание=========-->
+                <!--======= комментарии=========-->
+                <div class="comments margin-top-80">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-lg-10">
+
+                            <h5 class="comments-tittle">Комментарии <span>|</span> <span>3</span></h5>
+                            <ul class="media-list padding-left-15">
+                                <!--=======  комментарий =========-->
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="#" class="avatar">
+                                            <img class="media-object img-responsive" src="images/avatar.png" alt=""> <br>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">Имя Фамилия <span><i class="icon-clock primary-color"></i> 10 Апреля, 2020 -  10:52</span></h6>
+                                        <p>Приобретение практических навыков по созданию тестовых заданий.  Закрепление теоретических знаний и приобретение практических навыков по проведению тестиро-вания интерфейса. </p>
+                                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Ответить</a>
+                                    </div>
+                                </li>
+                                <!--=======  комментарий =========-->
+                                <li class="media">
+                                    <div class="media-left">
+                                        <a href="#" class="avatar">
+                                            <img class="media-object img-responsive" src="images/avatar.png" alt=""> <br>
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h6 class="media-heading">Имя Фамилия <span><i class="icon-clock primary-color"></i> 10 Апреля, 2020 -  10:52</span></h6>
+                                        <p>Приобретение практических навыков по созданию тестовых заданий.  Закрепление теоретических знаний и приобретение практических навыков по проведению тестиро-вания интерфейса. </p>
+                                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Ответить</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <hr>
+                            <!--=======  Оставить комментарий =========-->
+                            <h5 class="comments-tittle margin-top-80">Оставить комментарий</h5>
+                            <form class="padding-left-15">
+                                <ul class="row">
+                                    <li class="col-sm-12">
+                                        <label>
+                                            <textarea class="form-control" placeholder="Оставьте свой комментарий"></textarea>
+                                        </label>
+                                    </li>
+                                    <li class="col-sm-12">
+                                        <button type="submit" class="btn margin-top-30">Отправить </button>
+                                    </li>
+                                </ul>
+                            </form>
+                            <h5 class="comments-tittle margin-top-80">Оставить комментарий</h5>
+                            <ul class="row">
+                                <li class="col-sm-12 text-center margin-top-30">
+                                    <h4>
+                                        Чтобы оставить комментарий, <a href="">войдите в аккаунт.</a>
+                                    </h4>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <!-- строка закрыта-->
+                </div>
+                <!--======= КОНЕЦ комментарии=========-->
+            </div>
+        </section>
+    </div>
+    </main>

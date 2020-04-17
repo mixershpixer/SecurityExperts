@@ -61,10 +61,11 @@ namespace SE.WebSite.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetMaterialsWithOptions(int status)
+        public async Task<IActionResult> GetMaterialsWithOptions(int status, int page)
         {
-            var model = await MaterialService.GetMaterials(status: (Enums.MaterialStatus)status, page: 0);
-            return Ok(model.Materials);
+            var model = await MaterialService.GetMaterials(status: (Enums.MaterialStatus)status, page: page);
+
+            return Ok(model);
         }
 
 

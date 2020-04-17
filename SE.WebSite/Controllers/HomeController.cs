@@ -5,17 +5,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using SE.BLL.Interfaces;
+using SE.Common;
+using SE.Model.ViewModels;
 using SE.WebSite.Models;
 
 namespace SE.WebSite.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(
+            ICommentService CommentService,
+            IDownloadingService DownloadingService,
+            IMaterialService MaterialService,
+            IRatingService RatingService,
+            IUserService UserService) : base(
+                CommentService,
+                DownloadingService,
+                MaterialService,
+                RatingService,
+                UserService)
         {
-            _logger = logger;
         }
 
         public IActionResult Index()
@@ -33,5 +43,28 @@ namespace SE.WebSite.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> PersonalAccount()
+        {
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
+                searchText: null, auditory: Enums.Auditory.Common, theme: Enums.Theme.Common,
+                type: Enums.Type.Common, page: 0,
+                userId: await UserService.GetUserIdByEmail(User.Identity.Name));
+
+            return View(educatorsMaterialsViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PersonalAccount(MaterialsCollectionViewModel model)
+        {
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
+                searchText: null, auditory: Enums.Auditory.Common, theme: Enums.Theme.Common, 
+                type: Enums.Type.Common, status: model.MaterialStatus, page: 0, 
+                userId: await UserService.GetUserIdByEmail(User.Identity.Name), sortType: model.SortType);
+
+            return Json(educatorsMaterialsViewModel);
+        }
+
     }
 }

@@ -66,14 +66,45 @@ namespace SE.BLL.Services
             });
         }
 
-        public async Task<EducatorsMaterialsViewModel> GetMaterials(
+        public async Task<MaterialViewModel> GetById(Guid id)
+        {
+            var m = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
+
+            return new MaterialViewModel
+            {
+                Id = m.Id,
+                Name = m.Name,
+                UserId = m.UserId,
+                AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
+                AuthorName = _unitOfWork.Users.GetUserById(m.UserId).Name,
+                AuthorSurname = _unitOfWork.Users.GetUserById(m.UserId).Surname,
+                Description = m.Description,
+                PublishingDate = m.PublishingDate,
+                PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy hh:mm"),
+                Status = m.Status,
+                StatusString = Constants.Status[(int)m.Status],
+                Auditory = m.Auditory,
+                Theme = m.Theme,
+                ThemeString = Constants.Theme[(int)m.Theme],
+                Type = m.Type,
+                TypeString = Constants.Type[(int)m.Type],
+                DownloadingLink = m.DownloadingLink,
+                BytePicture = m.Picture,
+                Base64Picture = Convert.ToBase64String(m.Picture),
+                SourceOfInformation = m.SourceOfInformation,
+                Rating = m.Rating,
+                DownloadsCount = m.DownloadsCount
+            };
+        }
+
+        public async Task<MaterialsCollectionViewModel> GetMaterials(
             string searchText = null, Enums.Auditory auditory = Enums.Auditory.Common, 
             Enums.Theme theme = Enums.Theme.Common,
             Enums.Type type = Enums.Type.Common,
-            Enums.MaterialStatus status = Enums.MaterialStatus.All, int page = 0)
+            Enums.MaterialStatus status = Enums.MaterialStatus.All, int page = 0,
+            Guid? userId = null, Enums.SortType sortType = Enums.SortType.AlphabetAsc,
+            int count = 3)
         {
-            var pageCapacity = 3;
-
             var materials = await _unitOfWork.Materials.GetAll();
             materials = materials.ToList();
 
@@ -95,10 +126,22 @@ namespace SE.BLL.Services
                 m.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 m.Theme.ToString("d").IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
 
-            var count = materials.Count();
+            if(userId != null)
+                materials = materials.Where(m => m.UserId == userId).ToList();
+
+            if(sortType == Enums.SortType.AlphabetAsc)
+                materials = materials.OrderBy(m => m.Name).ToList();
+            else if (sortType == Enums.SortType.AlphabetDesc)
+                materials = materials.OrderByDescending(m => m.Name).ToList();
+            else if (sortType == Enums.SortType.DateAsc)
+                materials = materials.OrderBy(m => m.PublishingDate).ToList();
+            else if (sortType == Enums.SortType.DateDesc)
+                materials = materials.OrderByDescending(m => m.PublishingDate).ToList();
+
+            var materialsCount = materials.Count();
 
             if(page != 0)
-                materials = materials.Skip(0).Take(pageCapacity * page);
+                materials = materials.Skip(0).Take(count * page);
 
             var uiMaterials = materials.Select(m => new MaterialViewModel
             {
@@ -106,16 +149,18 @@ namespace SE.BLL.Services
                 Name = m.Name,
                 UserId = m.UserId,
                 AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
+                AuthorName = _unitOfWork.Users.GetUserById(m.UserId).Name,
+                AuthorSurname = _unitOfWork.Users.GetUserById(m.UserId).Surname,
                 Description = m.Description,
                 PublishingDate = m.PublishingDate,
                 PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy"),
                 Status = m.Status,
-                StatusString = m.Status.ToString(),
+                StatusString = Constants.Status[(int)m.Status],
                 Auditory = m.Auditory,
                 Theme = m.Theme,
-                ThemeString = m.Theme.ToString(),
+                ThemeString = Constants.Theme[(int)m.Theme],
                 Type = m.Type,
-                TypeString = m.Type.ToString(),
+                TypeString = Constants.Type[(int)m.Type],
                 DownloadingLink = m.DownloadingLink,
                 BytePicture = m.Picture,
                 Base64Picture = Convert.ToBase64String(m.Picture),
@@ -124,14 +169,15 @@ namespace SE.BLL.Services
                 DownloadsCount = m.DownloadsCount
             });
 
-            return new EducatorsMaterialsViewModel
+            return new MaterialsCollectionViewModel
             {
                 SearchText = searchText,
                 Type = type,
                 Theme = theme,
+                ThemeString = Constants.Theme[(int)theme],
                 Materials = uiMaterials,
                 Page = page,
-                TotalCount = count
+                TotalCount = materialsCount
             };
         }
 

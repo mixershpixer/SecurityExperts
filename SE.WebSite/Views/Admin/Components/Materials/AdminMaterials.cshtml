@@ -5,7 +5,6 @@
     int totalMaterialsCount = 0;
 }
 
-
 <div class="row">
     <div class="col-md-4">
         <select id="MaterialStatus" asp-items="Html.GetEnumSelectList<Enums.MaterialStatus>()" class="form-control"></select>
@@ -15,7 +14,7 @@
 <table id="Materials" class="table table-hover" style="margin-top:10px">
     <thead class="thead-light">
         <tr>
-            <th >Pctr</th>
+            <th>Pctr</th>
             <th scope="col">Name</th>
             <th scope="col">AuthorEmail</th>
             <th scope="col">Dscrptn</th>
@@ -34,8 +33,19 @@
         {
             totalMaterialsCount++;
             <tr>
-                <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" /></td>
-                <td>@material.Name.ToString().Substring(0, 10)...</td>
+                <td>
+                    <a href="/Material/MaterialDetail?id=@material.Id" class="item-img">
+                        @if (material.Base64Picture.Length < 10)
+                        {
+                            <img style="width: 50px; border:1px solid" src="~/images/noimage.png" />
+                        }
+                        else
+                        {
+                            <img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" />
+                        }
+                    </a>
+                </td>
+                <td><a href="/Material/MaterialDetail?id=@material.Id" class="title">@material.Name.ToString().Substring(0, 10)...</a></td>
                 <td>@material.AuthorEmail</td>
                 <td>@material.Description.ToString().Substring(0, 10)...</td>
                 <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
@@ -93,8 +103,14 @@
                 $.each(data, function () {
                     $('tbody[name="materials"]').append(
                         `<tr>
-                            <td><img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,`+ this.base64Picture + `" /></td>
-                            <td>`+ this.name.substring(0, 10) + `...</td>
+                            <td>
+                                <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item-img">`
+                                + (this.base64Picture.length <= 10 ?
+                                    `<img style="width: 50px; border:1px solid" src="/images/noimage.png" />` :
+                                    `<img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
+                                </a>
+                            </td>
+                            <td><a href="/Material/MaterialDetail?id=`+ this.id + `" class="title">` + this.name.substring(0, 10) + `...</a></td>
                             <td>`+ this.authorEmail + `</td>
                             <td>`+ this.description.substring(0, 10) + `...</td>
                             <td>`+ this.publishingDateString + `</td>
@@ -103,21 +119,12 @@
                             <td>`+ this.typeString + `</td>
                             <td><a href="` + this.downloadingLink + `" class="btn btn-dark" target="_blank">Download</a></td>
                             <td>`+ this.rating + `</td>
-                            <td>`+ this.downloadsCount + `</td>`
-                        + (this.statusString == "OnModeration" ?
-                            `<td>`
-                            + ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success">Approve</a>`
-                            + `<a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>`
-                            + `</td>` : "")
-                        + (this.statusString == "Deleted" ?
-                            `<td>`
-                            + ` <a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success">Restore</a>`
-                            + `</td>` : "")
-                        + (this.statusString == "Published" ?
-                            `<td>`
-                            + ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>`
-                            + `</td>` : "")
-                        + `</tr>`
+                            <td>`+ this.downloadsCount + `</td>
+                            <td>`
+                        + (this.statusString == "На модерации" ? ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success">Approve</a><a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>` : "")
+                        + (this.statusString == "Удалено" ? `<a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success">Restore</a>` : "")
+                        + (this.statusString == "Опубликованно" ? ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>` : "")
+                        + `</td></tr>`
                     );
                     totalCount++;
                 });
