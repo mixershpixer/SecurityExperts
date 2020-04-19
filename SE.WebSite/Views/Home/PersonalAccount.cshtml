@@ -1,30 +1,45 @@
 ﻿@model SE.Model.ViewModels.MaterialsCollectionViewModel
 @using SE.Common
-
+@inject SE.BLL.Interfaces.IUserService userService;
 @{
-    ViewData["Title"] = "PersonalAccount";
-}
+    ViewData["Title"] = "Личный кабинет";
+    var isAuthenticated = false;
+    var isAdmin = false;
+    var userId = Guid.Empty;
+    string name = String.Empty;
+    string surname = String.Empty;
 
-<main class="cd-main-content">
-    <section class="banner-personal">
-        <div class="position-center-center">
-            <div class="container">
-                <h4>Личный кабинет</h4>
-            </div>
+    if (User.Identity.IsAuthenticated && await userService.IsExists(User.Identity.Name))
+    {
+        isAuthenticated = true;
+        isAdmin = userService.GetRole(User.Identity.Name).Equals("Admin");
+        var user = await userService.GetUserByEmail(User.Identity.Name);
+        name = user.Name;
+        surname = user.Surname;
+        userId = user.UserId;
+    }
+}
+<section class="banner">
+    <div class="position-center-center">
+        <div class="container">
+            <h4>Личный кабинет</h4>
         </div>
-    </section>
+    </div>
+</section>
+
+<div class="container-fluid">
 
     <section class="container-fluid content">
         <div class="row">
             <div class=" welcome col-sm-12 col-md-12 col-lg-12 ">
-                <h4>Добро пожаловать, <span>Дорогой Пользователь</span></h4>
+                <h4>Добро пожаловать, <span>@(isAuthenticated ? @surname + " " + @name : "Дорогой пользователь")</span></h4>
             </div>
         </div>
         <div class="row">
             <div class="wrap_dop_info col-sm-12 col-md-3 col-lg-3">
+                <a href="~/Material/NewMaterial"><h5> Новый материал </h5></a>
                 <h5>Мои публикации</h5>
                 <ul>
-                    <li> <a href="~/Material/NewMaterial"> Новый материал </a> </li>
                     <li>
                         <div class="dop_info">
                             <select name="MaterialStatus" asp-items="Html.GetEnumSelectList<Enums.MaterialStatus>()" onchange="SearchMyMaterials()" class="form-control"></select>
@@ -39,7 +54,6 @@
                     <p class="sort_text">Сортировать:</p>
                     <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="SearchMyMaterials()" class="form-control"></select>
                 </div>
-                <h4 name="materilasInfo" class="margin-bottom-450" hidden>Нет материалов</h4>
                 <div name="materials" class="row wrap_items">
                     @foreach (var material in Model.Materials)
                     {
@@ -76,17 +90,20 @@
                         </div>
                     }
                 </div>
+                <h4 name="materilasInfo" hidden>Нет материалов</h4>
                 <label hidden id="totalCount">@Model.TotalCount</label>
             </div>
         </div>
     </section>
-</main>
-
-
-
-<label hidden id="totalCount">@Model.TotalCount</label>
+</div>
 
 <script>
+    window.onload = function () {
+        if ($('#totalCount').text() == 0) {
+            $('div[name="materials"]').attr("hidden", true);
+            $('h4[name="materilasInfo"]').removeAttr('hidden');
+        }
+    };
 
     function DownloadMaterial(id) {
         $.ajax({
@@ -146,6 +163,9 @@
                             </div>`
                         );
                     });
+                    if (totalCount == 0) {
+                        $('h4[name="materilasInfo"]').attr("hidden", true);
+                    }
                 }
             }
         });

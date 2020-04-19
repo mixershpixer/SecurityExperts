@@ -2,53 +2,105 @@
 
 @{
     ViewData["Title"] = "Войти";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<div id="content">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>@ViewData["Title"] - Знатоки безопасности</title>
 
-    <div class="container">
-        <div class="row" style="text-align:center">
-            <div style="width: 50%; margin: 0 auto;">
-                <h1>ВХОД</h1>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/p_style.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/modernizr.js"></script>
+
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- Wrap -->
+    <div id="wrap">
+        <header>
+            <div class="container-full">
+                <div class="row">
+
+                    <div class="logo"><a href="~/Home/Index"><img class="img-responsive" src="~/images/logo.png" alt=""></a></div>
+                </div>
             </div>
-        </div>
-        <div class="row" style="text-align:center">
-            <div style="width: 50%; margin: 0 auto;">
-                @if (Model.Message != null)
-                {
-                    <h5 style="text-align:center;">@Model.Message</h5>
-                }
-                <form class="form-text" asp-action="Login">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="row  ">
-                        <div class="col-md-12 ">
-                            <label>
-                                Электронная почта
-                                <input type="text" value="" placeholder="adress@mail.ru" asp-for="Email" class="form-control">
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </label>
-                        </div>
-                        <div class="col-md-12">
-                            <label>
-                                Пароль
-                                <input type="password" placeholder="Пароль" asp-for="Password" class="form-control">
-                                <span asp-validation-for="Password" class="text-danger"></span>
-                            </label>
-                        </div>
-                        <div class="col-md-6 " style="margin: 30px auto;">
-                            <button type="submit" class="btn">Войти</button>
-                        </div>
+        </header>
+        <!--Контент -->
+
+        <div id="content">
+
+            <div class="container">
+                <div class="row" style="text-align:center; display:initial">
+                    <div style="width: 50%; margin: 0 auto;">
+                        <h1>ВХОД</h1>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="row" style="text-align:center">
-            <div style="margin: 0px auto; width: 50%;">
-                <p>Еще не зарегистрированы? <a href="~/Registration"> Создать аккаунт.</a></p>
+                </div>
+                <div class="row" style="text-align:center; display:initial">
+                    <div style="width: 50%; margin: 0 auto;">
+                        @if (Model.Message != null)
+                        {
+                            <h5 style="text-align: center;">@Model.Message</h5>
+                        }
+                        <form class="form-text" asp-action="Login">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row  ">
+                                <div class="col-md-12 ">
+                                    <label>
+                                        Электронная почта
+                                        <input type="text" value="" placeholder="address@mail.ru" asp-for="Email" class="form-control">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </label>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>
+                                        Пароль
+                                        <input type="password" placeholder="Пароль" asp-for="Password" class="form-control">
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </label>
+                                </div>
+                                <div class="col-md-6 " style="margin: 30px auto;">
+                                    <button type="submit" class="btn">Войти</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center">
+                    <div style="margin: 0px auto; width: 50%;">
+                        <p>Еще не зарегистрированы? <a href="~/Account/Registration"> Создать аккаунт.</a></p>
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
-
-
-</div>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/own-menu.js"></script>
+    <script src="~/js/jquery.lighter.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/lazysizes.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>

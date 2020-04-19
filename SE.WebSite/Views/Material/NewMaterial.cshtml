@@ -1,71 +1,88 @@
-﻿@model SE.Model.ViewModels.MaterialViewModel
-@using SE.Common
+﻿@using SE.Common
+@using SE.Model.ViewModels
+@model MaterialViewModel
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Новый материал";
 }
-<main class="cd-main-content">
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="NewMaterial" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <textarea type="text" asp-for="Description" class="form-control"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Auditory" class="control-label"></label>
-                    <select asp-for="Auditory" asp-items="Html.GetEnumSelectList<Enums.Auditory>()" class="form-control"></select>
 
-                    <span asp-validation-for="Auditory" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Theme" class="control-label"></label>
-                    <select asp-for="Theme" asp-items="Html.GetEnumSelectList<Enums.Theme>()" class="form-control"></select>
-                    <span asp-validation-for="Theme" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Type" class="control-label"></label>
-                    <select asp-for="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" class="form-control"></select>
-                    <span asp-validation-for="Type" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="DownloadingLink" class="control-label"></label>
-                    <textarea asp-for="DownloadingLink" class="form-control"></textarea>
-                    <span asp-validation-for="DownloadingLink" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Picture" class="control-label"></label>
-                    @*<input type="file" accept="image/*" name="Picture" asp-for="Picture" class="form-control" />*@
-                    <div class="custom-file mt-3" style="width:17vw">
-                        <input type="file" asp-for="Picture" class="custom-file-input form-control" accept="image/*" name="Picture">
-                        <label class="custom-file-label" for="customFile" style="text-align: left;">Please choose photo</label>
-                    </div>
-                    <span asp-validation-for="Picture" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="SourceOfInformation" class="control-label"></label>
-                    <input asp-for="SourceOfInformation" class="form-control" />
-                    <span asp-validation-for="SourceOfInformation" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+    <section class="banner">
+        <div class="position-center-center">
+            <div class="container">
+                <h4>Добавление материала для воспитателей</h4>
+                <ol class="breadcrumb">
+                    <li><a href="~/Home/PersonalAccount">Личный кабинет</a></li>
+                    <li class="active">Предложить материал</li>
+                </ol>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>
-    </main>
+    <section class="container-fluid content">
+        <div class="row" style="text-align:center; display:initial">
+            <div style="width: 50%; margin: 0 auto;">
+                <form class="form-text" asp-action="NewMaterial" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row  ">
+                        <div class="col-md-12">
+                            <label>
+                                Название
+                                <input placeholder="Введите название материала (не более 50 символов)" asp-for="Name" class="form-control material" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Описание
+                                <textarea placeholder="Введите описание материала (не более 500 символов)" asp-for="Description" class="form-control material"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Тема материала
+                                <select asp-for="Theme" asp-items="Html.GetEnumSelectList<Enums.Theme>()" class="form-control material"></select>
+                                <span asp-validation-for="Theme" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Тип материала
+                                <select asp-for="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" class="form-control material"></select>
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Ссылка для скачивания
+                                <textarea placeholder="Вставьте актуальную ссылку для скачивания" asp-for="DownloadingLink" class="form-control material"></textarea>
+                                <span asp-validation-for="DownloadingLink" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Изображение
+                                <input type="file" asp-for="Picture" class="custom-file-input form-control" accept="image/*" name="Picture">
+                                <label class="custom-file-label" for="customFile" style="margin-left: 135px;width: 700px;margin-top: 20px;text-align: left;">Выберите изображение</label>
+                                <span asp-validation-for="Picture" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-12">
+                            <label>
+                                Источники информации
+                                <input placeholder="Укажите источники информации, если имеются (не более 500 символов)"  asp-for="SourceOfInformation" class="form-control material" />
+                                <span asp-validation-for="SourceOfInformation" class="text-danger"></span>
+                            </label>
+                        </div>
+                        <div class="col-md-6 " style="margin: 30px auto;">
+                            <button type="submit" class="btn">Предложить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

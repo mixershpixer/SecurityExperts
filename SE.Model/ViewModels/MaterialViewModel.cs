@@ -3,11 +3,10 @@ using SE.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace SE.Model.ViewModels
 {
-    public class MaterialViewModel
+    public class MaterialViewModel : CommentViewModel
     {
         public Guid Id { get; set; }
 
@@ -62,7 +61,6 @@ namespace SE.Model.ViewModels
         public string Base64Picture { get; set; }
 
 
-        [Required(ErrorMessage = "Укажите источник информации")]
         [StringLength(500, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]
         public string SourceOfInformation { get; set; }
 
@@ -73,5 +71,7 @@ namespace SE.Model.ViewModels
 
         [Required]
         public int DownloadsCount { get; set; }
+
+        public List<CommentViewModel> Comments { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SE.BLL.Interfaces;
@@ -66,5 +67,24 @@ namespace SE.WebSite.Controllers
             return Json(educatorsMaterialsViewModel);
         }
 
+
+        public async Task<IActionResult> AddComment(CommentViewModel model)
+        {
+            var user = await UserService.GetUserByEmail(User.Identity.Name);
+            var comment = await CommentService.AddComment(user.UserId, model.MaterialId, model.CommentText, /*model.Rating*/ 5);
+            return Ok(comment);
+        }
+
+        public async Task<IActionResult> DeleteComment(Guid commentId)
+        {
+            if (await CommentService.DeleteComment(commentId))
+                return Ok(commentId);
+            else return BadRequest();
+        }
+
+        public IActionResult ChildrenLie()
+        {
+            return View("ParentsStatic/ChildrenLie");
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace SE.WebSite.Controllers
         [HttpGet]
         public async Task<IActionResult> EducatorsMaterials(int theme)
         {
-            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(null, Enums.Auditory.Teachers, (Enums.Theme)theme);
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(null, Enums.Auditory.Educators, (Enums.Theme)theme);
 
             return View(educatorsMaterialsViewModel);
         }
@@ -44,7 +44,7 @@ namespace SE.WebSite.Controllers
         public async Task<IActionResult> EducatorsHomeSearch(MaterialsCollectionViewModel model)
         {
             var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
-                model.SearchText, Enums.Auditory.Teachers, model.Theme,
+                model.SearchText, Enums.Auditory.Educators, model.Theme,
                 model.Type, Enums.MaterialStatus.Published, model.Page, sortType: model.SortType);
 
             return Json(educatorsMaterialsViewModel);
@@ -70,7 +70,7 @@ namespace SE.WebSite.Controllers
             var result = await MaterialService.NewMaterial(model);
 
             if(result)
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PersonalAccount", "Home");
             else
                 ModelState.AddModelError(string.Empty, "Что-то пошло не так, попробуйте снова");
 

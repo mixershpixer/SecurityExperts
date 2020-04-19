@@ -52,38 +52,34 @@
                 <td>@material.StatusString</td>
                 <td>@material.ThemeString</td>
                 <td>@material.TypeString</td>
-                <td><a href="@material.DownloadingLink" class="btn btn-dark" target="_blank">Download</a></td>
+                <td><a href="@material.DownloadingLink" class="btn btn-dark" target="_blank">Скачать</a></td>
                 <td>@material.Rating</td>
                 <td>@material.DownloadsCount</td>
                 @if (@material.StatusString.Equals("OnModeration"))
                 {
                     <td>
-                        <a href="~/Admin/ApproveMaterial?id=@material.Id" class="btn btn-success">Approve</a>
-                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-danger">Delete</a>
+                        <a href="~/Admin/ApproveMaterial?id=@material.Id" class="btn btn-success">Опубликовать</a>
+                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-danger">Удалить</a>
                     </td>
                 }
                 else if (@material.StatusString.Equals("Deleted"))
                 {
                     <td>
-                        <a href="~/Admin/RestoreMaterial?id=@material.Id" class="btn btn-success">Restore</a>
+                        <a href="~/Admin/RestoreMaterial?id=@material.Id" class="btn btn-success">Восстановить</a>
                     </td>
                 }
                 else
                 {
                     <td>
-                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-danger">Delete</a>
+                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-danger">Удалить</a>
                     </td>
                 }
             </tr>
         }
     </tbody>
-    <tfoot>
-        <tr>
-            <td>Количество: </td>
-            <td><span id="totalCount">@totalMaterialsCount</span></td>
-        </tr>
-    </tfoot>
 </table>
+<hr />
+<label style="font-size: 20px;">Количество: <span id="totalCount">@totalMaterialsCount</span></label>
 
 
 <script>
@@ -94,13 +90,14 @@
         });
     });
     function GetMaterialsWithOptions(selectedStatus) {
+        $("#Materials").removeAttr('hidden');
         $.ajax({
             type: "GET",
             url: '/Admin/GetMaterialsWithOptions?status=' + selectedStatus,
             success: function (data) {
                 $('tbody[name="materials"]').empty();
                 var totalCount = 0;
-                $.each(data, function () {
+                $.each(data.materials, function () {
                     $('tbody[name="materials"]').append(
                         `<tr>
                             <td>
@@ -117,18 +114,21 @@
                             <td>`+ this.statusString + `</td>
                             <td>`+ this.themeString + `</td>
                             <td>`+ this.typeString + `</td>
-                            <td><a href="` + this.downloadingLink + `" class="btn btn-dark" target="_blank">Download</a></td>
+                            <td><a href="` + this.downloadingLink + `" class="btn btn-dark" target="_blank">Скачать</a></td>
                             <td>`+ this.rating + `</td>
                             <td>`+ this.downloadsCount + `</td>
                             <td>`
-                        + (this.statusString == "На модерации" ? ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success">Approve</a><a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>` : "")
-                        + (this.statusString == "Удалено" ? `<a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success">Restore</a>` : "")
-                        + (this.statusString == "Опубликованно" ? ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>` : "")
+                        + (this.statusString == "На модерации" ? ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success">Опубликовать</a><a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Удалить</a>` : "")
+                        + (this.statusString == "Удалено" ? `<a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success">Восстановить</a>` : "")
+                        + (this.statusString == "Опубликованно" ? ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Удалить</a>` : "")
                         + `</td></tr>`
                     );
                     totalCount++;
                 });
                 $("#totalCount").text(totalCount);
+                if (totalCount == 0) {
+                    $("#Materials").attr("hidden", true);
+                }
             }
         });
     }

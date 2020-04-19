@@ -3071,6 +3071,10 @@ header .is-sticky .sticky .user-basket .dropdown-menu {
 	padding-bottom: 50px;
 	margin-bottom: 50px;
 }
+	.media .media-left {
+		float: left;
+		position: relative;
+	}
 .blog-list article .media-left {
 	float: left;
 	position: relative;
@@ -6377,4 +6381,11 @@ li {
 .form-control {
 	margin: 5px 0;
 	min-width: 350px;
+}
+.material {
+	width: 700px;
+}
+
+.container-fluid {
+	min-height: 720px !important;
 }

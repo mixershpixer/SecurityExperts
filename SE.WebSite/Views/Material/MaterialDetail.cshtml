@@ -1,7 +1,19 @@
-﻿@model SE.Model.ViewModels.MaterialViewModel
+﻿@model SE.Model.ViewModels.MaterialViewModel;
+@inject SE.BLL.Interfaces.IUserService userService;
 
 @{
-    ViewData["Title"] = "MaterialDetail";
+    ViewData["Title"] = "Информация о материале: «" + Model.Name + "»";
+    var isAuthenticated = false;
+    var isAdmin = false;
+    var userId = Guid.Empty;
+
+    if (User.Identity.IsAuthenticated && await userService.IsExists(User.Identity.Name))
+    {
+        isAuthenticated = true;
+        isAdmin = userService.GetRole(User.Identity.Name).Equals("Admin");
+        var user = await userService.GetUserByEmail(User.Identity.Name);
+        userId = user.UserId;
+    }
 }
 
 <main class="cd-main-content">
@@ -29,9 +41,19 @@
                                 <li>Тип: <span> @Model.TypeString </span></li>
                             </ul>
                             <div class="some-info">
-                                <ul class="row ">
-                                    <li class="col-sm-6 "> <a onclick="DownloadMaterial('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
-                                </ul>
+                                @if(isAuthenticated)
+                                {
+                                    <ul class="row ">
+                                        <li class="col-sm-6 "> <a onclick="DownloadMaterialDetails('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <ul class="row ">
+                                        <li class="col-sm-6 "> <a class="btn bg-danger disabled" >Скачать</a> </li>
+                                        <li name="linkToAuth" class="col-sm-6 "> Для того чтобы скачать материал, <a href="~/Account/Login">войдите в аккаунт</a> </li>
+                                    </ul>
+                                }
                             </div>
                         </div>
                     </div>
@@ -60,63 +82,62 @@
                 </div>
                 <!--======= конец описание=========-->
                 <!--======= комментарии=========-->
-                <div class="comments margin-top-80">
+                <div class="margin-top-80">
                     <div class="row">
                         <div class="col-1"></div>
-                        <div class="col-lg-10">
+                        <div class="comments col-lg-10">
 
-                            <h5 class="comments-tittle">Комментарии <span>|</span> <span>3</span></h5>
-                            <ul class="media-list padding-left-15">
+                            <h5 class="comments-tittle">Комментарии <span>|</span> <span id="commentsCount">@Model.Comments.Count()</span></h5>
+                            <ul id="comments" class="media-list padding-left-15">
                                 <!--=======  комментарий =========-->
-                                <li class="media">
-                                    <div class="media-left">
-                                        <a href="#" class="avatar">
-                                            <img class="media-object img-responsive" src="images/avatar.png" alt=""> <br>
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Имя Фамилия <span><i class="icon-clock primary-color"></i> 10 Апреля, 2020 -  10:52</span></h6>
-                                        <p>Приобретение практических навыков по созданию тестовых заданий.  Закрепление теоретических знаний и приобретение практических навыков по проведению тестиро-вания интерфейса. </p>
-                                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Ответить</a>
-                                    </div>
-                                </li>
-                                <!--=======  комментарий =========-->
-                                <li class="media">
-                                    <div class="media-left">
-                                        <a href="#" class="avatar">
-                                            <img class="media-object img-responsive" src="images/avatar.png" alt=""> <br>
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h6 class="media-heading">Имя Фамилия <span><i class="icon-clock primary-color"></i> 10 Апреля, 2020 -  10:52</span></h6>
-                                        <p>Приобретение практических навыков по созданию тестовых заданий.  Закрепление теоретических знаний и приобретение практических навыков по проведению тестиро-вания интерфейса. </p>
-                                        <a href="#." class="raply"><i class="icon-bubble primary-color"></i> Ответить</a>
-                                    </div>
-                                </li>
+                                @foreach (var c in Model.Comments)
+                                {
+                                    if (c.UserId == userId || isAdmin)
+                                    {
+                                        <li class="media" id="@c.CommentId">
+                                            <div class="media-left">
+                                                <a href="#" class="avatar"><img class="media-object img-responsive" src="~/images/avatar.png" alt=""> <br></a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">@c.UserName @c.UserSurname<span class="pull-right"><span><i class="icon-clock primary-color"></i>@c.CommentDate</span> <i onclick="DeleteComment('@c.CommentId');" class="icon-close"></i></span> </h6>
+                                                <p>@c.CommentText</p>
+                                            </div>
+                                            <hr>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="media" id="@c.CommentId">
+                                            <div class="media-left">
+                                                <a class="avatar"><img class="media-object img-responsive" src="~/images/avatar.png" alt=""> <br></a>
+                                            </div>
+                                            <div class="media-body">
+                                                <h6 class="media-heading">@c.UserName @c.UserSurname<span class="pull-right"><span><i class="icon-clock primary-color"></i>@c.CommentDate</span> </span> </h6>
+                                                <p>@c.CommentText</p>
+                                            </div>
+                                            <hr>
+                                        </li>
+                                    }
+                                }
                             </ul>
-                            <hr>
                             <!--=======  Оставить комментарий =========-->
                             <h5 class="comments-tittle margin-top-80">Оставить комментарий</h5>
                             <form class="padding-left-15">
                                 <ul class="row">
                                     <li class="col-sm-12">
                                         <label>
-                                            <textarea class="form-control" placeholder="Оставьте свой комментарий"></textarea>
+                                            <input type="hidden" id="MaterialId" value="@Model.Id" />
+                                            <textarea class="form-control" id="CommentText" placeholder="Оставьте свой комментарий"></textarea>
                                         </label>
                                     </li>
                                     <li class="col-sm-12">
-                                        <button type="submit" class="btn margin-top-30">Отправить </button>
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align:center"> <text id="CommentStatus" style="font-size:larger"></text></div>
+                                        </div>
+                                        <input type="button" onclick="AddComment();" class="btn margin-top-30" value="Отправить" />
                                     </li>
                                 </ul>
                             </form>
-                            <h5 class="comments-tittle margin-top-80">Оставить комментарий</h5>
-                            <ul class="row">
-                                <li class="col-sm-12 text-center margin-top-30">
-                                    <h4>
-                                        Чтобы оставить комментарий, <a href="">войдите в аккаунт.</a>
-                                    </h4>
-                                </li>
-                            </ul>
                         </div>
                         <div class="col-1"></div>
                     </div>
@@ -126,4 +147,79 @@
             </div>
         </section>
     </div>
-    </main>
+</main>
+
+<script>
+
+
+    function DownloadMaterialDetails(id) {
+        $.ajax({
+            type: "GET",
+            url: '/Material/DownloadMaterial?id=' + id,
+            success: function (data) {
+
+            }
+        });
+    };
+
+    function AddComment() {
+        $('.preloader').show();
+        if (!$.trim($("#CommentText").val())) {
+            $("#CommentText").attr("placeholder", "*ЭТО ОБЯЗАТЕЛЬНОЕ ПОЛЕ");
+            $('.preloader').fadeOut();
+            return;
+        }
+        if ($("#IsAuthenticated").text() == "False") {
+            $("#CommentStatus").css({ "display": "" });
+            $('#CommentStatus').text("Чтобы оставлять комментарии, вы должны быть авторизованы");
+            $("#CommentStatus").delay(2500).fadeOut("slow");
+            $('.preloader').fadeOut();
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: '/Home/AddComment',
+            data: {
+                MaterialId: $('#MaterialId').val(),
+                CommentText: $('#CommentText').val()
+            },
+            success: function (data) {
+                $('#comments').append(
+                    `<li class="media" id="` + data.commentId + `">
+                        <div class="media-left">
+                            <a href="#" class="avatar"><img class="media-object img-responsive" src="/images/avatar.png" alt=""> <br></a>
+                        </div>
+                        <div class="media-body">
+                            <h6 class="media-heading">`+ data.userName + ` ` + data.userSurname + `<span class="pull-right"><span><i class="icon-clock primary-color"></i>` + data.commentDate + ` </span> <i onclick="DeleteComment('` + data.commentId + `');" class="icon-close"></i></span> </h6>
+                            <p>`+ data.commentText + `</p>
+                        </div>
+                        <hr>
+                    </li>`
+                );
+                $("#CommentText").attr("placeholder", "*ВАШ ОТЗЫВ");
+                $("#CommentText").val("");
+                CalculateCommentsCount();
+            },
+            complete: function () {
+                $('.preloader').fadeOut()
+            }
+        });
+    };
+    function DeleteComment(commentId) {
+        $('.preloader').show()
+        $.ajax({
+            type: "GET",
+            url: '/Home/DeleteComment?commentId=' + commentId,
+            success: function (data) {
+                $('#' + data).remove();
+                CalculateCommentsCount();
+            },
+            complete: function () {
+                $('.preloader').fadeOut();
+            }
+        });
+    };
+    function CalculateCommentsCount() {
+        $('#commentsCount').text($("li.media").length);
+    };
+</script>

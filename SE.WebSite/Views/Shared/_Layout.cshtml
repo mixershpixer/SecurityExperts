@@ -1,12 +1,10 @@
-﻿@using SE.BLL.Interfaces
-
-@inject IUserService userService
+﻿@inject SE.BLL.Interfaces.IUserService userService
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Знатоки безопасности</title>
+    <title>Знатоки безопасности - @ViewData["Title"]</title>
 
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
@@ -32,6 +30,7 @@
             isAdmin = userService.GetRole(User.Identity.Name).Equals("Admin");
         }
     }
+    <label hidden id="IsAuthenticated">@isAuthenticated</label>
     <!-- Прелоадер -->
     <div class="preloader">
         <div class="preloader__image"></div>
@@ -48,7 +47,7 @@
                     </button>
                     <div class="collapse navbar-collapse " id="navbarNav">
                         <ul class="nav">
-                            <li > <a href="~/Home/Index">Главная </a> </li>
+                            <li> <a href="~/Home/Index">Главная </a> </li>
                             <li>
                                 <a href="~/Material/EducatorsHome">Воспитателям </a>
                                 <ul class="dropdown-menu">

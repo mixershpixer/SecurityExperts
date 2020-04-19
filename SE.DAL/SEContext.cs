@@ -60,7 +60,7 @@ namespace SE.DAL
                     Description = "DescriptionDescriptionDescriptionDescription" + i,
                     Status = i % 2 == 1 ? Enums.MaterialStatus.Published : Enums.MaterialStatus.OnModeration,
                     PublishingDate = DateTime.Now,
-                    Auditory = Enums.Auditory.Teachers,
+                    Auditory = Enums.Auditory.Educators,
                     Theme = (Enums.Theme)r.Next(1, 6),
                     Type = (Enums.Type)r.Next(1, 5),
                     DownloadingLink = i % 2 == 1 ? "https://www.freepng.ru/png-miditu/download.html" : "https://ru.wikipedia.org/wiki/Международная_организация_гражданской_авиации",
@@ -95,7 +95,7 @@ namespace SE.DAL
                 .HasMany(a => a.Materials)
                 .WithOne(f => f.User)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

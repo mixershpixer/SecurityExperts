@@ -48,15 +48,15 @@ namespace SE.BLL.Services
                 UserId = m.UserId,
                 AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
                 Description = m.Description,
-                Status = m.Status,
-                StatusString = m.Status.ToString(),
                 PublishingDate = m.PublishingDate,
                 PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy"),
                 Auditory = m.Auditory,
+                Status = m.Status,
+                StatusString = Constants.Status[(int)m.Status],
                 Theme = m.Theme,
-                ThemeString = m.Theme.ToString(),
+                ThemeString = Constants.Theme[(int)m.Theme],
                 Type = m.Type,
-                TypeString = m.Type.ToString(),
+                TypeString = Constants.Type[(int)m.Type],
                 DownloadingLink = m.DownloadingLink,
                 BytePicture = m.Picture,
                 Base64Picture = Convert.ToBase64String(m.Picture),
@@ -70,6 +70,8 @@ namespace SE.BLL.Services
         {
             var m = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
 
+            var comments = await _unitOfWork.Comments.GetMaterialComments(id);
+            
             return new MaterialViewModel
             {
                 Id = m.Id,
@@ -93,7 +95,18 @@ namespace SE.BLL.Services
                 Base64Picture = Convert.ToBase64String(m.Picture),
                 SourceOfInformation = m.SourceOfInformation,
                 Rating = m.Rating,
-                DownloadsCount = m.DownloadsCount
+                DownloadsCount = m.DownloadsCount,
+                Comments = comments.Select(c => new CommentViewModel
+                {
+                    CommentId = c.Id,
+                    UserId = c.UserId,
+                    UserName = c.User.Name,
+                    UserSurname = c.User.Surname,
+                    UserEmail = c.User.Email,
+                    MaterialId = c.MaterialId,
+                    CommentText = c.Text,
+                    CommentDate = c.Date.ToString("HH:mm dd-MM-yy")
+                }).OrderByDescending(c => c.CommentDate).ToList()
             };
         }
 
@@ -197,12 +210,12 @@ namespace SE.BLL.Services
                 Description = material.Description,
                 Status = Enums.MaterialStatus.OnModeration,
                 PublishingDate = DateTime.Now,
-                Auditory = material.Auditory,
+                Auditory = Enums.Auditory.Educators,
                 Theme = material.Theme,
                 Type = material.Type,
                 DownloadingLink = material.DownloadingLink,
                 Picture = imageData,
-                SourceOfInformation = material.SourceOfInformation,
+                SourceOfInformation = material.SourceOfInformation != String.Empty ? material.SourceOfInformation : "Оригинальный материал",
                 Rating = 0,
                 DownloadsCount = 0
             });

@@ -18,7 +18,7 @@ namespace SE.Common
             [Display(Name = "Общее")]
             Common = 0,
             [Display(Name = "Воспитатели")]
-            Teachers,
+            Educators,
             [Display(Name = "Родители")]
             Parents
         }

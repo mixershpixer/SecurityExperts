@@ -18,6 +18,9 @@ namespace SE.DAL.Entities
         public Guid MaterialId { get; set; }
         public Material Material { get; set; }
 
+        [Column(TypeName = "datetime2")]
+        [Required] public DateTime Date { get; set; }
+
         [Required]
         [StringLength(1000)]
         public string Text { get; set; }

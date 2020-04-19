@@ -321,3 +321,4 @@ C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\
 C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\View.cshtml.g.cs
 C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Home\PersonalAccount.cshtml.g.cs
 C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Material\MaterialDetail.cshtml.g.cs
+C:\Users\makhr\Desktop\SecurityExperts\SE.WebSite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\ParentsStatic\ChildrenLie.cshtml.g.cs

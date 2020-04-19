@@ -2,79 +2,126 @@
 
 @{
     ViewData["Title"] = "Регистрация";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>@ViewData["Title"] - Знатоки безопасности</title>
 
-<div id="content">
-    <section class="chart-page login gray-bg padding-top-100 padding-bottom-100">
-        <div class="container">
-            <div class="shopping-cart">
-                <div class="cart-ship-info">
-                    <div class="row">
-                        <div class="col-sm-7 center-block">
-                            <ul class="nav" id="myTab" role="tablist">
-                                <li> <a class="nav-link active" id="reg-tab" data-toggle="tab" href="#log" role="tab" aria-selected="true">Регистрация</a> </li>
-                            </ul>
-                            <div class="tab-content" id="myTabContent">
-                                @if (Model.Message != null)
-                                {
-                                    <h5 style="text-align:center;">@Model.Message</h5>
-                                }
-                                <div class="tab-pane fade show active" id="log" role="tabpanel" aria-labelledby="reg-tab">
-                                    <form asp-action="Registration">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <ul class="row" style="padding-left:0 !important">
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Имя *
-                                                    <input asp-for="Name" class="form-control" />
-                                                    <span asp-validation-for="Name" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Фамилия *
-                                                    <input asp-for="Surname" class="form-control" />
-                                                    <span asp-validation-for="Surname" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Email адрес *
-                                                    <input asp-for="Email" class="form-control" />
-                                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Пароль *
-                                                    <input asp-for="Password" class="form-control" />
-                                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-12">
-                                                <label>
-                                                    Подтвердить пароль *
-                                                    <input asp-for="ConfirmPassword" class="form-control" />
-                                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                                </label>
-                                            </li>
-                                            <li class="col-md-6">
-                                                <button type="submit" class="btn">ПРОДОЛЖИТЬ</button>
-                                            </li>
-                                            <li class="col-md-6">
-                                                <div class="margin-top-15 text-right">
-                                                    @Html.ActionLink("Войти в аккаунт", "Login")
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </form>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/p_style.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/modernizr.js"></script>
+
+</head>
+<body>
+    <!-- Прелоадер -->
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- Wrap -->
+    <div id="wrap">
+        <header>
+            <div class="container-full">
+                <div class="row">
+
+                    <div class="logo"><a href="~/Home/Index"><img class="img-responsive" src="~/images/logo.png" alt=""></a></div>
+                </div>
+            </div>
+        </header>
+        <!--Контент -->
+
+        <div id="content">
+
+            <!-- Регистрация -->
+            <div class="container">
+                <div class="row" style="text-align:center; display:initial">
+                    <div style="width: 50%; margin: 0 auto;">
+                        <h1>РЕГИСТРАЦИЯ</h1>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="row" style="text-align:center; display:initial">
+                        <div style="width: 50%; margin: 0 auto;">
+                            @if (Model.Message != null)
+                            {
+                                <h5 style="text-align:center;">@Model.Message</h5>
+                            }
+                            <form class="form-text" asp-action="Registration">
+                                <div class="row  ">
+                                    <div class="col-md-12 ">
+                                        <label>
+                                            Имя *
+                                            <input asp-for="Name" class="form-control" />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <label>
+                                            Фамилия *
+                                            <input asp-for="Surname" class="form-control" />
+                                            <span asp-validation-for="Surname" class="text-danger"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <label>
+                                            Email адрес *
+                                            <input asp-for="Email" placeholder="address@mail.ru" class="form-control" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>
+                                            Пароль *
+                                            <input asp-for="Password" class="form-control" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>
+                                            Подтвердить пароль *
+                                            <input asp-for="ConfirmPassword" class="form-control" />
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-md-6 " style="margin: 30px auto;">
+                                        <button type="submit" class="btn">Зарегистрироваться</button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center">
+                    <div style="margin: 0px auto; width: 50%;">
+                        <p>Уже зарегистрированы? <a href="~/Account/Login"> Войти. </a></p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</div>
+    </div>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery-1.12.4.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/own-menu.js"></script>
+    <script src="~/js/jquery.lighter.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/lazysizes.min.js"></script>
+    <script src="~/js/main.js"></script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</body>
+</html>
