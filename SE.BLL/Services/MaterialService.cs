@@ -24,7 +24,7 @@ namespace SE.BLL.Services
 
         public async Task ChangeStatus(Guid id, Enums.MaterialStatus status)
         {
-            var material = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
+            var material = await _unitOfWork.MaterialRepository.GetByPredicate(m => m.Id == id);
             material.Status = status;
 
             await _unitOfWork.SaveAsync();
@@ -32,7 +32,7 @@ namespace SE.BLL.Services
 
         public async Task DownloadMaterial(Guid id)
         {
-            var material = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
+            var material = await _unitOfWork.MaterialRepository.GetByPredicate(m => m.Id == id);
             material.DownloadsCount += 1;
 
             await _unitOfWork.SaveAsync();
@@ -40,13 +40,13 @@ namespace SE.BLL.Services
 
         public async Task<IEnumerable<MaterialViewModel>> GetAll()
         {
-            var materials = await _unitOfWork.Materials.GetAll();
+            var materials = await _unitOfWork.MaterialRepository.GetAll();
             return materials.ToList().Select(m => new MaterialViewModel
             {
                 Id = m.Id,
                 Name = m.Name,
                 UserId = m.UserId,
-                AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
+                AuthorEmail = _unitOfWork.UserRepository.GetUserById(m.UserId).Email,
                 Description = m.Description,
                 PublishingDate = m.PublishingDate,
                 PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy"),
@@ -68,18 +68,18 @@ namespace SE.BLL.Services
 
         public async Task<MaterialViewModel> GetById(Guid id)
         {
-            var m = await _unitOfWork.Materials.GetByPredicate(m => m.Id == id);
+            var m = await _unitOfWork.MaterialRepository.GetByPredicate(m => m.Id == id);
 
-            var comments = await _unitOfWork.Comments.GetMaterialComments(id);
+            var comments = await _unitOfWork.CommentRepository.GetMaterialComments(id);
             
             return new MaterialViewModel
             {
                 Id = m.Id,
                 Name = m.Name,
                 UserId = m.UserId,
-                AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
-                AuthorName = _unitOfWork.Users.GetUserById(m.UserId).Name,
-                AuthorSurname = _unitOfWork.Users.GetUserById(m.UserId).Surname,
+                AuthorEmail = _unitOfWork.UserRepository.GetUserById(m.UserId).Email,
+                AuthorName = _unitOfWork.UserRepository.GetUserById(m.UserId).Name,
+                AuthorSurname = _unitOfWork.UserRepository.GetUserById(m.UserId).Surname,
                 Description = m.Description,
                 PublishingDate = m.PublishingDate,
                 PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy hh:mm"),
@@ -118,7 +118,7 @@ namespace SE.BLL.Services
             Guid? userId = null, Enums.SortType sortType = Enums.SortType.AlphabetAsc,
             int count = 3)
         {
-            var materials = await _unitOfWork.Materials.GetAll();
+            var materials = await _unitOfWork.MaterialRepository.GetAll();
             materials = materials.ToList();
 
             if (status != Enums.MaterialStatus.All)
@@ -161,9 +161,9 @@ namespace SE.BLL.Services
                 Id = m.Id,
                 Name = m.Name,
                 UserId = m.UserId,
-                AuthorEmail = _unitOfWork.Users.GetUserById(m.UserId).Email,
-                AuthorName = _unitOfWork.Users.GetUserById(m.UserId).Name,
-                AuthorSurname = _unitOfWork.Users.GetUserById(m.UserId).Surname,
+                AuthorEmail = _unitOfWork.UserRepository.GetUserById(m.UserId).Email,
+                AuthorName = _unitOfWork.UserRepository.GetUserById(m.UserId).Name,
+                AuthorSurname = _unitOfWork.UserRepository.GetUserById(m.UserId).Surname,
                 Description = m.Description,
                 PublishingDate = m.PublishingDate,
                 PublishingDateString = m.PublishingDate.ToString("dd.MM.yyyy"),
@@ -202,7 +202,7 @@ namespace SE.BLL.Services
                 imageData = binaryReader.ReadBytes((int)material.Picture.Length);
             }
 
-            var addedMaterial = await _unitOfWork.Materials.InsertAsync(new Material
+            var addedMaterial = await _unitOfWork.MaterialRepository.InsertAsync(new Material
             {
                 Id = Guid.NewGuid(),
                 Name = material.Name,

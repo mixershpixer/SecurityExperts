@@ -20,7 +20,7 @@ namespace SE.BLL.Services
 
         public async Task<CommentViewModel> AddComment(Guid userId, Guid materialId, string commentText, int rating)
         {
-            var comment = await _unitOfWork.Comments.AddComment(userId, materialId, commentText, DateTime.Now);
+            var comment = await _unitOfWork.CommentRepository.AddComment(userId, materialId, commentText, DateTime.Now);
 
             return new CommentViewModel
             {
@@ -37,7 +37,7 @@ namespace SE.BLL.Services
 
         public async Task<bool> DeleteComment(Guid commentId)
         {
-            return await _unitOfWork.Comments.DeleteComment(commentId);
+            return await _unitOfWork.CommentRepository.DeleteComment(commentId);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace SE.BLL.Services
 
         public async Task<IEnumerable<UserViewModel>> GetAll()
         {
-            var users = await _unitOfWork.Users.GetAll();
+            var users = await _unitOfWork.UserRepository.GetAll();
             return users.ToList().Select(u => new UserViewModel
             {
                 UserId = u.Id,
@@ -37,7 +37,7 @@ namespace SE.BLL.Services
 
         public async Task<UserViewModel> GetUserByEmail(string email)
         {
-            var user = await _unitOfWork.Users.GetByPredicate(u => u.Email == email);
+            var user = await _unitOfWork.UserRepository.GetByPredicate(u => u.Email == email);
 
             return user != null ? new UserViewModel
             {
@@ -52,14 +52,14 @@ namespace SE.BLL.Services
 
         public async Task<Guid> GetUserIdByEmail(string email)
         {
-            var user = await _unitOfWork.Users.GetByPredicate(u => u.Email == email);
+            var user = await _unitOfWork.UserRepository.GetByPredicate(u => u.Email == email);
 
             return user.Id;
         }
 
         public async Task<UserViewModel> GetUserById(Guid id)
         {
-            var user = await _unitOfWork.Users.GetByPredicate(u => u.Id == id);
+            var user = await _unitOfWork.UserRepository.GetByPredicate(u => u.Id == id);
 
             return user != null ? new UserViewModel
             {
@@ -75,19 +75,19 @@ namespace SE.BLL.Services
 
         public async Task<LoginViewModel> Login(LoginViewModel model)
         {
-            if (!_unitOfWork.Users.Login(model.Email, model.Password))
+            if (!_unitOfWork.UserRepository.Login(model.Email, model.Password))
                 return new LoginViewModel { Message = "Неверное имя пользователя или пароль!" };
-            var user = await _unitOfWork.Users.GetByPredicate(u => u.Email == model.Email);
+            var user = await _unitOfWork.UserRepository.GetByPredicate(u => u.Email == model.Email);
             model.UserId = user.Id;
             return model;
         }
 
         public async Task<RegistrationViewModel> Registration(RegistrationViewModel model)
         {
-            var us = await _unitOfWork.Users.GetByPredicate(u => u.Email == model.Email);
+            var us = await _unitOfWork.UserRepository.GetByPredicate(u => u.Email == model.Email);
             if (us != null)
                 return new RegistrationViewModel { Message = "Пользователь с таким именем уже существует!" };
-            var user = _unitOfWork.Users
+            var user = _unitOfWork.UserRepository
                 .Registration(new User
                 {
                     Name = model.Name,
@@ -112,23 +112,23 @@ namespace SE.BLL.Services
 
         public string GetRole(string email)
         {
-            return _unitOfWork.Users.GetRole(email);
+            return _unitOfWork.UserRepository.GetRole(email);
         }
 
         public async Task<bool> IsExists(string email)
         {
-            var user = await _unitOfWork.Users.GetByPredicate(u => u.Email == email);
+            var user = await _unitOfWork.UserRepository.GetByPredicate(u => u.Email == email);
             return user != null;
         }
 
         public void ConfirmEmail(string email)
         {
-            _unitOfWork.Users.ConfirmEmail(email);
+            _unitOfWork.UserRepository.ConfirmEmail(email);
         }
 
         public async Task<bool> IsConfirmed(string email)
         {
-            var user = await _unitOfWork.Users.GetByPredicate(u => u.Email == email);
+            var user = await _unitOfWork.UserRepository.GetByPredicate(u => u.Email == email);
             return user != null ? user.IsConfirmed : false;
         }
     }

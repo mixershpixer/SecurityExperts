@@ -19,7 +19,7 @@ namespace SE.DAL.Repositories
         private IRatingRepository ratingRepository;
         private IUserRepository userRepository;
 
-        public ICommentRepository Comments
+        public ICommentRepository CommentRepository
         {
             get
             {
@@ -31,7 +31,7 @@ namespace SE.DAL.Repositories
             }
         }
 
-        public IDownloadingRepository Downloadings
+        public IDownloadingRepository DownloadingRepository
         {
             get
             {
@@ -43,7 +43,7 @@ namespace SE.DAL.Repositories
             }
         }
 
-        public IMaterialRepository Materials
+        public IMaterialRepository MaterialRepository
         {
             get
             {
@@ -55,7 +55,7 @@ namespace SE.DAL.Repositories
             }
         }
 
-        public IRatingRepository Ratings
+        public IRatingRepository RatingRepository
         {
             get
             {
@@ -67,7 +67,7 @@ namespace SE.DAL.Repositories
             }
         }
 
-        public IUserRepository Users
+        public IUserRepository UserRepository
         {
             get
             {
