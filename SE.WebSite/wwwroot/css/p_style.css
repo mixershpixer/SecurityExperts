@@ -20,8 +20,8 @@
 }
 
 .wrap_items {
-  margin-top: 20px;
-  justify-content: space-between; /* тип отображения карточек, то есть если сменить на space-around у каждой карточки будет оступ с двух сторон, сейчас отступ с двух сторон только у центральной */
+    margin-top: 20px;
+    justify-content: flex-start; /* тип отображения карточек, то есть если сменить на space-around у каждой карточки будет оступ с двух сторон, сейчас отступ с двух сторон только у центральной */
 }
 
 .wrap_item .info_items p, span {
@@ -36,6 +36,7 @@
   flex-direction: column;
   width: 30%;
   margin-bottom: 25px;
+  margin-right: 15px;
   padding: 15px 15px;
   min-height: 420px;
   background: #e7e5e5;
