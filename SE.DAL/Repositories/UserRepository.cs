@@ -53,9 +53,7 @@ namespace SE.DAL.Repositories
 
         public User GetUserById(Guid id)
         {
-            var user = DbSet
-                .Where(p => p.Id == id)
-                .FirstOrDefault();
+            var user = DbSet.Where(p => p.Id == id).FirstOrDefault();
 
             if (user == null)
                 throw new ApplicationException($"Can't find user with id = {id}");

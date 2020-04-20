@@ -39,10 +39,10 @@ namespace SE.DAL
                 new User
                 {
                     Id = guid2,
-                    Name = "Max",
-                    Surname = "Grechuha",
-                    Email = "max.grechuha@mail.ru",
-                    Password = Crypto.Sha256("123123" + "max.grechuha@mail.ru"),
+                    Name = "Eugenia",
+                    Surname = "Grishaeva",
+                    Email = "eugenia2029@gmail.com",
+                    Password = Crypto.Sha256("123123" + "eugenia2029@gmail.com"),
                     Role = Enums.Role.User,
                     IsConfirmed = true
                 }
@@ -58,7 +58,7 @@ namespace SE.DAL
                     Name = "NameNameName" + i,
                     UserId = i % 2 == 1 ? guid1 : guid2,
                     Description = "DescriptionDescriptionDescriptionDescription" + i,
-                    Status = i % 2 == 1 ? Enums.MaterialStatus.Published : Enums.MaterialStatus.OnModeration,
+                    Status = i % 3 == 0 ? Enums.MaterialStatus.Published : Enums.MaterialStatus.OnModeration,
                     PublishingDate = DateTime.Now,
                     Auditory = Enums.Auditory.Educators,
                     Theme = (Enums.Theme)r.Next(1, 6),
