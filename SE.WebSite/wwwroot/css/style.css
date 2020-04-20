@@ -214,8 +214,12 @@ a:hover, a:focus {
 }
 /*-----------------------------------------*/
 /* стиль для страниц с выбором темы*/
-a.theme-title{
-	color:  #6f6f6f !important;
+
+p.theme-title {
+	color: #fff !important;
+}
+a.theme-title {
+	color: #fff !important;
 }
 a.theme-title:hover{
 
