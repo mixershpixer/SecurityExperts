@@ -17,34 +17,40 @@
             </div>
         </div>
     </section>
-
-    <section class="container-fluid content text-xl-center justify-content-md-center">
-        <div class="row" style="position: -webkit-sticky;position: sticky;  z-index:100;padding-top: 5px; padding-bottom: 0;">
-            <div class="col-sm-12 col-md-3 col-lg-3 text-center">
-                <h5>Категория:</h5>
-                <div class="dop_info">
-                    <select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="custom-select"></select>
+    <section class="content text-xl-center justify-content-md-center" style="position: sticky;top: 114px;z-index: 100;padding-top: 5px;padding-bottom: 0;
+">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 row" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);padding: 20px;margin-bottom: 5px;">
+                <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                    <h5>Категория:</h5>
+                    <div class="dop_info">
+                        <select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="custom-select"></select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                    <h5>Сортировать:</h5>
+                    <div class="dop_info">
+                        <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="Search(1)" class="sort_type  custom-select"></select>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+                    <h5>Поиск:</h5>
+                    <input name="SearchText" onchange="Search(1)" class="form-control" type="search" placeholder="Введите запрос">
                 </div>
             </div>
-            <div class="col-sm-12 col-md-3 col-lg-3 text-center">
-                <h5>Сортировать:</h5>
-                <div class="dop_info">
-                    <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="Search(1)" class="sort_type  custom-select"></select>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6 text-center">
-                <h5>Поиск:</h5>
-                <input name="SearchText" onchange="Search(1)" class="form-control" type="search" placeholder="Введите запрос">
-            </div>
+            <div class="col-md-2"></div>
         </div>
+</section>
+    <section class="container-fluid content text-xl-center justify-content-md-center">
         <div class="row">
             <div class="wrap_dop_info col-sm-12 col-md-2 col-lg-2">
             </div>
             <div class="wrap_main_info col-sm-12 col-md-8 col-lg-8">
-                <div class="row justify-content-md-center margin-bottom-50">
+                <div name="searchResult" hidden class="row justify-content-md-center margin-bottom-50">
                     <div class="col col-lg-2"></div>
                     <div class="col-12 col-md-auto text-center">
-                        <h4 name="searchResult" class="margin-bottom-450" hidden>Нет материалов</h4>
+                        <h4 class="margin-bottom-450" >Нет материалов</h4>
                     </div>
                     <div class="col col-lg-2"></div>
                 </div>
@@ -82,7 +88,7 @@
             <div class="col col-lg-2"></div>
         </div>
     </section>
-    
+
     <div class="col-sm-12 col-md-6 col-lg-6 text-center">
     </div>
     <label hidden id="totalCount">@Model.TotalCount</label>
@@ -99,7 +105,7 @@
         }
         if ($('#totalCount').text() == 0) {
             $("#showMore").attr("hidden", true);
-            $('h4[name="searchResult"]').removeAttr('hidden');
+            $('div[name="searchResult"]').removeAttr('hidden');
         }
         else {
             $('div[name="materials"]').removeAttr('hidden');
@@ -136,10 +142,10 @@
                 if (data.totalCount === 0) {
                     $("#showMore").attr("hidden", true);
                     $('div[name="materials"]').attr("hidden", true);
-                    $('h4[name="searchResult"]').removeAttr('hidden');
+                    $('div[name="searchResult"]').removeAttr('hidden');
                 }
                 else {
-                    $('h4[name="searchResult"]').attr("hidden", true);
+                    $('div[name="searchResult"]').attr("hidden", true);
                     $('div[name="materials"]').removeAttr('hidden');
                     $('div[name="materials"]').empty();
                     $.each(data.materials, function () {
