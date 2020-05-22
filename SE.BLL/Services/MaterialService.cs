@@ -71,7 +71,7 @@ namespace SE.BLL.Services
             var m = await _unitOfWork.MaterialRepository.GetByPredicate(m => m.Id == id);
 
             var comments = await _unitOfWork.CommentRepository.GetMaterialComments(id);
-            
+
             return new MaterialViewModel
             {
                 Id = m.Id,
@@ -94,7 +94,7 @@ namespace SE.BLL.Services
                 BytePicture = m.Picture,
                 Base64Picture = Convert.ToBase64String(m.Picture),
                 SourceOfInformation = m.SourceOfInformation,
-                Rating = m.Rating,
+                Rating = Math.Round(m.Rating, 1),
                 DownloadsCount = m.DownloadsCount,
                 Comments = comments.Select(c => new CommentViewModel
                 {
@@ -111,7 +111,7 @@ namespace SE.BLL.Services
         }
 
         public async Task<MaterialsCollectionViewModel> GetMaterials(
-            string searchText = null, Enums.Auditory auditory = Enums.Auditory.Common, 
+            string searchText = null, Enums.Auditory auditory = Enums.Auditory.Common,
             Enums.Theme theme = Enums.Theme.Common,
             Enums.Type type = Enums.Type.Common,
             Enums.MaterialStatus status = Enums.MaterialStatus.All, int page = 0,
@@ -134,15 +134,15 @@ namespace SE.BLL.Services
                 materials = materials.Where(m => m.Theme == theme).ToList();
 
             if (!string.IsNullOrEmpty(searchText))
-                materials = materials.Where(m => 
+                materials = materials.Where(m =>
                 m.Name.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 m.Description.IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 m.Theme.ToString("d").IndexOf(searchText, StringComparison.OrdinalIgnoreCase) >= 0);
 
-            if(userId != null)
+            if (userId != null)
                 materials = materials.Where(m => m.UserId == userId).ToList();
 
-            if(sortType == Enums.SortType.AlphabetAsc)
+            if (sortType == Enums.SortType.AlphabetAsc)
                 materials = materials.OrderBy(m => m.Name).ToList();
             else if (sortType == Enums.SortType.AlphabetDesc)
                 materials = materials.OrderByDescending(m => m.Name).ToList();
@@ -150,10 +150,12 @@ namespace SE.BLL.Services
                 materials = materials.OrderBy(m => m.PublishingDate).ToList();
             else if (sortType == Enums.SortType.DateDesc)
                 materials = materials.OrderByDescending(m => m.PublishingDate).ToList();
+            else if (sortType == Enums.SortType.RateAsc)
+                materials = materials.OrderByDescending(m => m.Rating).ToList();
 
             var materialsCount = materials.Count();
 
-            if(page != 0)
+            if (page != 0)
                 materials = materials.Skip(0).Take(count * page);
 
             var uiMaterials = materials.Select(m => new MaterialViewModel

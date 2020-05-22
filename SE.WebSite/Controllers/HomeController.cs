@@ -48,6 +48,9 @@ namespace SE.WebSite.Controllers
         [HttpGet]
         public async Task<IActionResult> PersonalAccount()
         {
+            if(User.Identity.Name == null)
+                return RedirectToAction("Login", "Account");
+
             var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
                 searchText: null, auditory: Enums.Auditory.Common, theme: Enums.Theme.Common,
                 type: Enums.Type.Common, page: 0,

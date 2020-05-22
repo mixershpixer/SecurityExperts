@@ -9,7 +9,7 @@
     <section class="banner">
         <div class="position-center-center">
             <div class="container">
-                <h4 >@Model.ThemeString</h4>
+                <h4>@Model.ThemeString</h4>
                 <ol class="breadcrumb">
                     <li><a href="~/Home/Index">Главная</a></li>
                     <li class="active">@Model.ThemeString</li>
@@ -18,25 +18,36 @@
         </div>
     </section>
 
-    <section class="container-fluid content">
-        <div class="row">
-            <div class="wrap_dop_info col-sm-12 col-md-3 col-lg-3">
-                <h5>Уточнить результаты:</h5>
+    <section class="container-fluid content text-xl-center justify-content-md-center">
+        <div class="row" style="position: -webkit-sticky;position: sticky;  z-index:100;padding-top: 5px; padding-bottom: 0;">
+            <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                <h5>Категория:</h5>
                 <div class="dop_info">
                     <select name="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" onchange="Search(1)" class="custom-select"></select>
                 </div>
             </div>
-            <div class="wrap_main_info col-sm-12  col-md-9 col-lg-9">
-
-                <div class="search col-lg-8 col-sm-12">
-                    <input name="SearchText" onchange="Search(1)" class="form-control" type="search" placeholder="Поиск">
-                    <button type="submit"><i class="fa fa-search"></i></button>
+            <div class="col-sm-12 col-md-3 col-lg-3 text-center">
+                <h5>Сортировать:</h5>
+                <div class="dop_info">
+                    <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="Search(1)" class="sort_type  custom-select"></select>
                 </div>
-                <div class="wrap_sort">
-                    <p class="sort_text">Сортировать по:</p>
-                    <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="Search(1)" class="sort_type"></select>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+                <h5>Поиск:</h5>
+                <input name="SearchText" onchange="Search(1)" class="form-control" type="search" placeholder="Введите запрос">
+            </div>
+        </div>
+        <div class="row">
+            <div class="wrap_dop_info col-sm-12 col-md-2 col-lg-2">
+            </div>
+            <div class="wrap_main_info col-sm-12 col-md-8 col-lg-8">
+                <div class="row justify-content-md-center margin-bottom-50">
+                    <div class="col col-lg-2"></div>
+                    <div class="col-12 col-md-auto text-center">
+                        <h4 name="searchResult" class="margin-bottom-450" hidden>Нет материалов</h4>
+                    </div>
+                    <div class="col col-lg-2"></div>
                 </div>
-                <h4 name="searchResult" class="margin-bottom-450" hidden>Нет материалов</h4>
                 <div name="materials" class="row wrap_items">
                     @foreach (var material in Model.Materials)
                     {
@@ -55,16 +66,25 @@
                             </div>
                             <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
                             <div class="dop_info_item">
-                                <p>Рейтинг: @material.Rating</p>
+                                <p>Рейтинг: @material.Rating <span style="font-size:20px; color: gold;">★</span></p>
                                 <div class="dop_info_view"> Кол-во скачиваний: @material.DownloadsCount </div>
                             </div>
                         </div>
                     }
                 </div>
-                <input id="showMore" type="button" hidden class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="Показать еще" />
             </div>
         </div>
+        <div class="row justify-content-md-center margin-bottom-50">
+            <div class="col col-lg-2"></div>
+            <div class="col-12 col-md-auto text-center">
+                <input id="showMore" type="button" hidden class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="Показать еще" />
+            </div>
+            <div class="col col-lg-2"></div>
+        </div>
     </section>
+    
+    <div class="col-sm-12 col-md-6 col-lg-6 text-center">
+    </div>
     <label hidden id="totalCount">@Model.TotalCount</label>
 </main>
 
@@ -127,14 +147,14 @@
                             `<div class="info_item">
                                 <div class="wrap_img_item">
                                     <a href="/Material/MaterialDetail?id=`+ this.id + `">`
-                                        + (this.base64Picture.length <= 10 ?
-                                        `<img src="/images/noimage.png" />` :
-                                        `<img src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
+                            + (this.base64Picture.length <= 10 ?
+                                `<img src="/images/noimage.png" />` :
+                                `<img src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
                                     </a>
                                 </div>
                                 <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a>
                                 <div class="dop_info_item">
-                                    <p>Рейтинг: `+ this.rating + `</p>
+                                    <p>Рейтинг: `+ this.rating + `<span style="font-size:20px; color: gold;" >★</span></p>
                                     <div class="dop_info_view"> Кол-во скачиваний: `+ this.downloadsCount + `</div>
                                 </div>
                             </div>`

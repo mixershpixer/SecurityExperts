@@ -87,6 +87,15 @@ namespace SE.WebSite.Controllers
 
 
         [HttpGet]
+        public async Task<IActionResult> RateMaterial(Guid id, string rating)
+        {
+            await RatingService.RateMaterial(await UserService.GetUserIdByEmail(User.Identity.Name), id, Convert.ToInt32(rating));
+
+            return Ok(await RatingService.GetRating(id));
+        }
+
+
+        [HttpGet]
         public async Task DownloadMaterial(Guid id)
         {
             await MaterialService.DownloadMaterial(id);

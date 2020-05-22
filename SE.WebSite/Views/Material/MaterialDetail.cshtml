@@ -34,24 +34,36 @@
                         </div>
                         <div class="col-md-5">
                             <h4>@Model.Name</h4>
-                            <div class="rating-strs"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-o"></i></div>
                             <h4>@Model.AuthorName @Model.AuthorSurname</h4>
                             <ul class="item-owner">
                                 <li>Тема:<span> <a href="~/Material/EducatorsMaterials?theme=@((int)Model.Theme)"> @Model.ThemeString </a></span></li>
                                 <li>Тип: <span> @Model.TypeString </span></li>
+                                <li>Рейтинг: <span id="ratingValue" style="font-size:20px"> @Model.Rating</span><span style="font-size:20px; color: gold;">★</span> </li>
                             </ul>
                             <div class="some-info">
-                                @if(isAuthenticated)
+                                @if (isAuthenticated)
                                 {
                                     <ul class="row ">
-                                        <li class="col-sm-6 "> <a onclick="DownloadMaterialDetails('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
+                                        <li class="col-sm-5"> <a onclick="DownloadMaterialDetails('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
+                                        <li class="col-sm-7 rating-area">
+                                            <input type="radio" id="star-5" name="rating" value="5">
+                                            <label for="star-5" title="Оценка «5»"></label>
+                                            <input type="radio" id="star-4" name="rating" value="4">
+                                            <label for="star-4" title="Оценка «4»"></label>
+                                            <input type="radio" id="star-3" name="rating" value="3">
+                                            <label for="star-3" title="Оценка «3»"></label>
+                                            <input type="radio" id="star-2" name="rating" value="2">
+                                            <label for="star-2" title="Оценка «2»"></label>
+                                            <input type="radio" id="star-1" name="rating" value="1">
+                                            <label for="star-1" title="Оценка «1»"></label>
+                                        </li>
                                     </ul>
                                 }
                                 else
                                 {
                                     <ul class="row ">
-                                        <li class="col-sm-6 "> <a class="btn bg-danger disabled" >Скачать</a> </li>
-                                        <li name="linkToAuth" class="col-sm-6 "> Для того чтобы скачать материал, <a href="~/Account/Login">войдите в аккаунт</a> </li>
+                                        <li class="col-sm-5 "> <a class="btn bg-danger disabled">Скачать</a> </li>
+                                        <li name="linkToAuth" class="col-sm-7"> Для того чтобы скачать материал, <a href="~/Account/Login">войдите в аккаунт</a> </li>
                                     </ul>
                                 }
                             </div>
@@ -150,6 +162,19 @@
 
 <script>
 
+    window.onload = function () {
+        $("input[name=rating]").click(function () {
+            var id = '@Model.Id';
+            var rating = this.id.toString().substring(5);
+            $.ajax({
+                type: "GET",
+                url: '/Material/RateMaterial?id=' + id + '&rating=' + rating,
+                success: function (data) {
+                    $("#ratingValue").html(data);
+                }
+            });
+        });
+    };
 
     function DownloadMaterialDetails(id) {
         $.ajax({

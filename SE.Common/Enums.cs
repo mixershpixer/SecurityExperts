@@ -75,10 +75,12 @@ namespace SE.Common
             AlphabetAsc = 0,
             [Display(Name = "по алфавиту (от Я до А)")]
             AlphabetDesc,
-            [Display(Name = "по дате (сначала новые)")]
-            DateAsc,
             [Display(Name = "по дате (сначала старые)")]
-            DateDesc
+            DateAsc,
+            [Display(Name = "по дате (сначала новые)")]
+            DateDesc,
+            [Display(Name = "по популярности")]
+            RateAsc
         }
     }
 }

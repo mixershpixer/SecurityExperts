@@ -65,6 +65,8 @@ namespace SE.WebSite.Controllers
         {
             var model = await MaterialService.GetMaterials(status: (Enums.MaterialStatus)status, page: page);
 
+            model.Materials.OrderByDescending(m => m.PublishingDate);
+
             return Ok(model);
         }
 

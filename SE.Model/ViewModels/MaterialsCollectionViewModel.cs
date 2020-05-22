@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static SE.Common.Enums;
+using Type = SE.Common.Enums.Type;
 
 namespace SE.Model.ViewModels
 {
@@ -9,15 +11,15 @@ namespace SE.Model.ViewModels
     {
         public string SearchText { get; set; } = null;
 
-        public Enums.Type Type { get; set; } = Enums.Type.Common;
+        public Type Type { get; set; } = Type.Common;
 
-        public Enums.Theme Theme { get; set; }
+        public Theme Theme { get; set; }
 
         public string ThemeString { get; set; }
 
-        public Enums.SortType SortType { get; set; }
+        public SortType SortType { get; set; }
 
-        public Enums.MaterialStatus MaterialStatus { get; set; }
+        public MaterialStatus MaterialStatus { get; set; }
 
         public IEnumerable<MaterialViewModel> Materials { get; set; }
 
