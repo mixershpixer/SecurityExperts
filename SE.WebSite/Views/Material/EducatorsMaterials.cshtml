@@ -17,11 +17,10 @@
             </div>
         </div>
     </section>
-    <section class="content text-xl-center justify-content-md-center" style="position: sticky;top: 114px;z-index: 100;padding-top: 5px;padding-bottom: 0;
-">
+    <section class="specify-position content text-xl-center justify-content-md-center" >
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 row" style="box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);padding: 20px;margin-bottom: 5px;">
+            <div class="col-md-8 row specify" >
                 <div class="col-sm-12 col-md-3 col-lg-3 text-center">
                     <h5>Категория:</h5>
                     <div class="dop_info">
@@ -73,7 +72,7 @@
                             <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
                             <div class="dop_info_item">
                                 <p>Рейтинг: @material.Rating <span style="font-size:20px; color: gold;">★</span></p>
-                                <div class="dop_info_view"> Кол-во скачиваний: @material.DownloadsCount </div>
+                                <p class="dop_info_view"> Кол-во скачиваний: @material.DownloadsCount </p>
                             </div>
                         </div>
                     }
@@ -83,7 +82,7 @@
         <div class="row justify-content-md-center margin-bottom-50">
             <div class="col col-lg-2"></div>
             <div class="col-12 col-md-auto text-center">
-                <input id="showMore" type="button" hidden class="btn btn-dark" name="ShowMore" onclick="Search(pageNum + 1)" value="Показать еще" />
+                <input id="showMore" type="button" hidden class="btn " name="ShowMore" onclick="Search(pageNum + 1)" value="Показать еще" />
             </div>
             <div class="col col-lg-2"></div>
         </div>
@@ -161,7 +160,7 @@
                                 <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a>
                                 <div class="dop_info_item">
                                     <p>Рейтинг: `+ this.rating + `<span style="font-size:20px; color: gold;" >★</span></p>
-                                    <div class="dop_info_view"> Кол-во скачиваний: `+ this.downloadsCount + `</div>
+                                    <p class="dop_info_view"> Кол-во скачиваний: `+ this.downloadsCount + `</p>
                                 </div>
                             </div>`
                         );
