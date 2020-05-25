@@ -7,6 +7,19 @@
 темно-зеленый: #2ce58c  
 */
 /**********************Прелоадер**********************************/
+@media screen and (min-width: 600px) {
+
+	.material {
+		width: 400px;
+	}
+}
+
+@media screen and (min-width:1024px) {
+	.material {
+		width: 700px;
+	}
+}
+	
 .preloader {
   position: fixed;
   left: 0;
@@ -6371,6 +6384,7 @@ main {
 
 .form-text {
 	font-family: 'Segoe UI', sans-serif;
+	text-align: center;
 }
 
 li {
@@ -6387,7 +6401,7 @@ li {
 	min-width: 350px;
 }
 .material {
-	width: 700px;
+	
 }
 
 .container-fluid {

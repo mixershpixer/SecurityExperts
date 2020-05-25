@@ -18,9 +18,9 @@
         </div>
     </section>
 
-    <section class="container-fluid content">
-        <div class="row" style="text-align:center; display:initial">
-            <div style="width: 50%; margin: 0 auto;">
+    <section class="container content">
+        <div class="row" style="text-align:center; ">
+            <div >
                 <form class="form-text" asp-action="NewMaterial" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row  ">
@@ -34,44 +34,48 @@
                         <div class="col-md-12">
                             <label>
                                 Описание
-                                <textarea placeholder="Введите описание материала (не более 500 символов)" asp-for="Description" class="form-control material"></textarea>
+                                <textarea style="min-height:200px; resize: none;" placeholder="Введите описание материала (не более 500 символов)" asp-for="Description" class="form-control material"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </label>
                         </div>
-                        <div class="col-md-12">
-                            <label>
-                                Тема материала
-                                <select asp-for="Theme" asp-items="Html.GetEnumSelectList<Enums.Theme>()" class="form-control material"></select>
-                                <span asp-validation-for="Theme" class="text-danger"></span>
-                            </label>
+                        <div class="row " >
+                            <div class="col-md-6">
+                                <label >
+                                    Тема материала
+                                    <select style="max-width:10px;" asp-for="Theme" asp-items="Html.GetEnumSelectList<Enums.Theme>()" class="form-control material"></select>
+                                    <span asp-validation-for="Theme" class="text-danger"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label>
+                                    Тип материала
+                                    <select style="max-width:10px;" asp-for="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" class="form-control material"></select>
+                                    <span asp-validation-for="Type" class="text-danger"></span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <label>
-                                Тип материала
-                                <select asp-for="Type" asp-items="Html.GetEnumSelectList<Enums.Type>()" class="form-control material"></select>
-                                <span asp-validation-for="Type" class="text-danger"></span>
-                            </label>
-                        </div>
+                        
                         <div class="col-md-12">
                             <label>
                                 Ссылка для скачивания
-                                <textarea placeholder="Вставьте актуальную ссылку для скачивания" asp-for="DownloadingLink" class="form-control material"></textarea>
+                                <textarea style="resize: none;" placeholder="Вставьте актуальную ссылку для скачивания" asp-for="DownloadingLink" class="form-control material"></textarea>
                                 <span asp-validation-for="DownloadingLink" class="text-danger"></span>
                             </label>
                         </div>
+
                         <div class="col-md-12">
                             <label>
-                                Изображение
-                                <input type="file" asp-for="Picture" class="custom-file-input form-control" accept="image/*" name="Picture">
-                                <label class="custom-file-label" for="customFile" style="margin-left: 90px;width: 700px;margin-top: 20px;text-align: left;">Выберите изображение</label>
-                                <span asp-validation-for="Picture" class="text-danger"></span>
+                                Источники информации
+                                <input placeholder="Укажите источники информации, если имеются (не более 500 символов)" asp-for="SourceOfInformation" class="form-control material" />
+                                <span asp-validation-for="SourceOfInformation" class="text-danger"></span>
                             </label>
                         </div>
                         <div class="col-md-12">
                             <label>
-                                Источники информации
-                                <input placeholder="Укажите источники информации, если имеются (не более 500 символов)"  asp-for="SourceOfInformation" class="form-control material" />
-                                <span asp-validation-for="SourceOfInformation" class="text-danger"></span>
+                                Выберите изображение
+                                <input type="file" asp-for="Picture" class="custom-file-input form-control" accept="image/*" name="Picture">
+                                <label class="custom-file-label" for="customFile" style="margin-left: 90px;width: 700px;margin-top: 20px;text-align: left;">Выберите изображение</label>
+                                <span asp-validation-for="Picture" class="text-danger"></span>
                             </label>
                         </div>
                         <div class="col-md-6 " style="margin: 30px auto;">
