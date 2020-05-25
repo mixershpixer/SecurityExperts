@@ -7,37 +7,79 @@
 темно-зеленый: #2ce58c  
 */
 /**********************Прелоадер**********************************/
-@media (max-width: 480px) {
-
+html {
+	overflow-x: hidden;
 }
-@media screen and (min-width: 600px) {
-
+@media (min-width: 480px) {
+	h4 {
+		font-size: 20px !important;
+	}
+	h5 {
+		font-size: 14px !important;
+	}
+	.specify-position {
+		top: 0px !important;
+		/*padding-top: 20px 20px;*/
+	}
+}
+@media screen and (min-width: 576px) {
+	h4 {
+		font-size: 22px !important;
+	}
+	h5 {
+		font-size: 16px !important;
+	}
 	.material {
 		width: 400px !important;
 	}
 	
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 768px) {
+	h4 {
+		font-size: 24px !important;
+		
+	}
+	h5 {
+		font-size: 18px !important;
+	}
 	.specify-position {
-		position: sticky;
-		top: 0px !important;
-		z-index: 100;
-		padding-top: 20px 20px;
+		top: 114px !important;
+		padding-top: 0px;
+		padding-bottom: 0;
 	}
 
 	.wrap_items {
 		justify-content: center !important;
 	}
-}
-@media screen and (max-width:1024px) {
+
 	.material {
-		width: 700px !important;
+		width: 400px !important;
+		
+	}
+}
+@media screen and (min-width:992px) {
+	.material {
+		width: 500px !important;
+	}
+	h4 {
+		font-size: 28px !important;
 	}
 	
 }
-@media screen and (max-width:1200px) {
+@media screen and (min-width:1024px) {
+	.material {
+		width: 600px !important;
+	}
+	h4 {
+		font-size: 30px !important;
+	}
+}
+@media screen and (min-width:1200px) {
 	.material {
 		width: 700px !important;
+	}
+	h4 {
+		font-size: 34px !important;
 	}
 }
 
@@ -476,6 +518,7 @@ section {
 	/*=======================================================
     уточнить результат
 ========================================================*/
+
 	.specify-position {
 		position: sticky;
 		top: 114px;
@@ -484,13 +527,14 @@ section {
 		padding-bottom: 0;
 	}
 
-	.specify {
-		background: #ffffff;
-		box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
-		padding: 20px;
-		margin-bottom: 5px;
-		margin-left:1px;
-	}
+
+.specify {
+	background: #ffffff;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	padding: 20px;
+	margin-bottom: 5px;
+	margin-left: 1px;
+}
 	/*=======================================================
       HEADING
 ========================================================*/
@@ -7372,10 +7416,15 @@ section {
 		color: #fff;
 	}
 
+.row-theme {
+	margin-left: 0px !important;
+	margin-right: -15px !important;
+	
+}
 
-	.theme-for-1 {
-		background-color: #4add93;
-	}
+.theme-for-1 {
+	background-color: #4add93;
+}
 
 	.theme-for-2 {
 		background-color: #f7c852;

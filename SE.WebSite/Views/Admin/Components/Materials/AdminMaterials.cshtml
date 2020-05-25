@@ -24,8 +24,6 @@
             <th scope="col">Theme</th>
             <th scope="col">Type</th>
             <th scope="col">DwnldLink</th>
-            <th scope="col">Rating</th>
-            <th scope="col">DC</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -55,8 +53,6 @@
             <td>@material.ThemeString</td>
             <td>@material.TypeString</td>
             <td><a href="@material.DownloadingLink" class="btn  btn-micro" target="_blank">Скачать</a></td>
-            <td>@material.Rating</td>
-            <td>@material.DownloadsCount</td>
             @if (@material.StatusString.Equals("OnModeration"))
             {
                 <td>
@@ -121,8 +117,6 @@
                             <td>`+ this.themeString + `</td>
                             <td>`+ this.typeString + `</td>
                             <td><a href="` + this.downloadingLink + `" class="btn  btn-micro" target="_blank">Скачать</a></td>
-                            <td>`+ this.rating + `</td>
-                            <td>`+ this.downloadsCount + `</td>
                             <td>`
                         + (this.statusString == "На модерации" ? ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success btn-micro">Опубликовать</a><a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-dark btn-micro">Удалить</a>` : "")
                         + (this.statusString == "Удалено" ? `<a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success btn-micro">Восстановить</a>` : "")
