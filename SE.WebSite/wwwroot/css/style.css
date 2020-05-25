@@ -314,6 +314,15 @@ a.theme-title:hover{
 	background: #3b3b3b;
 	color: #fff;
 }
+.btn-dark {
+	background: #BDBDBD !important;
+	color: white !important;
+}
+	.btn-dark:hover {
+		background: #000000 !important;
+		color: white !important;
+	}
+
 /* удалить
 .btn-white {
 	background: #fff;
@@ -366,7 +375,7 @@ a.theme-title:hover{
 	background: #3b3b3b;
 	color: #fff;
 }
-*/
+
 .parallax-bg {
 	background-size: cover !important;
 }
@@ -6410,3 +6419,21 @@ li {
 .section-educators{
 	margin-left:7px;
 }
+/*admin panel*/
+a.admin-link {
+	text-decoration: none;
+	color: #000000 !important;
+}
+	a.admin-link:hover {
+		text-decoration: none;
+		color: #2ce58c !important;
+	}
+	a.admin-link:active {
+		text-decoration: none;
+		color: #2ce58c !important;
+		font-weight: 600 !important;
+	}
+	a.admin-link:visited {
+		text-decoration: none;
+		color: #0aa677 !important;
+	}
