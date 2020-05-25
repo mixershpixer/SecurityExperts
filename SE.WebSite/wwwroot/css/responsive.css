@@ -97,6 +97,7 @@
 }
 }
 @media(max-width:1024px) {
+	
 .fst-up {
 	margin-top: -100px;
 }
@@ -1699,10 +1700,12 @@ footer h6 {
 }
 }
 @media (max-width:640px) {
-.arrival-block .item {
-	min-height: inherit;
-	width: 100%;
-}
+	
+
+	.arrival-block .item {
+		min-height: inherit;
+		width: 100%;
+	}
 .shipment ul li {
 	width: 100%;
 }
