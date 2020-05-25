@@ -946,12 +946,12 @@ header .user-basket .dropdown-menu {
 }
 header .sticky {
 }
-.simple-head {
-	background: #f1eff4;
-	min-height: initial;
-	margin-top: 50px;
-	padding: 100px 0;
-}
+	.simple-head {
+		background: #2ce58c;
+		min-height: initial;
+		margin-top: 50px;
+		padding: 100px 0;
+	}
 .simple-head .extra-huge-text {
 	font-size: 60px;
 	line-height: 54px;
