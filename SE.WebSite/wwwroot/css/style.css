@@ -1863,7 +1863,7 @@ section {
 		}
 
 		.simple-head .extra-huge-text {
-			font-size: 142px;
+			font-size: 100px;
 			line-height: 120px;
 			font-weight: bold;
 			color: #ffffff;
@@ -5705,7 +5705,7 @@ section {
 		background: url(/images/header.png) no-repeat;
 		background-size: cover;
 	}
-
+.banner .breadcrumb li a
 	.banner-personal {
 		min-height: 200px;
 		margin-top: 50px;
@@ -5745,20 +5745,21 @@ section {
 		margin: 0px;
 	}
 
-	.banner .breadcrumb li {
-		color: #000;
-		line-height: 38px;
-		font-weight: normal;
-		font-size: 12px;
-		display: inline-block;
-		margin: 0px 0;
-	}
+.banner .breadcrumb li {
+	/*color: #000;*/
+	line-height: 38px;
+	font-weight: normal;
+	font-size: 14px;
+	display: inline-block;
+	margin: 0px 0;
+}
 
 		.banner .breadcrumb li a {
 			color: #333;
 			text-transform: none;
 			font-weight: normal;
-			font-size: 12px;
+			font-size: 14px;
+			font-family: 'Verdana', sans-serif;
 		}
 
 	.banner .breadcrumb > li + li:before {
