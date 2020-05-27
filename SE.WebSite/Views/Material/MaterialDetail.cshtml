@@ -22,7 +22,8 @@
             <div class="container">
                 <div class="material-detail">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div class="col-1"></div>
+                        <div class="col-md-5">
                             @if (Model.Base64Picture.Length < 10)
                             {
                                 <img class="img-responsive" src="~/images/noimage.png" />
@@ -34,7 +35,7 @@
                         </div>
                         <div class="col-md-5">
                             <h4>@Model.Name</h4>
-                            <h4>@Model.AuthorName @Model.AuthorSurname</h4>
+                            <h5>@Model.AuthorName @Model.AuthorSurname</h5>
                             <ul class="item-owner">
                                 <li>Тема:<span> <a href="~/Material/EducatorsMaterials?theme=@((int)Model.Theme)"> @Model.ThemeString </a></span></li>
                                 <li>Тип: <span> @Model.TypeString </span></li>
@@ -44,7 +45,7 @@
                                 @if (isAuthenticated)
                                 {
                                     <ul class="row ">
-                                        <li class="col-sm-5"> <a onclick="DownloadMaterialDetails('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
+                                        <li class="col-sm-5" style="max-width:200px;"> <a onclick="DownloadMaterialDetails('@Model.Id')" href="@Model.DownloadingLink" class="btn" target="_blank">Скачать</a> </li>
                                         <li class="col-sm-7 rating-area">
                                             <input type="radio" id="star-5" name="rating" value="5">
                                             <label for="star-5" title="Оценка «5»"></label>
@@ -68,95 +69,104 @@
                                 }
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="item-decribe">
-
-                    <div class="tab-info">
-                        <button class="tablinks" onclick="openCity(event, 'Описание')" id="defaultOpen">Описание</button>
-                        <button class="tablinks" onclick="openCity(event, 'Информация')">Информация</button>
-                    </div>
-
-                    <div id="Описание" class="tabcontent">
-                        <h3>Описание</h3>
-                        <p>
-                            @Model.Description
-                        </p>
-                    </div>
-
-                    <div id="Информация" class="tabcontent">
-                        <h3>Использованные источники</h3>
-                        <p>
-                            @Model.SourceOfInformation
-                        </p>
-                    </div>
-
-                </div>
-                <!--======= комментарии=========-->
-                <div class="margin-top-80">
-                    <div class="row">
                         <div class="col-1"></div>
-                        <div class="comments col-lg-10">
 
-                            <h5 class="comments-tittle">Комментарии <span>|</span> <span id="commentsCount">@Model.Comments.Count()</span></h5>
-                            <ul id="comments" class="media-list padding-left-15">
-                                <!--=======  комментарий =========-->
-                                @foreach (var c in Model.Comments)
-                                {
-                                    if (c.UserId == userId || isAdmin)
-                                    {
-                                        <li class="media" id="@c.CommentId">
-                                            <div class="media-left">
-                                                <a href="#" class="avatar"><img class="media-object img-responsive" src="~/images/avatar.png" alt=""> <br></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading">@c.UserName @c.UserSurname<span class="pull-right"><span><i class="icon-clock primary-color"></i>@c.CommentDate</span> <i onclick="DeleteComment('@c.CommentId');" class="icon-close"></i></span> </h6>
-                                                <p>@c.CommentText</p>
-                                            </div>
-                                            <hr>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li class="media" id="@c.CommentId">
-                                            <div class="media-left">
-                                                <a class="avatar"><img class="media-object img-responsive" src="~/images/avatar.png" alt=""> <br></a>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="media-heading">@c.UserName @c.UserSurname<span class="pull-right"><span><i class="icon-clock primary-color"></i>@c.CommentDate</span> </span> </h6>
-                                                <p>@c.CommentText</p>
-                                            </div>
-                                            <hr>
-                                        </li>
-                                    }
-                                }
-                            </ul>
-                            <!--=======  Оставить комментарий =========-->
-                            <h5 class="comments-tittle margin-top-80">Оставить комментарий</h5>
-                            <form class="padding-left-15">
-                                <ul class="row">
-                                    <li class="col-sm-12">
-                                        <label>
-                                            <input type="hidden" id="MaterialId" value="@Model.Id" />
-                                            <textarea class="form-control" id="CommentText" placeholder="Оставьте свой комментарий"></textarea>
-                                        </label>
-                                    </li>
-                                    <li class="col-sm-12">
-                                        <div class="row">
-                                            <div class="col-md-12" style="text-align:center"> <text id="CommentStatus" style="font-size:larger"></text></div>
-                                        </div>
-                                        <input type="button" onclick="AddComment();" class="btn margin-top-30" value="Отправить" />
-                                    </li>
-                                </ul>
-                            </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-lg-10 item-decribe">
+
+                        <div class="tab-info">
+                            <button class="tablinks" onclick="openCity(event, 'Описание')" id="defaultOpen">Описание</button>
+                            <button class="tablinks" onclick="openCity(event, 'Информация')">Информация</button>
                         </div>
-                        <div class="col-1"></div>
+
+                        <div id="Описание" class="tabcontent">
+                            <h3>Описание</h3>
+                            <p class="description-p">
+                                @Model.Description
+                            </p>
+                        </div>
+
+                        <div id="Информация" class="tabcontent">
+                            <h3>Использованные источники</h3>
+                            <p class="description-p">
+                                @Model.SourceOfInformation
+                            </p>
+                        </div>
+
                     </div>
-                    <!-- строка закрыта-->
+                    <div class="col-1"></div>
                 </div>
-                <!--======= КОНЕЦ комментарии=========-->
-            </div>
-        </section>
+                   
+                    <!--======= комментарии=========-->
+                    <div class="margin-top-30">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="comments col-lg-10">
+
+                                <h5 class="comments-tittle">Комментарии <span>|</span> <span id="commentsCount">@Model.Comments.Count()</span></h5>
+                                <ul id="comments" class="media-list padding-left-15">
+                                    <!--=======  комментарий =========-->
+                                    @foreach (var c in Model.Comments)
+                                    {
+                                        if (c.UserId == userId || isAdmin)
+                                        {
+                                            <li class="media" id="@c.CommentId">
+                                                <div class="media-left">
+                                                    <a href="#" class="avatar"><img class="media-object img-responsive" src="~/images/avatar.png" alt=""> <br></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">@c.UserName @c.UserSurname<span class="pull-right"><span><i class="icon-clock primary-color"></i>@c.CommentDate</span> <i onclick="DeleteComment('@c.CommentId');" class="icon-close"></i></span> </h6>
+                                                    <p class="comment-p"> @c.CommentText</p>
+                                                </div>
+                                                <hr>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            <li class="media" id="@c.CommentId">
+                                                <div class="media-left">
+                                                    <a class="avatar"><img class="media-object img-responsive" src="~/images/avatar.png" alt=""> <br></a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h6 class="media-heading">@c.UserName @c.UserSurname<span class="pull-right"><span><i class="icon-clock primary-color"></i>@c.CommentDate</span> </span> </h6>
+                                                    <p class="comment-p">@c.CommentText</p>
+                                                </div>
+                                                <hr>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                                <!--=======  Оставить комментарий =========-->
+                                <h5 class="comments-tittle">Оставить комментарий</h5>
+                                <form class="padding-left-15">
+                                    <ul class="row">
+                                        <li class="col-sm-12">
+                                            <label>
+                                                <input type="hidden" id="MaterialId" value="@Model.Id" />
+                                                <textarea class="form-control" id="CommentText" placeholder="Оставьте свой комментарий"></textarea>
+                                            </label>
+                                        </li>
+                                        <li class="col-sm-12">
+                                            <div class="row">
+                                                <div class="col-md-12" style="text-align:center"> <text id="CommentStatus" style="font-size:larger"></text></div>
+                                            </div>
+                                            <div class="col-12 col-md-auto text-center">
+                                                <input type="button" onclick="AddComment();" class="btn margin-top-30" value="Отправить" />
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                        <!-- строка закрыта-->
+                    </div>
+                    <!--======= КОНЕЦ комментарии=========-->
+                </div>
+</section>
     </div>
 </main>
 
@@ -215,12 +225,12 @@
                         </div>
                         <div class="media-body">
                             <h6 class="media-heading">`+ data.userName + ` ` + data.userSurname + `<span class="pull-right"><span><i class="icon-clock primary-color"></i>` + data.commentDate + ` </span> <i onclick="DeleteComment('` + data.commentId + `');" class="icon-close"></i></span> </h6>
-                            <p>`+ data.commentText + `</p>
+                            <p class="comment-p">`+ data.commentText + `</p>
                         </div>
                         <hr>
                     </li>`
                 );
-                $("#CommentText").attr("placeholder", "*ВАШ ОТЗЫВ");
+                $("#CommentText").attr("placeholder", "Текст комментария");
                 $("#CommentText").val("");
                 CalculateCommentsCount();
             },

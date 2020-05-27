@@ -80,7 +80,7 @@ body {
 
 .rating-area {
     overflow: hidden;
-    width: 265px;
+    max-width: 205px;
 }
 
     .rating-area:not(:checked) > input {
@@ -89,10 +89,10 @@ body {
 
     .rating-area:not(:checked) > label {
         float: right;
-        width: 42px;
+        width: 35px;
         padding: 0;
         cursor: pointer;
-        font-size: 50px;
+        font-size: 40px;
         line-height: 50px;
         color: lightgrey;
         text-shadow: 1px 1px #bbb;

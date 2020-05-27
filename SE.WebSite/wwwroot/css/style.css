@@ -3027,7 +3027,7 @@ section {
 
 		.material-detail h4 {
 			color: #3b3b3b;
-			margin-top: 50px;
+			/*margin-top: 50px;*/
 			position: relative;
 			margin-bottom: 30px;
 		}
@@ -3260,7 +3260,7 @@ section {
       PRODUCT DESCRIPTION
 ========================================================*/
 	.item-decribe {
-		margin-top: 50px;
+		margin-top: 30px;
 	}
 
 		.item-decribe .tab-content {
@@ -3903,7 +3903,8 @@ section {
 		margin-right: 10px;
 	}
 
-	.blog-list article .comments-tittle {
+	.blog-list article .
+	s-tittle {
 		font-weight: 600;
 	}
 	/*=======================================================
@@ -5414,13 +5415,20 @@ section {
 	.comments {
 		margin-bottom: 50px;
 	}
-	/*=======================================================
+.comment-p {
+	overflow-wrap: break-word !important;
+	padding: 30px 0px 0 110px !important;
+}
+.description-p {
+	overflow-wrap: break-word !important;
+}
+/*=======================================================
       Testimonial
 ========================================================*/
-	.testimonial .testi-in {
-		text-align: center;
-		position: relative;
-	}
+.testimonial .testi-in {
+	text-align: center;
+	position: relative;
+}
 
 	.testimonial .heading {
 		margin-bottom: 40px;
