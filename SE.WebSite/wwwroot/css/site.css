@@ -80,7 +80,7 @@ body {
 
 .rating-area {
     overflow: hidden;
-    max-width: 205px;
+    display: inline-block;
 }
 
     .rating-area:not(:checked) > input {
@@ -92,8 +92,8 @@ body {
         width: 35px;
         padding: 0;
         cursor: pointer;
-        font-size: 40px;
-        line-height: 50px;
+        font-size: 28px;
+        line-height: 32px;
         color: lightgrey;
         text-shadow: 1px 1px #bbb;
     }

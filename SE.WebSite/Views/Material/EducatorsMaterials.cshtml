@@ -49,7 +49,7 @@
                 <div name="searchResult" hidden class="row justify-content-md-center margin-bottom-50">
                     <div class="col col-lg-2"></div>
                     <div class="col-12 col-md-auto text-center">
-                        <h4 class="margin-bottom-450" >Нет материалов</h4>
+                        <h3 class="margin-bottom-450" >Нет материалов</h3>
                     </div>
                     <div class="col col-lg-2"></div>
                 </div>
@@ -72,7 +72,7 @@
                             <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
                             <div class="dop_info_item">
                                 <p>Рейтинг: @material.Rating <span style="font-size:20px; color: gold;">★</span></p>
-                                <p class="dop_info_view"> Кол-во скачиваний: @material.DownloadsCount </p>
+                                <p class="dop_info_view"> Скачиваний: @material.DownloadsCount </p>
                             </div>
                         </div>
                     }
@@ -160,7 +160,7 @@
                                 <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a>
                                 <div class="dop_info_item">
                                     <p>Рейтинг: `+ this.rating + `<span style="font-size:20px; color: gold;" >★</span></p>
-                                    <p class="dop_info_view"> Кол-во скачиваний: `+ this.downloadsCount + `</p>
+                                    <p class="dop_info_view"> Скачиваний: `+ this.downloadsCount + `</p>
                                 </div>
                             </div>`
                         );

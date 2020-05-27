@@ -7583,3 +7583,7 @@ section {
 			text-decoration: none;
 			color: #0aa677 !important;
 		}
+.material-img {
+	display: block !important;
+	margin: 0 auto 30px;
+}
