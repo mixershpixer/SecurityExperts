@@ -407,19 +407,20 @@ html {
 	}
 
 		.btn:hover {
-			background: #2ce58c; /*цвет кнопки*/
-			color: #3b3b3b;
+			background: #0aa677 !important;
+			color: #fff !important;
 		}
 
-	.btn-inverse {
-		background: #2ce58c;
-		color: #3b3b3b;
+.btn-inverse {
+	background: #3b3b3b !important;
+	color: #fff !important;
+}
+
+	.btn-inverse:hover {
+		background: #000 !important;
+		
+		color: #2ce58c !important;
 	}
-
-		.btn-inverse:hover {
-			background: #3b3b3b;
-			color: #fff;
-		}
 
 	.btn-dark {
 		background: #BDBDBD !important;
