@@ -17,6 +17,9 @@ html {
 	h5 {
 		font-size: 14px !important;
 	}
+	h3 {
+		font-size: 17px !important;
+	}
 	.specify-position {
 		top: 0px !important;
 		/*padding-top: 20px 20px;*/
@@ -28,6 +31,9 @@ html {
 	}
 	h5 {
 		font-size: 16px !important;
+	}
+	h3 {
+		font-size: 18px !important;
 	}
 	.material {
 		width: 400px !important;
@@ -41,6 +47,9 @@ html {
 	}
 	h5 {
 		font-size: 18px !important;
+	}
+	h3 {
+		font-size: 24px !important;
 	}
 	.specify-position {
 		top: 114px !important;
@@ -68,6 +77,12 @@ html {
 		
 		justify-content: flex-start !important;
 	}
+	h3 {
+		font-size: 24px !important;
+	}
+	.theme-h3 {
+		margin: 10% 0 !important;
+	}
 }
 @media screen and (min-width:1024px) {
 	.material {
@@ -76,6 +91,12 @@ html {
 	h4 {
 		font-size: 30px !important;
 	}
+	h3 {
+		font-size: 26px !important;
+	}
+	.theme-h3 {
+		margin: 15% 0 !important;
+	}
 }
 @media screen and (min-width:1200px) {
 	.material {
@@ -83,6 +104,9 @@ html {
 	}
 	h4 {
 		font-size: 34px !important;
+	}
+	h3 {
+		font-size: 30px !important;
 	}
 }
 
@@ -7444,9 +7468,9 @@ section {
 		background-color: #f7c852;
 	}
 
-	.theme-for-3 {
-		background-color: #e07e7f;
-	}
+.theme-for-3 {
+	background-color: #f48c8c;
+}
 
 	.theme-for-4 {
 		background-color: #1daee9;
@@ -7459,13 +7483,21 @@ section {
 	.theme-for-6 {
 		background-color: #4add93;
 	}
+.r-theme-for-1 {
+	background-color: HSLA(149,66%,86%,0.5);
+}
+.r-theme-for-2 {
+	background-color: HSLA(206,93%,93%,0.6);
+}
 
-	.theme-for-left {
-		width: 100%;
-		margin-bottom: 0px;
-		background-size: cover;
-		right: 0;
-	}
+
+
+.theme-for-left {
+	width: 100%;
+	margin-bottom: 0px;
+	background-size: cover;
+	right: 0;
+}
 
 	.theme-for-right {
 		width: 100%;
@@ -7484,7 +7516,15 @@ section {
 	.theme-text {
 		padding: 20px 40px 20px 40px;
 	}
-
+.theme-h4{
+	margin: 30% 0;
+	padding: 0 15px;
+}
+.theme-h3 {
+	margin: 15% 0;
+	padding: 0 15px;
+	
+}
 
 	/* стиль вкладок https://html5css.ru/howto/howto_js_tabs.php  */
 	.tab-info {
