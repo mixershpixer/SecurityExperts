@@ -64,7 +64,10 @@ html {
 	h4 {
 		font-size: 28px !important;
 	}
-	
+	.wrap_items {
+		
+		justify-content: flex-start !important;
+	}
 }
 @media screen and (min-width:1024px) {
 	.material {
@@ -407,7 +410,8 @@ html {
 	}
 
 		.btn:hover {
-			background: #0aa677 !important;
+			
+			background: #2fb1d3 !important;
 			color: #fff !important;
 		}
 
