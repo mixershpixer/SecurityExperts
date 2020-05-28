@@ -14,11 +14,13 @@ namespace SE.Model.ViewModels
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Введите Имя")]
+        [StringLength(20, ErrorMessage = "Максимальная длина Имени 15 символов")]
         [RegularExpression(@"^[A-Za-zА-Яа-я0-9 ]+$", ErrorMessage = "Некорректное Имя")]
         public string Name { get; set; }
 
         [Display(Name = "Surname")]
         [Required(ErrorMessage = "Введите Фамилию")]
+        [StringLength(20, ErrorMessage = "Максимальная длина Фамилии 15 символов")]
         [RegularExpression(@"^[A-Za-zА-Яа-я0-9 ]+$", ErrorMessage = "Некорректная Фамилия")]
         public string Surname { get; set; }
 
@@ -28,14 +30,14 @@ namespace SE.Model.ViewModels
         public string Email { get; set; }
 
         [Display(Name = "Password")]
-        [StringLength(256, ErrorMessage = "Пароль должен быть как минимум {2} символов в длину.", MinimumLength = 6)]
+        [StringLength(256, ErrorMessage = "Пароль должен быть минимум {2} символов", MinimumLength = 6)]
         [Required(ErrorMessage = "Введите Пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "Пароль и подтверждение не совпадают.")]
+        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
 
         public Enums.Role Role { get; set; }

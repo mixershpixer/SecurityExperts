@@ -7551,9 +7551,11 @@ section {
 		margin: 5px 0;
 		min-width: 200px;
 	}
-
-	.material {
-	}
+		.form-control.form-control {
+			min-width: 270px;
+		}
+.material {
+}
 
 	.container-fluid {
 		min-height: 720px !important;
