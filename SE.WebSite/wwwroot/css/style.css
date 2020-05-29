@@ -163,14 +163,17 @@ html {
 		font-family: 'Verdana', sans-serif;
 		font-family: 'Segoe UI', sans-serif;
 	}
-	/*=======================================================
+.user-name span {
+	font-family: 'Verdana', sans-serif !important;
+}
+/*=======================================================
       WRAPPER
 ========================================================*/
-	#wrap {
-		position: relative;
-		width: 100%;
-		overflow: hidden;
-	}
+#wrap {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
 
 	.container-full {
 		max-width: 112.5rem;
@@ -252,10 +255,14 @@ html {
 		display: inline-block !important;
 	}
 
+/*стиль ссылки*/
 	a {
 		text-decoration: none;
 		color: #2ce58c;
 	}
+		a:hover {
+			color: #2fb1d3;
+		}
 
 	p.intro-small {
 		width: 80%;
@@ -337,11 +344,12 @@ html {
 		font-weight: bold !important;
 	}
 
-	a:hover, a:focus {
-		/*color: #ffe115;*/
-		text-decoration: none;
-		color: #0aa677 !important;
-	}
+a:hover, a:focus {
+	/*color: #ffe115;*/
+	text-decoration: none;
+	color: #2fb1d3 !important;
+	/*color: #0aa677 !important;*/
+}
 	/*-----------------------------------------*/
 	/* стиль для страниц с выбором темы*/
 
@@ -1293,9 +1301,10 @@ section {
 		background: none !important;
 	}
 
-	header .social_icons a:hover {
-		color: #ab4e52;
-	}
+header .social_icons a:hover {
+	/*color: #ab4e52;*/
+	color: #2fb1d3;
+}
 
 	header .is-sticky .sticky .nav .dropdown-menu {
 		margin-top: 10px;

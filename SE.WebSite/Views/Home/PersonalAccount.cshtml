@@ -32,28 +32,25 @@
     <section class="container-fluid content">
         <div class="row">
             <div class=" welcome col-sm-12 col-md-12 col-lg-12 ">
-                <h4>Добро пожаловать, <span>@(isAuthenticated ? @surname + " " + @name : "Дорогой пользователь")</span></h4>
+                <h4>Добро пожаловать, <span class="user-name" style="font-family: 'Verdana', sans-serif;">@(isAuthenticated ? @surname + " " + @name : "Дорогой пользователь")</span></h4>
             </div>
         </div>
         <div class="row">
-            <div class="wrap_dop_info col-sm-12 col-md-3 col-lg-3">
-                <a href="~/Material/NewMaterial"><h5> Новый материал </h5></a>
+            <div class="wrap_dop_info col-sm-12 col-md-12 col-lg-12 col-xl-3">
+                <a href="~/Material/NewMaterial"><h5> Предложить материал </h5></a>
                 <h5>Мои публикации</h5>
-                <ul>
-                    <li>
+                
                         <div class="dop_info">
                             <select name="MaterialStatus" asp-items="Html.GetEnumSelectList<Enums.MaterialStatus>()" onchange="SearchMyMaterials()" class="form-control"></select>
                         </div>
-                    </li>
-                </ul>
-
-            </div>
-            <div class="wrap_main_info col-sm-12  col-md-9 col-lg-9">
-
+                 
                 <div class="wrap_sort">
-                    <p class="sort_text">Сортировать:</p>
+                    <h5 class="sort_text">Сортировать:</h5>
                     <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="SearchMyMaterials()" class="form-control"></select>
                 </div>
+
+            </div>
+            <div class="wrap_main_info col-sm-12  col-md-12 col-lg-12 col-xl-9">
                 <div name="materials" class="row wrap_items">
                     @foreach (var material in Model.Materials)
                     {
@@ -70,24 +67,26 @@
                                     }
                                 </a>
                             </div>
-                            <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
-                            <div class="row">
-                                <div class="col-6">Рейтинг: @material.Rating</div>
-                                <div class="col-6">Кол-во скачиваний: @material.DownloadsCount</div>
+                            <h5 class="item_text"><a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a></h5>
+
+                            <div class="dop_info_item" style="position:inherit; width:100%;">
+                                <p>Рейтинг: @material.Rating <span style="font-size:20px; color: gold;">★</span></p>
+                                <p class="dop_info_view"> Скачиваний: @material.DownloadsCount </p>
                             </div>
+
                             <div class="row" style="text-align:center">
-                                <div style="width: 50%; margin: 0 auto;">
+                                <div style=" margin: 0 auto;">
                                     @if (material.Status == Enums.MaterialStatus.Published || material.Status == Enums.MaterialStatus.OnModeration)
                                     {
-                                        <a href="/Material/DeleteMaterial?id=@material.Id" class="btn btn-danger">Delete</a>
+                                        <a href="/Material/DeleteMaterial?id=@material.Id" class="btn btn-dark">Удалить</a>
                                     }
                                     else if (material.Status == Enums.MaterialStatus.Deleted)
                                     {
-                                        <a href="/Material/RestoreMaterial?id=@material.Id" class="btn btn-success disabled">Restore</a>
+                                        <a href="/Material/RestoreMaterial?id=@material.Id" class="btn btn-success disabled">Восстановить</a>
                                     }
                                 </div>
                             </div>
-                        </div>
+                    </div>
                     }
                 </div>
                 <h4 name="materilasInfo" hidden>Нет материалов</h4>
@@ -147,17 +146,17 @@
                                 `<img src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
                                     </a>
                                 </div>
-                                <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a>
-                                <div class="row">
-                                    <div class="col-6">Рейтинг:`+ this.rating + `</div>
-                                    <div class="col-6">Кол-во скачиваний:  `+ this.downloadsCount + `</div>
+                                <h5 class="item_text"><a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a></h5>
+                                <div class="dop_info_item" style="position:inherit; width:100%;">
+                                    <p>Рейтинг: `+ this.rating + `<span style="font-size:20px; color: gold;" >★</span></p>
+                                    <p class="dop_info_view"> Скачиваний: `+ this.downloadsCount + `</p>
                                 </div>
                                 <div class="row" style="text-align:center">
-                                    <div style="width: 50%; margin: 0 auto;">`
+                                    <div style=" margin: 0 auto;">`
                             + (this.statusString == "На модерации" ?
-                                `<a href="/Material/DeleteMaterial?id=` + this.id + `" class="btn btn-danger">Delete</a>` : "")
+                                `<a href="/Material/DeleteMaterial?id=` + this.id + `" class="btn btn-dark">Удалить</a>` : "")
                             + (this.statusString == "Удалено" ?
-                                `<a href="/Material/RestoreMaterial?id=` + this.id + `" class="btn btn-success disabled">Restore</a>` : "") + `
+                                `<a href="/Material/RestoreMaterial?id=` + this.id + `" class="btn btn-success disabled">Восстановить</a>` : "") + `
                                     </div>
                                 </div>
                             </div>`

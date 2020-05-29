@@ -56,25 +56,26 @@
                 <div name="materials" class="row wrap_items">
                     @foreach (var material in Model.Materials)
                     {
-                        <div class="info_item">
-                            <div class="wrap_img_item">
-                                <a href="/Material/MaterialDetail?id=@material.Id">
-                                    @if (material.Base64Picture.Length < 10)
-                                    {
-                                        <img src="~/images/noimage.png" />
-                                    }
-                                    else
-                                    {
-                                        <img src="data:image/jpeg;base64,@material.Base64Picture" />
-                                    }
-                                </a>
-                            </div>
-                            <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
+                    <div class="info_item">
+                        <div class="wrap_img_item">
+                            <a href="/Material/MaterialDetail?id=@material.Id">
+                                @if (material.Base64Picture.Length < 10)
+                                {
+                                    <img src="~/images/noimage.png" />
+                                }
+                                else
+                                {
+                                    <img src="data:image/jpeg;base64,@material.Base64Picture" />
+                                }
+                            </a>
+                        </div>
+                        <h5 class="item_text">
+                            <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a></h5>
                             <div class="dop_info_item">
                                 <p>Рейтинг: @material.Rating <span style="font-size:20px; color: gold;">★</span></p>
                                 <p class="dop_info_view"> Скачиваний: @material.DownloadsCount </p>
                             </div>
-                        </div>
+                    </div>
                     }
                 </div>
             </div>
@@ -157,7 +158,7 @@
                                 `<img src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
                                     </a>
                                 </div>
-                                <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a>
+                                 <h5 class="item_text"><a href="/Material/MaterialDetail?id=`+ this.id + `" class="item_text">` + this.name + `</a></h5>
                                 <div class="dop_info_item">
                                     <p>Рейтинг: `+ this.rating + `<span style="font-size:20px; color: gold;" >★</span></p>
                                     <p class="dop_info_view"> Скачиваний: `+ this.downloadsCount + `</p>

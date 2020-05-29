@@ -67,6 +67,7 @@
 .info_item .item_text {
   color: #313030;
   transition: 0.25s all;
+  text-align:center !important;
 }
 
 .info_item .item_text:hover {
