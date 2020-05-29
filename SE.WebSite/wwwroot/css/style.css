@@ -22,8 +22,12 @@ html {
 	h3 {
 		font-size: 17px !important;
 	}*/
-
+	p {
+		font-size: 18px !important;
+	}
 	
+
+
 
 	h5 {
 		font-size: 20px !important;
@@ -83,6 +87,10 @@ html {
 	}
 }
 @media screen and (min-width:992px) {
+	p {
+		font-size: 16px !important;
+	}
+	
 	.material {
 		width: 500px !important;
 	}
