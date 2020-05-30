@@ -18,7 +18,7 @@ namespace SE.BLL.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<CommentViewModel> AddComment(Guid userId, Guid materialId, string commentText, int rating)
+        public async Task<CommentViewModel> AddComment(Guid userId, Guid materialId, string commentText)
         {
             var comment = await _unitOfWork.CommentRepository.AddComment(userId, materialId, commentText, DateTime.Now);
 

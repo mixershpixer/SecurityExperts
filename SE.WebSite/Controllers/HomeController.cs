@@ -51,30 +51,30 @@ namespace SE.WebSite.Controllers
             if(User.Identity.Name == null)
                 return RedirectToAction("Login", "Account");
 
-            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
+            var usersMaterials = await MaterialService.GetMaterials(
                 searchText: null, auditory: Enums.Auditory.Common, theme: Enums.Theme.Common,
-                type: Enums.Type.Common, page: 0,
+                type: Enums.Type.Common, status: Enums.MaterialStatus.All, page: 0,
                 userId: await UserService.GetUserIdByEmail(User.Identity.Name));
 
-            return View(educatorsMaterialsViewModel);
+            return View(usersMaterials);
         }
 
         [HttpPost]
         public async Task<IActionResult> PersonalAccount(MaterialsCollectionViewModel model)
         {
-            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
+            var usersMaterials = await MaterialService.GetMaterials(
                 searchText: null, auditory: Enums.Auditory.Common, theme: Enums.Theme.Common, 
                 type: Enums.Type.Common, status: model.MaterialStatus, page: 0, 
                 userId: await UserService.GetUserIdByEmail(User.Identity.Name), sortType: model.SortType);
 
-            return Json(educatorsMaterialsViewModel);
+            return Json(usersMaterials);
         }
 
 
         public async Task<IActionResult> AddComment(CommentViewModel model)
         {
             var user = await UserService.GetUserByEmail(User.Identity.Name);
-            var comment = await CommentService.AddComment(user.UserId, model.MaterialId, model.CommentText, /*model.Rating*/ 5);
+            var comment = await CommentService.AddComment(user.UserId, model.MaterialId, model.CommentText);
             return Ok(comment);
         }
 

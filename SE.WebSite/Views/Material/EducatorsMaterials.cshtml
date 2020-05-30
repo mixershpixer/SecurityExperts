@@ -17,10 +17,10 @@
             </div>
         </div>
     </section>
-    <section class="specify-position content text-xl-center justify-content-md-center" >
+    <section class="specify-position content text-xl-center justify-content-md-center">
         <div class="row">
             <div class="col-md-2"></div>
-            <div class="col-md-8 row specify" >
+            <div class="col-md-8 row specify">
                 <div class="col-sm-12 col-md-3 col-lg-3 text-center">
                     <h5>Категория:</h5>
                     <div class="dop_info">
@@ -40,7 +40,7 @@
             </div>
             <div class="col-md-2"></div>
         </div>
-</section>
+    </section>
     <section class="container-fluid content text-xl-center justify-content-md-center">
         <div class="row">
             <div class="wrap_dop_info col-sm-12 col-md-12 col-lg-2">
@@ -49,33 +49,34 @@
                 <div name="searchResult" hidden class="row justify-content-md-center margin-bottom-50">
                     <div class="col col-lg-2"></div>
                     <div class="col-12 col-md-auto text-center">
-                        <h3 class="margin-bottom-450" >Нет материалов</h3>
+                        <h3 class="margin-bottom-450">Нет материалов</h3>
                     </div>
                     <div class="col col-lg-2"></div>
                 </div>
                 <div name="materials" class="row wrap_items">
                     @foreach (var material in Model.Materials)
                     {
-                    <div class="info_item">
-                        <div class="wrap_img_item">
-                            <a href="/Material/MaterialDetail?id=@material.Id">
-                                @if (material.Base64Picture.Length < 10)
-                                {
-                                    <img src="~/images/noimage.png" />
-                                }
-                                else
-                                {
-                                    <img src="data:image/jpeg;base64,@material.Base64Picture" />
-                                }
-                            </a>
-                        </div>
-                        <h5 class="item_text">
-                            <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a></h5>
+                        <div class="info_item">
+                            <div class="wrap_img_item">
+                                <a href="/Material/MaterialDetail?id=@material.Id">
+                                    @if (material.Base64Picture.Length < 10)
+                                    {
+                                        <img src="~/images/noimage.png" />
+                                    }
+                                    else
+                                    {
+                                        <img src="data:image/jpeg;base64,@material.Base64Picture" />
+                                    }
+                                </a>
+                            </div>
+                            <h5 class="item_text">
+                                <a href="/Material/MaterialDetail?id=@material.Id" class="item_text">@material.Name.ToString()</a>
+                            </h5>
                             <div class="dop_info_item">
                                 <p>Рейтинг: @material.Rating <span style="font-size:20px; color: gold;">★</span></p>
                                 <p class="dop_info_view"> Скачиваний: @material.DownloadsCount </p>
                             </div>
-                    </div>
+                        </div>
                     }
                 </div>
             </div>
@@ -120,6 +121,7 @@
     };
 
     function Search(pageNumber) {
+        $('.preloader').show();
         var searchText = $("input[name=SearchText]").val();
         var type = $('select[name="Type"]').val();
         var sortType = $('select[name="SortType"]').val();
@@ -168,9 +170,10 @@
                     });
                 }
                 if ($("div.info_item").length >= $('#totalCount').text())
-                    $("#showMore").hide();
+                    $("#showMore").attr("hidden", true);
                 else
-                    $("#showMore").show();
+                    $("#showMore").attr("hidden", false);
+                $('.preloader').fadeOut();
             }
         });
     }

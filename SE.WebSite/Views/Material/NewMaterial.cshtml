@@ -59,7 +59,7 @@
                     <h6>Тип материала</h6>
                 </div>
                 <div class="col-md-8 md-form">
-                    <select asp-for="Theme" asp-items="Html.GetEnumSelectList<Enums.Theme>()" class="form-control material"></select>
+                    <select asp-for="Theme" asp-items="Html.GetEnumSelectList<Enums.Type>()" class="form-control material"></select>
                     <span asp-validation-for="Theme" class="text-danger"></span>
                 </div>
             </div>

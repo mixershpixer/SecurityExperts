@@ -26,6 +26,7 @@ namespace SE.BLL.Services
         {
             var material = await _unitOfWork.MaterialRepository.GetByPredicate(m => m.Id == id);
             material.Status = status;
+            material.PublishingDate = DateTime.Now;
 
             await _unitOfWork.SaveAsync();
         }
