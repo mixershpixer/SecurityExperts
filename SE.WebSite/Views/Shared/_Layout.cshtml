@@ -42,12 +42,12 @@
             <div class="container-full">
                 <!-- лого -->
                 <div class="logo"><a href="~/Home/Index"><img class="img-responsive" src="~/images/logo.png" alt=""></a></div>
-                <nav class="navbar ownmenu navbar-expand-lg">
-                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                <nav class="navbar ownmenu navbar-expand-lg" style="background: white; padding: 0px 20px;">
+                    <button id="toggler" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
                     </button>
-                    <div class="collapse navbar-collapse " id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="nav">
                             <li> <a href="~/Home/Index">Главная </a> </li>
                             <li>
@@ -129,10 +129,10 @@
         </div>
         <a href="#" class="cd-top"><i class="fa fa-angle-up"></i></a>
     </div>
-    <script src="~/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/jquery-1.12.4.min.js"></script>
     <script src="~/js/popper.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/own-menu.js"></script>
     <script src="~/js/jquery.validate.js"></script>
     <script src="~/js/jquery.validate.min.js"></script>
@@ -145,3 +145,22 @@
     <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
+
+<script>
+
+    $('#toggler').click(function () {
+
+        if ($("#toggler").hasClass("collapsed")) {
+            $("#navbarNav").removeClass("collapse");
+            $("#navbarNav").addClass("show");
+            $('#toggler').removeClass("collapsed");
+            $("#navbarNav").css("display", "block");
+        }
+        else {
+            $("#navbarNav").removeClass("show");
+            $("#navbarNav").addClass("collapse");
+            $('#toggler').addClass("collapsed");
+            $("#navbarNav").css("display", "none");
+        }
+    });
+</script>
