@@ -18,7 +18,7 @@ namespace SE.Model.ViewModels
 
         public Guid MaterialId { get; set; }
 
-        [Required(ErrorMessage = "Введите текст комментария")]
+        //[Required(ErrorMessage = "Введите текст комментария")]
         public string CommentText { get; set; }
     }
 }

@@ -65,11 +65,17 @@ namespace SE.WebSite.Controllers
         [HttpPost]
         public async Task<IActionResult> NewMaterial(MaterialViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(string.Empty, "Слишком большая длина!");
+                return View(model);
+            }
+
             model.UserId = await UserService.GetUserIdByEmail(User.Identity.Name);
 
             var result = await MaterialService.NewMaterial(model);
 
-            if(result)
+            if (result)
                 return RedirectToAction("PersonalAccount", "Home");
             else
                 ModelState.AddModelError(string.Empty, "Что-то пошло не так, попробуйте снова");
@@ -106,7 +112,7 @@ namespace SE.WebSite.Controllers
         {
             var material = await MaterialService.GetById(id);
 
-            if(material.UserId == await UserService.GetUserIdByEmail(User.Identity.Name))
+            if (material.UserId == await UserService.GetUserIdByEmail(User.Identity.Name))
                 await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Deleted);
 
             var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
