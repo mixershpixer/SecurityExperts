@@ -11,7 +11,7 @@ namespace SE.Model.ViewModels
         public Guid Id { get; set; }
 
         [Required(ErrorMessage = "Введите название материала")]
-        [StringLength(50, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]
+        [StringLength(50, ErrorMessage = "Количество символов не должно превышать 50 символов в длину.")]
         public string Name { get; set; }
 
 
@@ -23,7 +23,7 @@ namespace SE.Model.ViewModels
 
 
         [Required(ErrorMessage = "Введите описание материала")]
-        [StringLength(500, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]
+        [StringLength(500, ErrorMessage = "Количество символов не должно превышать 500 символов в длину.")]
         public string Description { get; set; }
 
 
@@ -51,7 +51,7 @@ namespace SE.Model.ViewModels
         public string TypeString { get; set; }
 
         [Required(ErrorMessage = "Укажите ссылку для скачивания")]
-        [StringLength(500, ErrorMessage = "Количество символов не должно превышать {0} символов в длину.")]
+        [StringLength(500, ErrorMessage = "Количество символов не должно превышать 500 символов в длину.")]
         public string DownloadingLink { get; set; }
 
 
