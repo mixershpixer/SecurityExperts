@@ -31,48 +31,48 @@
         @foreach (var material in Model)
         {
             totalMaterialsCount++;
-        <tr>
-            <td>
-                <a  href="/Material/MaterialDetail?id=@material.Id" class="item-img">
-                    @if (material.Base64Picture.Length < 10)
-                    {
-                        <img style="width: 50px; border:1px solid" src="~/images/noimage.png" />
-                    }
-                    else
-                    {
-                        <img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" />
-                    }
-                </a>
-            </td>
-            <td>@material.Id.ToString().Substring(0, 8)</td>
-            <td><a href="/Material/MaterialDetail?id=@material.Id" class="admin-link">@(material.Name.ToString().Length <= 10 ? material.Name : (material.Name.ToString().Substring(0, 10) + "..."))</a></td>
-            <td>@material.AuthorEmail</td>
-            <td>@material.Description.ToString().Substring(0, 10)...</td>
-            <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
-            <td>@material.StatusString</td>
-            <td>@material.ThemeString</td>
-            <td>@material.TypeString</td>
-            <td><a href="@material.DownloadingLink" class="btn  btn-micro" target="_blank">Скачать</a></td>
-            @if (@material.StatusString.Equals("OnModeration"))
-            {
+            <tr>
                 <td>
-                    <a href="~/Admin/ApproveMaterial?id=@material.Id" class="btn btn-success btn-micro">Опубликовать</a>
-                    <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-dark btn-micro">Удалить</a>
+                    <a href="/Material/MaterialDetail?id=@material.Id" class="item-img">
+                        @if (material.Base64Picture.Length < 10)
+                        {
+                            <img style="width: 50px; border:1px solid" src="~/images/noimage.png" />
+                        }
+                        else
+                        {
+                            <img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,@material.Base64Picture" />
+                        }
+                    </a>
                 </td>
-            }
-            else if (@material.StatusString.Equals("Deleted"))
-            {
-                <td>
-                    <a href="~/Admin/RestoreMaterial?id=@material.Id" class="btn btn-success btn-micro">Восстановить</a>
-                </td>
-            }
-            else
-            {
-                <td>
-                    <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-dark btn-micro">Удалить</a>
-                </td>
-            }
-        </tr>
+                <td>@material.Id.ToString().Substring(0, 8)</td>
+                <td><a href="/Material/MaterialDetail?id=@material.Id" class="admin-link">@(material.Name.ToString().Length <= 10 ? material.Name : (material.Name.ToString().Substring(0, 10) + "..."))</a></td>
+                <td>@material.AuthorEmail</td>
+                <td>@material.Description.ToString().Substring(0, 10)...</td>
+                <td>@material.PublishingDate.ToString("dd.MM.yyyy")</td>
+                <td>@material.StatusString</td>
+                <td>@material.ThemeString</td>
+                <td>@material.TypeString</td>
+                <td><a href="@material.DownloadingLink" class="btn  btn-micro" target="_blank">Скачать</a></td>
+                @if (@material.StatusString.Equals("OnModeration"))
+                {
+                    <td>
+                        <a href="~/Admin/ApproveMaterial?id=@material.Id" class="btn btn-success btn-micro">Опубликовать</a>
+                        <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-dark btn-micro">Удалить</a>
+                    </td>
+                }
+                else if (@material.StatusString.Equals("Deleted"))
+                {
+                    <td>
+                        <a href="~/Admin/RestoreMaterial?id=@material.Id" class="btn btn-success btn-micro">Восстановить</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a onclick="DeleteMaterial('@material.Id');" class="btn btn-dark btn-micro">Удалить</a>
+                    </td>
+                }
+            </tr>
         }
     </tbody>
 </table>
@@ -100,17 +100,17 @@
                         `<tr>
                             <td>
                                 <a href="/Material/MaterialDetail?id=`+ this.id + `" class="item-img">`
-                                + (this.base64Picture.length <= 10 ?
-                                    `<img style="width: 50px; border:1px solid" src="/images/noimage.png" />` :
-                                    `<img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
+                        + (this.base64Picture.length <= 10 ?
+                            `<img style="width: 50px; border:1px solid" src="/images/noimage.png" />` :
+                            `<img style="width: 50px; border:1px solid" src="data:image/jpeg;base64,` + this.base64Picture + `" />`) + `
                                 </a>
                             </td>
                             <td>`+ this.id.toString().substring(0, 8) + `</td>`
-                        + (this.name <= 10 ? 
-                            `<td><a href="/Material/MaterialDetail?id=` + this.id + `" class="admin-link">` + this.name + `</a></td>` : 
+                        + (this.name <= 10 ?
+                            `<td><a href="/Material/MaterialDetail?id=` + this.id + `" class="admin-link">` + this.name + `</a></td>` :
                             `<td><a href="/Material/MaterialDetail?id=` + this.id + `" class="admin-link">` + this.name.substring(0, 10) + `...</a></td>`
-                            ) +
-                            `<td>`+ this.authorEmail + `</td>
+                        ) +
+                        `<td>` + this.authorEmail + `</td>
                             <td>`+ this.description.substring(0, 10) + `...</td>
                             <td>`+ this.publishingDateString + `</td>
                             <td>`+ this.statusString + `</td>

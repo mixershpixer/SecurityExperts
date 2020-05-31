@@ -39,11 +39,11 @@
             <div class="wrap_dop_info col-sm-12 col-md-12 col-lg-12 col-xl-3">
                 <a href="~/Material/NewMaterial"><h5> Предложить материал </h5></a>
                 <h5>Мои публикации</h5>
-                
-                        <div class="dop_info">
-                            <select name="MaterialStatus" asp-items="Html.GetEnumSelectList<Enums.MaterialStatus>()" onchange="SearchMyMaterials()" class="form-control"></select>
-                        </div>
-                 
+
+                <div class="dop_info">
+                    <select name="MaterialStatus" asp-items="Html.GetEnumSelectList<Enums.MaterialStatus>()" onchange="SearchMyMaterials()" class="form-control"></select>
+                </div>
+
                 <div class="wrap_sort">
                     <h5 class="sort_text">Сортировать:</h5>
                     <select name="SortType" asp-items="Html.GetEnumSelectList<Enums.SortType>()" onchange="SearchMyMaterials()" class="form-control"></select>
@@ -78,18 +78,18 @@
                                 <div style=" margin: 0 auto;">
                                     @if (material.Status == Enums.MaterialStatus.Published || material.Status == Enums.MaterialStatus.OnModeration)
                                     {
-                                        <a href="/Material/DeleteMaterial?id=@material.Id" class="btn btn-dark">Удалить</a>
+                                        <a onclick="DeleteMaterial('@material.Id');" class="btn btn-dark">Удалить</a>
                                     }
-                                    else if (material.Status == Enums.MaterialStatus.Deleted)
+                                    @*else if (material.Status == Enums.MaterialStatus.Deleted)
                                     {
                                         <a href="/Material/RestoreMaterial?id=@material.Id" class="btn btn-success disabled">Восстановить</a>
-                                    }
+                                    }*@
                                 </div>
                             </div>
-                    </div>
+                        </div>
                     }
                 </div>
-                <h4 name="materilasInfo" hidden>Нет материалов</h4>
+                <h4 name="noMaterials" hidden>Нет материалов</h4>
                 <label hidden id="totalCount">@Model.TotalCount</label>
             </div>
         </div>
@@ -100,7 +100,7 @@
     window.onload = function () {
         if ($('#totalCount').text() == 0) {
             $('div[name="materials"]').attr("hidden", true);
-            $('h4[name="materilasInfo"]').removeAttr('hidden');
+            $('h4[name="noMaterials"]').removeAttr('hidden');
         }
     };
 
@@ -127,12 +127,14 @@
             success: function (data) {
                 pageNum = data.page;
                 $('#totalCount').text(data.totalCount);
-                if (data.totalCount === 0) {
+                if (data.totalCount == 0) {
                     $("#showMore").attr("hidden", true);
                     $('div[name="materials"]').attr("hidden", true);
                     $('h4[name="searchResult"]').removeAttr('hidden');
+                    $('h4[name="noMaterials"]').removeAttr('hidden');
                 }
                 else {
+                    $('h4[name="noMaterials"]').attr('hidden', true);
                     $('h4[name="searchResult"]').attr("hidden", true);
                     $('div[name="materials"]').removeAttr('hidden');
                     $('div[name="materials"]').empty();
@@ -153,18 +155,15 @@
                                 </div>
                                 <div class="row" style="text-align:center">
                                     <div style=" margin: 0 auto;">`
-                            + (this.statusString == "На модерации" ?
-                                `<a href="/Material/DeleteMaterial?id=` + this.id + `" class="btn btn-dark">Удалить</a>` : "")
-                            + (this.statusString == "Удалено" ?
-                                `<a href="/Material/RestoreMaterial?id=` + this.id + `" class="btn btn-success disabled">Восстановить</a>` : "") + `
-                                    </div>
-                                </div>
-                            </div>`
+                            + (this.statusString == "На модерации" || this.statusString == "Опубликовано" ?
+                                `<a onclick="DeleteMaterial('` + this.id + `');" class="btn btn-dark">Удалить</a>` : "")
+                            //+ (this.statusString == "Удалено" ?
+                            //    `<a href="/Material/RestoreMaterial?id=` + this.id + `" class="btn btn-success disabled">Восстановить</a>` : "") + `
+                            //        </div>
+                            //    </div>
+                            + `</div>`
                         );
                     });
-                    if (totalCount == 0) {
-                        $('h4[name="materilasInfo"]').attr("hidden", true);
-                    }
                 }
             }
         });

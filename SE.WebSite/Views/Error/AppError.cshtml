@@ -1,7 +1,120 @@
 ﻿@{
-    ViewBag.Title = "Error occurred";
+    Layout = null;
 }
 
-<h1>We have a problem</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>Знатоки безопасности-404</title>
 
-<p>Sorry, an error occurred while executing your request.</p>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        body {
+            background: url('/images/404.jpg') no-repeat;
+            background-size: cover;
+            font-weight: normal;
+            position: relative;
+            font-size: 14px;
+            font-family: 'Verdana', sans-serif;
+        }
+
+        .error-text {
+            color: white;
+        }
+
+        .error-title {
+            font-size: 100px;
+            margin-bottom: 15px;
+        }
+
+        .error-cont {
+            padding-top: 18%;
+            margin-left: 20%;
+            position: relative;
+            max-height: 700px !important;
+        }
+
+        .btn {
+            border: none;
+            color: #fff;
+            display: inline-block;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 0px;
+            font-family: 'Verdana', sans-serif;
+            background: #2ce58c;
+            position: relative;
+            z-index: 1;
+        }
+
+            .btn:hover {
+                background: #3b3b3b; /*цвет кнопки*/
+                color: #ffffff;
+            }
+
+        .btn-inverse {
+            background: #2ce58c;
+            color: #3b3b3b;
+        }
+
+            .btn-inverse:hover {
+                background: #3b3b3b;
+                color: #fff;
+            }
+
+        @@media screen and (max-width: 600px) {
+            .error-title {
+                font-size: 50px;
+                margin-bottom: 15px;
+            }
+
+            .error-text {
+                padding-right: 2%;
+            }
+
+            .btn {
+                border: none;
+                color: #fff;
+                display: inline-block;
+                padding: 5%;
+                text-transform: uppercase;
+                font-size: 12px;
+                border-radius: 0px;
+                font-family: 'Verdana', sans-serif;
+                background: #2ce58c;
+                position: relative;
+                z-index: 1;
+            }
+
+                .btn:hover {
+                    background: #3b3b3b; /*цвет кнопки*/
+                    color: #ffffff;
+                }
+
+            .btn-inverse {
+                background: #2ce58c;
+                color: #3b3b3b;
+            }
+
+                .btn-inverse:hover {
+                    background: #3b3b3b;
+                    color: #fff;
+                }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-cont ">
+        <h1 class="error-text error-title">Уупссс!</h1>
+        <h3 class="error-text">500, Внутренняя ошибка сервера.</h3>
+        <p class="error-text">Что-то пошло не так :(</p>
+        <a style="margin-top: 2%;" class="btn btn-default btn-lg" href="" title="HOME">На главную страницу</a>
+    </div>
+</body>
+</html>

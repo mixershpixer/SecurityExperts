@@ -45,7 +45,7 @@ namespace SE.Common
             All = 0,
             [Display(Name = "На модерации")]
             OnModeration,
-            [Display(Name = "Опубликованно")]
+            [Display(Name = "Опубликовано")]
             Published,
             [Display(Name = "Удалено")]
             Deleted
@@ -55,18 +55,18 @@ namespace SE.Common
         {
             [Display(Name = "Общее")]
             Common = 0,
-            [Display(Name = "Пожарная безопасность")]
-            FireSafety,
+            [Display(Name = "Моя родина")]
+            MyCountry,
             [Display(Name = "Безопасность в быту")]
             SafetyAtHome,
+            [Display(Name = "Пожарная безопасность")]
+            FireSafety,
             [Display(Name = "ПДД")]
             TrafficRules,
-            [Display(Name = "Человек и природа")]
-            HumanAndNature,
             [Display(Name = "Ребенок и общество")]
             ChildAndSociety,
-            [Display(Name = "Моя родина")]
-            MyCountry
+            [Display(Name = "Человек и природа")]
+            HumanAndNature
         }
 
         public enum SortType

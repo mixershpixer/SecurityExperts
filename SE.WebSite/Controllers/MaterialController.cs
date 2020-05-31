@@ -109,7 +109,12 @@ namespace SE.WebSite.Controllers
             if(material.UserId == await UserService.GetUserIdByEmail(User.Identity.Name))
                 await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Deleted);
 
-            return RedirectToAction("PersonalAccount", "Home");
+            var educatorsMaterialsViewModel = await MaterialService.GetMaterials(
+                searchText: null, auditory: Enums.Auditory.Common, theme: Enums.Theme.Common,
+                type: Enums.Type.Common, status: material.Status, page: 0,
+                userId: await UserService.GetUserIdByEmail(User.Identity.Name), sortType: Enums.SortType.AlphabetAsc);
+
+            return Json(educatorsMaterialsViewModel);
         }
 
         [HttpGet]

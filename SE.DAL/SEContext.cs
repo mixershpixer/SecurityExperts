@@ -39,10 +39,10 @@ namespace SE.DAL
                 new User
                 {
                     Id = guid2,
-                    Name = "Eugenia",
-                    Surname = "Grishaeva",
-                    Email = "eugenia2029@gmail.com",
-                    Password = Crypto.Sha256("123123" + "eugenia2029@gmail.com"),
+                    Name = "user",
+                    Surname = "user",
+                    Email = "user@user.com",
+                    Password = Crypto.Sha256("user" + "user@user.com"),
                     Role = Enums.Role.User,
                     IsConfirmed = true
                 }
@@ -55,9 +55,9 @@ namespace SE.DAL
                 materials.Add(new Material
                 {
                     Id = Guid.NewGuid(),
-                    Name = "NameNameName" + i,
+                    Name = "Название материала №" + i,
                     UserId = i % 2 == 1 ? guid1 : guid2,
-                    Description = "DescriptionDescriptionDescriptionDescription" + i,
+                    Description = "Большое описание материала №" + i,
                     Status = i % 3 == 0 ? Enums.MaterialStatus.Published : Enums.MaterialStatus.OnModeration,
                     PublishingDate = DateTime.Now,
                     Auditory = Enums.Auditory.Educators,
@@ -65,7 +65,7 @@ namespace SE.DAL
                     Type = (Enums.Type)r.Next(1, 5),
                     DownloadingLink = i % 2 == 1 ? "https://www.freepng.ru/png-miditu/download.html" : "https://ru.wikipedia.org/wiki/Международная_организация_гражданской_авиации",
                     Picture = new byte[] {1,2,3},
-                    SourceOfInformation = "SourceOfInformationSourceOfInformation"+i,
+                    SourceOfInformation = "Источники информации материала №"+i,
                     Rating = r.Next(1, 5),
                     DownloadsCount = r.Next(1, 100)
                 });

@@ -8,7 +8,7 @@ namespace SE.BLL.Interfaces
 {
     public interface ICommentService
     {
-        Task<CommentViewModel> AddComment(Guid userId, Guid materialId, string commentText, int rating);
+        Task<CommentViewModel> AddComment(Guid userId, Guid materialId, string commentText);
         Task<bool> DeleteComment(Guid commentId);
     }
 }
