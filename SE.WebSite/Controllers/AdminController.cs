@@ -56,6 +56,8 @@ namespace SE.WebSite.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Status"] = 0;
+
             return View();
         }
 
@@ -76,6 +78,8 @@ namespace SE.WebSite.Controllers
         {
             await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Published);
 
+            ViewData["Status"] = 1;
+
             return View("Index");
         }
 
@@ -84,6 +88,8 @@ namespace SE.WebSite.Controllers
         {
             await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Deleted);
 
+            ViewData["Status"] = 1;
+
             return View("Index");
         }
 
@@ -91,6 +97,8 @@ namespace SE.WebSite.Controllers
         public async Task<IActionResult> RestoreMaterial(Guid id)
         {
             await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Published);
+
+            ViewData["Status"] = 3;
 
             return View("Index");
         }

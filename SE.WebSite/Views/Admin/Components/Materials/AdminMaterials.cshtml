@@ -53,14 +53,14 @@
                 <td>@material.ThemeString</td>
                 <td>@material.TypeString</td>
                 <td><a href="@material.DownloadingLink" class="btn  btn-micro" target="_blank">Скачать</a></td>
-                @if (@material.StatusString.Equals("OnModeration"))
+                @if (@material.StatusString.Equals("На модерации"))
                 {
                     <td>
                         <a href="~/Admin/ApproveMaterial?id=@material.Id" class="btn btn-success btn-micro">Опубликовать</a>
                         <a href="~/Admin/DeleteMaterial?id=@material.Id" class="btn btn-dark btn-micro">Удалить</a>
                     </td>
                 }
-                else if (@material.StatusString.Equals("Deleted"))
+                else if (@material.StatusString.Equals("Удалено"))
                 {
                     <td>
                         <a href="~/Admin/RestoreMaterial?id=@material.Id" class="btn btn-success btn-micro">Восстановить</a>
@@ -82,6 +82,7 @@
 
 <script>
     $(document).ready(function () {
+
         $("#MaterialStatus").change(function () {
             var selectedStatus = $(this).children("option:selected").val();
             GetMaterialsWithOptions(selectedStatus);
@@ -120,7 +121,7 @@
                             <td>`
                         + (this.statusString == "На модерации" ? ` <a href="/Admin/ApproveMaterial?id=` + this.id + `" class="btn btn-success btn-micro">Опубликовать</a><a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-dark btn-micro">Удалить</a>` : "")
                         + (this.statusString == "Удалено" ? `<a href="/Admin/RestoreMaterial?id=` + this.id + `" class="btn btn-success btn-micro">Восстановить</a>` : "")
-                        + (this.statusString == "Опубликованно" ? ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-dark btn-micro">Удалить</a>` : "")
+                        + (this.statusString == "Опубликовано" ? ` <a href="/Admin/DeleteMaterial?id=` + this.id + `" class="btn btn-dark btn-micro">Удалить</a>` : "")
                         + `</td></tr>`
                     );
                     totalCount++;
