@@ -276,7 +276,7 @@ $(document).ready(function ($) {
 
 
 /**     вкладки***/
-function openCity(evt, cityName) {
+function openInfo(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -288,7 +288,9 @@ function openCity(evt, cityName) {
     }
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+   
 }
+document.getElementById("defaultOpen").click();
 
 function DeleteAlert() {
     confirm("Вы уверены, что хотите удалить материал?");

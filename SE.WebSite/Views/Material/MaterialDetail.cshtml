@@ -83,26 +83,22 @@
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-lg-10 item-decribe">
-
                         <div class="tab-info">
-                            <button class="tablinks" onclick="openCity(event, 'Описание')" id="defaultOpen">Описание</button>
-                            <button class="tablinks" onclick="openCity(event, 'Информация')">Информация</button>
+                            <button class="tablinks" onclick="openInfo(event, 'Описание')" id="defaultOpen">Описание</button>
+                            <button class="tablinks" onclick="openInfo(event, 'Информация')">Информация</button>
                         </div>
-
                         <div id="Описание" class="tabcontent">
                             <h3>Описание</h3>
                             <p class="description-p">
                                 @Model.Description
                             </p>
                         </div>
-
                         <div id="Информация" class="tabcontent">
                             <h3>Использованные источники</h3>
                             <p class="description-p">
                                 @Model.SourceOfInformation
                             </p>
                         </div>
-
                     </div>
                     <div class="col-1"></div>
                 </div>
@@ -153,7 +149,7 @@
                                     <li class="col-lg-12">
                                         <label>
                                             <input type="hidden" id="MaterialId" value="@Model.Id" />
-                                            <textarea class="form-control" id="CommentText" placeholder="Оставьте свой комментарий"></textarea>
+                                            <textarea maxlength="500" class="form-control" id="CommentText" placeholder="Оставьте свой комментарий"></textarea>
                                         </label>
                                     </li>
                                     <li class="col-lg-12">
@@ -178,7 +174,7 @@
 </main>
 
 <script>
-    document.getElementById("defaultOpen").click();
+
 
     window.onload = function () {
         $("input[name=rating]").click(function () {
