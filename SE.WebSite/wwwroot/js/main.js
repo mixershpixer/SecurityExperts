@@ -298,6 +298,7 @@ function DeleteAlert() {
 
 function DeleteMaterial(materialId) {
     if (confirm("Вы уверены, что хотите удалить материал?")) {
+        $('.preloader').show();
         $.ajax({
             type: "GET",
             url: '/Material/DeleteMaterial?id=' + materialId,
@@ -310,7 +311,8 @@ function DeleteMaterial(materialId) {
                     $('h4[name="searchResult"]').removeAttr('hidden');
                     $('h4[name="noMaterials"]').removeAttr('hidden');
                 }
-                else {
+                else
+                {
                     $('h4[name="noMaterials"]').attr('hidden', true);
                     $('h4[name="searchResult"]').attr("hidden", true);
                     $('div[name="materials"]').removeAttr('hidden');
@@ -342,6 +344,7 @@ function DeleteMaterial(materialId) {
                         );
                     });
                 }
+                $('.preloader').fadeOut();
             }
         })
     }

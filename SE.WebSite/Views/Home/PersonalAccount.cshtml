@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="wrap_dop_info col-sm-12 col-md-12 col-lg-12 col-xl-3">
-                <h5  ><a style="font-size:23px;" href="~/Material/NewMaterial"> Предложить материал </a></h5>
+                <h5><a style="font-size:23px;" href="~/Material/NewMaterial"> Предложить материал </a></h5>
                 <h5>Мои публикации</h5>
 
                 <div class="dop_info">
@@ -81,9 +81,9 @@
                                         <a onclick="DeleteMaterial('@material.Id');" class="btn btn-dark">Удалить</a>
                                     }
                                     @*else if (material.Status == Enums.MaterialStatus.Deleted)
-                                    {
-                                        <a href="/Material/RestoreMaterial?id=@material.Id" class="btn btn-success disabled">Восстановить</a>
-                                    }*@
+                                        {
+                                            <a href="/Material/RestoreMaterial?id=@material.Id" class="btn btn-success disabled">Восстановить</a>
+                                        }*@
                                 </div>
                             </div>
                         </div>
@@ -105,16 +105,18 @@
     };
 
     function DownloadMaterial(id) {
+        $('.preloader').show();
         $.ajax({
             type: "GET",
             url: '/Material/DownloadMaterial?id=' + id,
-            success: function (data) {
-
+            success: function () {
+                $('.preloader').fadeOut();
             }
         });
     };
 
     function SearchMyMaterials() {
+        $('.preloader').show();
         var sortType = $('select[name="SortType"]').val();
         var materialStatus = $('select[name="MaterialStatus"]').val();
         $.ajax({
@@ -165,6 +167,7 @@
                         );
                     });
                 }
+                $('.preloader').fadeOut();
             }
         });
     }

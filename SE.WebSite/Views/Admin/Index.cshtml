@@ -1,11 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Главная - Админ";
 }
-
-<div id="content" style="margin-top:100px">
+<style>
+    .tab-content > .tab-pane {
+        display: none;
+    }
+    .tab-content > .active {
+        display: block;
+    }
+</style>
+<div id="content" style="margin-top:60px">
     <div class="container-fluid">
         <!-- одна строка -->
-        <div class="row no-gutters text-center ">
+        @*<div class="row no-gutters text-center ">
             <div class="col-1">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -23,13 +30,33 @@
                             @await Component.InvokeAsync("Materials")
                         </div>
                     </div>
-                    <div id="users" class="container tab-pane">
+                    <div id="users" class="container tab-pane fade">
                         <div id="users-container">
                             @await Component.InvokeAsync("Users")
                         </div>
                     </div>
                 </div>
             </div>
+        </div>*@
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-lg-10 item-decribe">
+                <div class="tab-info">
+                    <button class="tablinks" onclick="openInfo(event, 'Материалы')" id="defaultOpen">Материалы</button>
+                    <button class="tablinks" onclick="openInfo(event, 'Пользователи')">Пользователи</button>
+                </div>
+                <div id="Материалы" class="tabcontent" style="display: block;margin-bottom: 150px;">
+                    <div id="materials-container">
+                        @await Component.InvokeAsync("Materials")
+                    </div>
+                </div>
+                <div id="Пользователи" class="tabcontent">
+                    <div id="users-container">
+                        @await Component.InvokeAsync("Users")
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
         </div>
     </div>
 </div>

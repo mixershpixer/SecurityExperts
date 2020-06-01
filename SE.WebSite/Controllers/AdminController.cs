@@ -36,7 +36,6 @@ namespace SE.WebSite.Controllers
         }
     }
 
-
     //[Authorize(Roles = "Admin")]
     public class AdminController : BaseController
     {
@@ -56,8 +55,6 @@ namespace SE.WebSite.Controllers
 
         public IActionResult Index()
         {
-            ViewData["Status"] = 0;
-
             return View();
         }
 
@@ -78,9 +75,11 @@ namespace SE.WebSite.Controllers
         {
             await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Published);
 
-            ViewData["Status"] = 1;
+            var model = await MaterialService.GetMaterials(status: Enums.MaterialStatus.OnModeration, page: 0);
 
-            return View("Index");
+            model.Materials.OrderByDescending(m => m.PublishingDate);
+
+            return Ok(model);
         }
 
         [HttpGet]
@@ -88,9 +87,11 @@ namespace SE.WebSite.Controllers
         {
             await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Deleted);
 
-            ViewData["Status"] = 1;
+            var model = await MaterialService.GetMaterials(status: Enums.MaterialStatus.OnModeration, page: 0);
 
-            return View("Index");
+            model.Materials.OrderByDescending(m => m.PublishingDate);
+
+            return Ok(model);
         }
 
         [HttpGet]
@@ -98,10 +99,11 @@ namespace SE.WebSite.Controllers
         {
             await MaterialService.ChangeStatus(id, Enums.MaterialStatus.Published);
 
-            ViewData["Status"] = 3;
+            var model = await MaterialService.GetMaterials(status: Enums.MaterialStatus.Deleted, page: 0);
 
-            return View("Index");
+            model.Materials.OrderByDescending(m => m.PublishingDate);
+
+            return Ok(model);
         }
-
     }
 }
