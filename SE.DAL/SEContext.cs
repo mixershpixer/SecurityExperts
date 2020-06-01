@@ -50,7 +50,7 @@ namespace SE.DAL
             var r = new Random();
             var materials = new List<Material>();
 
-            for(int i = 1; i <= 100; i++)
+            for(int i = 1; i <= 50; i++)
             {
                 materials.Add(new Material
                 {
