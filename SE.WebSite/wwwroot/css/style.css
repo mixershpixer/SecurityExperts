@@ -7494,28 +7494,28 @@ header .social_icons a:hover {
 }
 
 .theme-for-1 {
-	background-color: #4add93;
+	background-color: rgb(0,222,142);
 }
 
-	.theme-for-2 {
-		background-color: #f7c852;
-	}
+.theme-for-2 {
+	background-color: rgb(255,202,65);
+}
 
 .theme-for-3 {
-	background-color: #f48c8c;
+	background-color: rgb(251,127,127);
 }
 
-	.theme-for-4 {
-		background-color: #1daee9;
-	}
+.theme-for-4 {
+	background-color: rgb(0,175,236);
+}
 
-	.theme-for-5 {
-		background-color: #f7c852;
-	}
+.theme-for-5 {
+	background-color: rgb(255,202,65);
+}
 
-	.theme-for-6 {
-		background-color: #4add93;
-	}
+.theme-for-6 {
+	background-color: rgb(0,222,142);
+}
 .r-theme-for-1 {
 	background-color: HSLA(149,66%,86%,0.5);
 }
